@@ -248,6 +248,16 @@ CREATE TABLE MHSYMPTOMS (
         --FOREIGN KEY == consultationID , sumptomID
 );
 
+CREATE TABLE MHILLNESS (
+		consultationID 	int,
+		illnessID  		varchar,
+
+		CONSTRAINT pk_MHSymptompsID PRIMARY KEY (consultationID,sympotomID),
+		CONSTRAINT fk_consultationID FOREIGN KEY (consultationID) REFERENCES CONSULTATION(consultationID),
+		CONSTRAINT fk_illnessID FOREIGN KEY (illnessID) REFERENCES ILLNESS(illnessID),
+		--PRIMARY KEY == consultationID + symptomID
+        --FOREIGN KEY == consultationID , sumptomID
+);
 
 
 /*Create Drugs Medical History Table */
