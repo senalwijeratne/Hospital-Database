@@ -11,9 +11,22 @@
 
 
 
--- Creation Order  = 1.Department > 2.Patient > EMPLOYEETYPE 3.Doctor > 4.RoomType > 5.Room > 6.Drug > 7.Symptom > 8.Illness > 9.Surgery > 10.MHSurgery > 
-					-- > 11.MHConsultation 12.MHSymptoms > 13.MHDrugs MEDICALTESTTYPE MHMEDICALTESTS MEDICALSCANTYPE MHMEDICALSCANS
+-- Creation Order  = 1.Department > 2.Facilities > 3.AvailableFacilities > 
+				  -- 4.Patient > 5.EmployeeType > 6.Employee >
+				  -- 7.Doctor > 8.RoomType > 9.Room
+				  -- 10.Drug > 11.Symptom > 12.Illness
+				  -- 12.Surgery > 13.MedicalHistory > 14.Admission
+				  -- 15.MedicalTestType > 16.MHSurgeries > 17.MHConsultation >
+				  -- 18.MHSymptoms > 19.MHIllnesses > 20. MHDrugs > 
+				  -- 21.MHMedicalTests > 22. MHMedicalScans > 23. Billing
 
+/* DROP TABLE Billing, MHMedicalScans, MHMedicalTests, MHDrugs, MHIllnesses,
+				MHSymptoms, MHConsultation, MHSurgeries, MedicalTestType,
+				Admission, MedicalHistory, Surgery, Illness, Symptom, Drug,
+				Room, RoomType, Doctor, Employee, EmployeeType, Patient,
+				AvailableFacilities,Facilities,Department;
+
+*/
 /*Create Department Table */
 CREATE TABLE DEPARTMENT (
 		departmentID 		int ,
@@ -26,6 +39,7 @@ CREATE TABLE DEPARTMENT (
         --FOREIGN KEY == NULL;
 );
 
+/*Create Facilities Table */
 CREATE TABLE FACILITIES (
 		facilityID 				int,
 		facilityDescription		varchar(80),
@@ -37,12 +51,12 @@ CREATE TABLE FACILITIES (
 
 );
 
-
+/*Create AvailableFacilities Table */
 CREATE TABLE AVAILABLEFACILITIES (
 		departmentID 			int,
 		facilityID 				int,
 		
-		CONSTRAINT pk_facilityID PRIMARY KEY (departmentID,facilityID)
+		CONSTRAINT pk_availableFacilityID PRIMARY KEY (departmentID,facilityID)
 
 		--PRIMARY KEY == facilityID + departmentID
         --FOREIGN KEY == facilityID , departmentID 
@@ -74,6 +88,7 @@ CREATE TABLE PATIENT (
         --FOREIGN KEY == NULL;
 );
 
+/*Create EmployeeType Table */
 CREATE TABLE EMPLOYEETYPE (
 		employeeTypeID 	int,
 		jobTitle		varchar(50),
@@ -86,7 +101,7 @@ CREATE TABLE EMPLOYEETYPE (
         --FOREIGN KEY == NULL;
 );
 
-
+/*Create Employee Table */
 CREATE TABLE EMPLOYEE (
 		employeeTypeID 	int,
 		employeeID		int,
@@ -98,30 +113,30 @@ CREATE TABLE EMPLOYEE (
 		addressline1 	varchar(40),
 		addressline2 	varchar(40),
 		addressline3 	varchar(40),
-		mobileNO 		varchar(255),
-		homeNO 			varchar(255),
+		mobileNO 		varchar(10),
+		homeNO 			varchar(10),
 		joinDate		date,
 
-		CONSTRAINT pk_employeeTypeID PRIMARY KEY (employeeID),
-		CONSTRAINT fk_departmentID FOREIGN KEY (departmentID) REFERENCES DEPARTMENT(departmentID),
+		CONSTRAINT pk_employeeID PRIMARY KEY (employeeID),
+		CONSTRAINT fk_employeeDepartmentID FOREIGN KEY (departmentID) REFERENCES DEPARTMENT(departmentID),
 
 		--PRIMARY KEY == employeeID
-        --FOREIGN KEY == NULL;
+        --FOREIGN KEY == employeeTypeID;
 );
 
 /*Create Doctor Table */  -- IMPORTANT!!!! : need to sort out how the employee table works and then redo normalization on this table
 CREATE TABLE DOCTOR (   -- IMPORTANT!!! Need to double check doctor on call thing and do the do
 		employeeID		int,
 		doctorID 		int,
-		specialization 	varchar(255),
+		specialization 	varchar(50),
 		consultationFee money,
 		
 		CONSTRAINT pk_doctorID PRIMARY KEY (employeeID),
-		CONSTRAINT fk_employeeID FOREIGN KEY (employeeID) REFERENCES EMPLOYEETYPE(employeeID)
+		CONSTRAINT fk_doctorEmployeeID FOREIGN KEY (employeeID) REFERENCES EMPLOYEE(employeeID)
 		
 		
 		--PRIMARY KEY == doctorID
-        --FOREIGN KEY == departmentID , employeeTypeID
+        --FOREIGN KEY == employeeTypeID
 );
 
 
@@ -152,12 +167,12 @@ CREATE TABLE DOCTOR (   -- IMPORTANT!!! Need to double check doctor on call thin
 
 /*Create RoomType Table */
 CREATE TABLE ROOMTYPE (
-		roomType 		int,
+		roomTypeID 		int,
 		description		varchar(100),
 		roomPrice 		money,
 
-		CONSTRAINT pk_roomTypeID PRIMARY KEY (roomType,
-		CONSTRAINT fk_departmentID FOREIGN KEY (roomType) REFERENCES DEPARTMENT(departmentID)
+		CONSTRAINT pk_roomTypeID PRIMARY KEY (roomTypeID)
+		
 
 		--PRIMARY KEY == roomID + bedNo
         --FOREIGN KEY == NONE
@@ -172,7 +187,8 @@ CREATE TABLE ROOM (
 		status 		int,
 
 		CONSTRAINT pk_roomID PRIMARY KEY (roomID,bedNo),
-		CONSTRAINT fk_departmentID FOREIGN KEY (roomType) REFERENCES DEPARTMENT(roomType)
+		CONSTRAINT fk_roomTypeID FOREIGN KEY (roomType) REFERENCES ROOMTYPE(roomTypeID)
+
 
 		--PRIMARY KEY == roomID + bedNo
         --FOREIGN KEY == roomType
@@ -238,7 +254,7 @@ CREATE TABLE SURGERY (
 );
 
 CREATE TABLE MEDICALHISTORY (			
-		fk_patientID		int,
+		patientID			int,
 		medicalHistoryID	int,
 		paymentStatus		int,
 
@@ -247,24 +263,23 @@ CREATE TABLE MEDICALHISTORY (
 
 CREATE TABLE ADMISSION (
 		medicalHistoryID	int,
-		department 			int,
 		admissionID			int,
 		patientID 			int,
 		doctorID 			int,
 		roomID 				int,
-		bedID 				int,
+		bedNo 				int,
 		admissionDate		date,
 		dischargeDate		date,
 		admissionReport		varchar(120),
 		dischargeReport		varchar(200),
 		paymentStatus 		int,
 
-		CONSTRAINT pk_admissionID PRIMARY KEY (admissionID),
-		CONSTRAINT fk_medicalHistoryID FOREIGN KEY (medicalHistoryID) REFERENCES MEDICALHISTORY(medicalHistoryID),
-		CONSTRAINT fk_patientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
-		CONSTRAINT fk_doctorID FOREIGN KEY (doctorID) REFERENCES EMPLOYEE(employeeID),
-		CONSTRAINT fk_roomID FOREIGN KEY (roomID) REFERENCES ROOM(roomID),
-		CONSTRAINT fk_bedNo FOREIGN KEY (bedNo) REFERENCES ROOM(bedNo),
+		CONSTRAINT pk_admissionID PRIMARY KEY (admissionID,medicalHistoryID),
+		CONSTRAINT fk_admissionMedicalHistoryID FOREIGN KEY (medicalHistoryID) REFERENCES MEDICALHISTORY(medicalHistoryID),
+		CONSTRAINT fk_admissionPatientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
+		CONSTRAINT fk_admissionDoctorID FOREIGN KEY (doctorID) REFERENCES EMPLOYEE(employeeID),
+		CONSTRAINT fk_admissionRoomID FOREIGN KEY (roomID) REFERENCES ROOM(roomID),
+		CONSTRAINT fk_admissionBedNo FOREIGN KEY (bedNo) REFERENCES ROOM(bedNo),
 
 		--PRIMARY KEY == admissionID + patientID + doctorID + roomID + bedID
         --FOREIGN KEY == NONE`
@@ -290,11 +305,12 @@ CREATE TABLE MEDICALTESTTYPE (
 /*Create Surgery Medical History Table */
 CREATE TABLE MHSURGERIES (
 		medicalHistoryID	int,
-		surgeryID 			int,
 		patientID 			int,
+		surgeryID 			int,
 		doctorID 			int,
 		timeScheduled		date,
 		surgeryRoom			int,
+		roomID 				int,
 		bedNo				int,  -- QUESTION : Do we really need bedNo in this table as a foreign key? ( i dont think so but im putting in just to be safe )
 		timeOutOfSurgery 	date,
 		timeInSurgery		time, -- IMPORTANT : Need to include calculated column to populate total time taken in surgery ( use AS keyword )
@@ -304,20 +320,20 @@ CREATE TABLE MHSURGERIES (
 		paymentStatus		int,
 
 
-		CONSTRAINT pk_mhsurgeryID PRIMARY KEY (surgeryID,patientID),
-		CONSTRAINT fk_medicalHistoryID FOREIGN KEY (medicalHistoryID) REFERENCES MEDICALHISTORY(medicalHistoryID),
-		CONSTRAINT fk_surgeryID FOREIGN KEY (surgeryID) REFERENCES SURGERY(surgeryID),
-		CONSTRAINT patientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
-		CONSTRAINT doctorID FOREIGN KEY (doctorID) REFERENCES DOCTOR(doctorID),
-		CONSTRAINT roomID FOREIGN KEY (roomID) REFERENCES ROOM(roomID),
-		CONSTRAINT bedNo FOREIGN KEY (bedNo) REFERENCES ROOM(bedNo)
+		CONSTRAINT pk_mhsurgeryID PRIMARY KEY (surgeryID,patientID,medicalHistoryID),
+		CONSTRAINT fk_mhsurgeryMedicalHistoryID FOREIGN KEY (medicalHistoryID,patientID) REFERENCES MEDICALHISTORY(medicalHistoryID,patientID),
+		CONSTRAINT fk_mhsurgerySurgeryID FOREIGN KEY (surgeryID) REFERENCES SURGERY(surgeryID),
+		CONSTRAINT fk_mhsurgeryPatientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
+		CONSTRAINT fk_mhsurgeryDoctorID FOREIGN KEY (doctorID) REFERENCES DOCTOR(employeeID),
+		CONSTRAINT fk_mhsurgeryRoomID FOREIGN KEY (roomID) REFERENCES ROOM(roomID),
+		CONSTRAINT fk_mhsurgeryBedNo FOREIGN KEY (bedNo) REFERENCES ROOM(bedNo)
 
 		--PRIMARY KEY == surgeryID + patientID + doctorID + timescheduled
         --FOREIGN KEY == surgeryID , patientID , doctorID , roomID , bedNo
 );
 
 
-CREATE TABLE MHCONSULTATION (
+CREATE TABLE MHCONSULTATIONS (
 		medicalHistoryID	int,
 		consultationID 		int,
 		patientID 			int,
@@ -333,14 +349,13 @@ CREATE TABLE MHCONSULTATION (
 		paymentStatus		int,
 
 
-		CONSTRAINT pk_mhconsultationID PRIMARY KEY (consultationID),
-		CONSTRAINT fk_medicalHistoryID FOREIGN KEY (medicalHistoryID) REFERENCES MEDICALHISTORY(medicalHistoryID),
-		CONSTRAINT fk_roomID FOREIGN KEY (consultationRoom) REFERENCES ROOM(roomID),
-		CONSTRAINT fk_surgeryID FOREIGN KEY (surgeryID) REFERENCES SURGERY(surgeryID),
-		CONSTRAINT fk_patientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
-		CONSTRAINT fk_doctorID FOREIGN KEY (doctorID) REFERENCES DOCTOR(doctorID),
-		CONSTRAINT fk_bedNo FOREIGN KEY (bedNo) REFERENCES ROOM(bedNo),
-		CONSTRAINT fk_diagnosis FOREIGN KEY (diagnosis) REFERENCES ILLNESS(illnessID)
+		CONSTRAINT pk_mhconsultationID PRIMARY KEY (consultationID,patientID,medicalHistoryID),
+		CONSTRAINT fk_mhconsultationMedicalHistoryID FOREIGN KEY (medicalHistoryID,patientID) REFERENCES MEDICALHISTORY(medicalHistoryID,patientID),
+		CONSTRAINT fk_mhconsultationPatientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
+		CONSTRAINT fk_mhconsultationRoomID FOREIGN KEY (consultationRoom) REFERENCES ROOM(roomID),
+		CONSTRAINT fk_mhconsultationDoctorID FOREIGN KEY (doctorID) REFERENCES DOCTOR(doctorID),
+		CONSTRAINT fk_mhconsultationBedNo FOREIGN KEY (bedNo) REFERENCES ROOM(bedNo),
+		CONSTRAINT fk_mhconsultationDiagnosis FOREIGN KEY (diagnosis) REFERENCES ILLNESS(illnessID)
 
 		--PRIMARY KEY == consultationID
         --FOREIGN KEY == patientID , doctorID , roomID , bedNo
@@ -350,23 +365,29 @@ CREATE TABLE MHCONSULTATION (
 
 /*Create Symptoms Medical History Table */
 CREATE TABLE MHSYMPTOMS (
+		medicalHistoryID int,
+		patientID 		int,
 		consultationID 	int,
 		symptomID  		varchar,
 
-		CONSTRAINT pk_MHSymptompsID PRIMARY KEY (consultationID,sympotomID),
-		CONSTRAINT fk_consultationID FOREIGN KEY (consultationID) REFERENCES CONSULTATION(consultationID),
-		CONSTRAINT fk_symptomID FOREIGN KEY (symptomID) REFERENCES SYMPTOM(symptomID),
+		CONSTRAINT pk_mhsymptomsID PRIMARY KEY (patientID,medicalHistoryID,consultationID,symptomID),
+		CONSTRAINT fk_mhsymptomsConsultationID FOREIGN KEY (consultationID) REFERENCES CONSULTATION(consultationID),
+		CONSTRAINT fk_mhsymptomsSymptomID FOREIGN KEY (symptomID) REFERENCES SYMPTOM(symptomID),
+		CONSTRAINT fk_mhsymptomsMedicalHistoryID FOREIGN KEY (medicalHistoryID,patiantID) REFERENCES MEDICALHISTORY(medicalHistoryID,patientID),
+		CONSTRAINT fk_mhsymptomsPatientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
 		--PRIMARY KEY == consultationID + symptomID
         --FOREIGN KEY == consultationID , sumptomID
 );
 
-CREATE TABLE MHILLNESS (
+CREATE TABLE MHILLNESSES (
 		consultationID 	int,
+		patientID 		int,
+		medicalHistoryID int,
 		illnessID  		varchar,
 
-		CONSTRAINT pk_MHSymptompsID PRIMARY KEY (consultationID,sympotomID),
-		CONSTRAINT fk_consultationID FOREIGN KEY (consultationID) REFERENCES CONSULTATION(consultationID),
-		CONSTRAINT fk_illnessID FOREIGN KEY (illnessID) REFERENCES ILLNESS(illnessID),
+		CONSTRAINT pk_mhillnessID PRIMARY KEY (consultationID,illnessID),
+		CONSTRAINT fk_mhillnessConsultationID FOREIGN KEY (consultationID) REFERENCES CONSULTATION(consultationID),
+		CONSTRAINT fk_mhillnessIllnessID FOREIGN KEY (illnessID) REFERENCES ILLNESS(illnessID),
 		--PRIMARY KEY == consultationID + symptomID
         --FOREIGN KEY == consultationID , sumptomID
 );
@@ -388,11 +409,10 @@ CREATE TABLE MHDRUGS (
 		paymentStatus	int  -- IMPORTANT : Need to code logic for if admitted = 1 then payment status cannot be 0 at patient discharged.
 
 			
-		CONSTRAINT pk_MHDrugs PRIMARY KEY (consultationID,drugID),
-		CONSTRAINT fk_medicalHistoryID FOREIGN KEY (medicalHistoryID) REFERENCES MEDICALHISTORY(medicalHistoryID),
-		CONSTRAINT fk_consultationID FOREIGN KEY (consultationID) REFERENCES CONSULTATION(consultationID),
-		CONSTRAINT fk_roomID FOREIGN KEY (consultationRoom) REFERENCES ROOM(roomID),
-		CONSTRAINT fk_drugID FOREIGN KEY (drugID) REFERENCES DRUG(drugID),
+		CONSTRAINT pk_mhdrugsID PRIMARY KEY (patientID,medicalHistoryID,consultationID,drugID),
+		CONSTRAINT fk_mhdrugsMedicalHistoryID FOREIGN KEY (medicalHistoryID,patientID) REFERENCES MEDICALHISTORY(medicalHistoryID,patientID),
+		CONSTRAINT fk_mhdrugsConsultationID FOREIGN KEY (consultationID) REFERENCES CONSULTATION(consultationID),
+		CONSTRAINT fk_mhdrugsDrugID FOREIGN KEY (drugID) REFERENCES DRUG(drugID)
 
 		--PRIMARY KEY == consultationID + DrugID
         --FOREIGN KEY == NONE
@@ -414,10 +434,10 @@ CREATE TABLE MHMEDICALTESTS (
 		paymentStatus	int,  -- IMPORTANT : Need to code logic for if admitted = 1 then payment status cannot be 0 at patient discharged.
 
 			
-		CONSTRAINT pk_MHDrugs PRIMARY KEY (testID),
-		CONSTRAINT fk_medicalHistoryID FOREIGN KEY (medicalHistoryID) REFERENCES MEDICALHISTORY(medicalHistoryID),
-		CONSTRAINT fk_patientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
-		CONSTRAINT fk_testTypeID FOREIGN KEY (testTypeID) REFERENCES MEDICALTESTTYPE(testTypeID)
+		CONSTRAINT pk_mhmedicaltests PRIMARY KEY (testID,patientID),
+		CONSTRAINT fk_mhmedicaltestsMedicalHistoryID FOREIGN KEY (medicalHistoryID,patientID) REFERENCES MEDICALHISTORY(medicalHistoryID,patientID),
+		CONSTRAINT fk_mhmedicaltestsPatientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
+		CONSTRAINT fk_mhmedicaltestsTestTypeID FOREIGN KEY (testTypeID) REFERENCES MEDICALTESTTYPE(testTypeID)
 		--PRIMARY KEY == consultationID + DrugID
         --FOREIGN KEY == NONE
 );
@@ -436,10 +456,10 @@ CREATE TABLE MHMEDICALSCANS (
 		paymentStatus	int,  -- IMPORTANT : Need to code logic for if admitted = 1 then payment status cannot be 0 at patient discharged.
 
 			
-		CONSTRAINT pk_MHDrugs PRIMARY KEY (scanID),
-		CONSTRAINT fk_medicalHistoryID FOREIGN KEY (medicalHistoryID) REFERENCES MEDICALHISTORY(medicalHistoryID),
-		CONSTRAINT fk_patientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
-		CONSTRAINT fk_scanTypeID FOREIGN KEY (scanTypeID) REFERENCES MEDICALSCANTYPE(scanTypeID)
+		CONSTRAINT pk_mhmedicalscans PRIMARY KEY (scanID,patientID),
+		CONSTRAINT fk_mhmedicalscansMedicalHistoryID FOREIGN KEY (medicalHistoryID,patientID) REFERENCES MEDICALHISTORY(medicalHistoryID,patientID),
+		CONSTRAINT fk_mhmedicalscansScanTypeID FOREIGN KEY (scanTypeID) REFERENCES MEDICALSCANTYPE(scanTypeID),
+		CONSTRAINT fk_mhmedicalscansPatientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID),
 
 
 		--PRIMARY KEY == consultationID + DrugID
@@ -449,16 +469,17 @@ CREATE TABLE MHMEDICALSCANS (
 
 
 /*Create Drugs Medical History Table */
-CREATE TABLE BILLING (  -- INCOMPLETE
+CREATE TABLE BILLING (  
+		patientID 			int,
 		invoiceID 			int,
 		medicalHistoryID	int,
-		patientID 			int,
 		paymentMethod		varchar(10) CHECK ( paymentMethod IN ('cash','credit card','visa','mastercard')),
 		total				money,
 
 			
-		CONSTRAINT pk_MHDrugs PRIMARY KEY (consultationID,drugID)
-
+		CONSTRAINT pk_billing PRIMARY KEY (medicalHistoryID,invoiceID,patientID),
+		CONSTRAINT fk_billingMedicalHistoryID FOREIGN KEY (medicalHistoryID,patientID) REFERENCES MEDICALHISTORY(medicalHistoryID,patientID),
+		CONSTRAINT fk_billingPatientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID)
 		--PRIMARY KEY == consultationID + DrugID
         --FOREIGN KEY == NONE
 );
