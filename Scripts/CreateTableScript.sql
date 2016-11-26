@@ -16,7 +16,7 @@
 
 /*Create Department Table */
 CREATE TABLE DEPARTMENT (
-		departmentID 		int(3) ,
+		departmentID 		int ,
 		departmentName 		varchar(50),
 		description 		varchar(120),
 
@@ -57,14 +57,13 @@ CREATE TABLE PATIENT (
 		firstName 		varchar(50),
 		middleName 		varchar(50),
 		lastName 		varchar(50),
-		age 			int(3),
+		age 			int,
 		gender 			varchar(1) CHECK (gender IN ('m','f')), --  
 		addressline1 	varchar(40),
 		addressline2 	varchar(40),
 		addressline3 	varchar(40),
 		DOB 			date,
 		contactNo 		varchar(10),
-		patientStatus 	int,
 		nextOfKin		varchar(160),
 		nextofKinNo		varchar(10),
 		patientStatus	varchar(20),
@@ -81,7 +80,7 @@ CREATE TABLE EMPLOYEETYPE (
 		salary			money,
 		prefix			varchar(2)
 
-		CONSTRAINT pk_employeeTypeID PRIMARY KEY (employeeID)
+		CONSTRAINT pk_employeeTypeID PRIMARY KEY (employeeTypeID)
 
 		--PRIMARY KEY == employeeTypeID
         --FOREIGN KEY == NULL;
@@ -91,7 +90,7 @@ CREATE TABLE EMPLOYEETYPE (
 CREATE TABLE EMPLOYEE (
 		employeeTypeID 	int,
 		employeeID		int,
-		employeeNo		int,
+		departmentID	int,
 		firstName 		varchar(50),
 		middleName 		varchar(50),
 		lastName 		varchar(50),
@@ -103,7 +102,7 @@ CREATE TABLE EMPLOYEE (
 		homeNO 			varchar(255),
 		joinDate		date,
 
-		CONSTRAINT pk_employeeTypeID PRIMARY KEY (employeeID)
+		CONSTRAINT pk_employeeTypeID PRIMARY KEY (employeeID),
 		CONSTRAINT fk_departmentID FOREIGN KEY (departmentID) REFERENCES DEPARTMENT(departmentID),
 
 		--PRIMARY KEY == employeeID
@@ -127,8 +126,8 @@ CREATE TABLE DOCTOR (   -- IMPORTANT!!! Need to double check doctor on call thin
 
 
 -- CREATE TABLE WARD (
--- 		wardID			int(2),
---		departmentID 	int(3),
+-- 		wardID			int,
+--		departmentID 	int,
 -- 		wardName		varchar(35),
 -- 		wardLevel    	varchar(35),
 
@@ -138,7 +137,7 @@ CREATE TABLE DOCTOR (   -- IMPORTANT!!! Need to double check doctor on call thin
 
 
 -- CREATE TABLE WARDSCHEDULE(
--- 		wardID			int(2),
+-- 		wardID			int,
 -- 		employeeID 		int,
 -- 		startDate		date,	
 -- 		endDate			date
@@ -157,8 +156,7 @@ CREATE TABLE ROOMTYPE (
 		description		varchar(100),
 		roomPrice 		money,
 
-		CONSTRAINT pk_roomID PR*IMARY KEY (roomID,bedNo),
--+
+		CONSTRAINT pk_roomTypeID PRIMARY KEY (roomType,
 		CONSTRAINT fk_departmentID FOREIGN KEY (roomType) REFERENCES DEPARTMENT(departmentID)
 
 		--PRIMARY KEY == roomID + bedNo
@@ -171,7 +169,7 @@ CREATE TABLE ROOM (
 		roomID 		int,
 		bedNo 		int,
 		roomType 	int,
-		status 		int(1),
+		status 		int,
 
 		CONSTRAINT pk_roomID PRIMARY KEY (roomID,bedNo),
 		CONSTRAINT fk_departmentID FOREIGN KEY (roomType) REFERENCES DEPARTMENT(roomType)
@@ -198,7 +196,7 @@ CREATE TABLE DRUG (
         --FOREIGN KEY == NONE
 );
 
-*
+
 /*Create Symptoms Table */
 CREATE TABLE SYMPTOM (
 		symptomID 		int,
@@ -242,7 +240,7 @@ CREATE TABLE SURGERY (
 CREATE TABLE MEDICALHISTORY (			
 		fk_patientID		int,
 		medicalHistoryID	int,
-		paymentStatus		int(1),
+		paymentStatus		int,
 
 		CONSTRAINT pk_MedicalHistory PRIMARY KEY (medicalHistoryID,patientID),
 );
@@ -258,7 +256,8 @@ CREATE TABLE ADMISSION (
 		admissionDate		date,
 		dischargeDate		date,
 		admissionReport		varchar(120),
-		paymentStatus 		int(1),
+		dischargeReport		varchar(200),
+		paymentStatus 		int,
 
 		CONSTRAINT pk_admissionID PRIMARY KEY (admissionID),
 		CONSTRAINT fk_medicalHistoryID FOREIGN KEY (medicalHistoryID) REFERENCES MEDICALHISTORY(medicalHistoryID),
@@ -302,7 +301,7 @@ CREATE TABLE MHSURGERIES (
 		preSurgeryNotes 	varchar(255),
 		postSurgeryNotes 	varchar(255),
 		surgeryReport		varchar(255),
-		paymentStatus		int(1),
+		paymentStatus		int,
 
 
 		CONSTRAINT pk_mhsurgeryID PRIMARY KEY (surgeryID,patientID),
@@ -330,8 +329,8 @@ CREATE TABLE MHCONSULTATION (
 		preSurgeryNotes 	varchar(255),
 		postSurgeryNotes 	varchar(255),
 		surgeryReport		varchar(255),
-		admitted			int(1),
-		paymentStatus		int(1),
+		admitted			int,
+		paymentStatus		int,
 
 
 		CONSTRAINT pk_mhconsultationID PRIMARY KEY (consultationID),
@@ -379,14 +378,14 @@ CREATE TABLE MHDRUGS (
 		consultationID 	int,
 		drugID 			int,
 		dosage			varchar(50) CHECK (Dosage IN ('one pill','two pills','three pills')),
-		morning			int(1), -- binary number to tell when the meds are to be taken
-		afternoon		int(1), -- binary number to tell when the meds are to be taken
-		night			int(1), -- binary number to tell when the meds are to be taken
-		timebased		int(2), -- if 
+		morning			int, -- binary number to tell when the meds are to be taken
+		afternoon		int, -- binary number to tell when the meds are to be taken
+		night			int, -- binary number to tell when the meds are to be taken
+		timebased		int, -- if 
 		meal			varchar(50) CHECK (MEAL IN ('After Meals','Before Meals','None')),
 		duration		date, 
-		admitted		int(1), -- check for it the drug was administered while in house
-		paymentStatus	int(1)  -- IMPORTANT : Need to code logic for if admitted = 1 then payment status cannot be 0 at patient discharged.
+		admitted		int, -- check for it the drug was administered while in house
+		paymentStatus	int  -- IMPORTANT : Need to code logic for if admitted = 1 then payment status cannot be 0 at patient discharged.
 
 			
 		CONSTRAINT pk_MHDrugs PRIMARY KEY (consultationID,drugID),
@@ -411,8 +410,8 @@ CREATE TABLE MHMEDICALTESTS (
 		testVariable	float,
 		testResult		varchar(8) CHECK ( testresult IN ('Positive','Negative')),
 		testReport		varchar(200),
-		admitted		int(1), -- check for it the drug was administered while in house
-		paymentStatus	int(1),  -- IMPORTANT : Need to code logic for if admitted = 1 then payment status cannot be 0 at patient discharged.
+		admitted		int, -- check for it the drug was administered while in house
+		paymentStatus	int,  -- IMPORTANT : Need to code logic for if admitted = 1 then payment status cannot be 0 at patient discharged.
 
 			
 		CONSTRAINT pk_MHDrugs PRIMARY KEY (testID),
@@ -433,8 +432,8 @@ CREATE TABLE MHMEDICALSCANS (
 		scanDate		date,
 		scanImage		varchar(150), -- includes the file path to the scan image
 		scanReport		varchar(200),
-		admitted		int(1), -- check for it the drug was administered while in house
-		paymentStatus	int(1),  -- IMPORTANT : Need to code logic for if admitted = 1 then payment status cannot be 0 at patient discharged.
+		admitted		int, -- check for it the drug was administered while in house
+		paymentStatus	int,  -- IMPORTANT : Need to code logic for if admitted = 1 then payment status cannot be 0 at patient discharged.
 
 			
 		CONSTRAINT pk_MHDrugs PRIMARY KEY (scanID),
@@ -451,11 +450,11 @@ CREATE TABLE MHMEDICALSCANS (
 
 /*Create Drugs Medical History Table */
 CREATE TABLE BILLING (  -- INCOMPLETE
-		invoiceID 		int,
+		invoiceID 			int,
 		medicalHistoryID	int,
-		patientID 		int,
-		paymentMethod	varchar(10) CHECK ( paymentMethod IN ('cash','credit card','visa','mastercard')),
-		total			money,
+		patientID 			int,
+		paymentMethod		varchar(10) CHECK ( paymentMethod IN ('cash','credit card','visa','mastercard')),
+		total				money,
 
 			
 		CONSTRAINT pk_MHDrugs PRIMARY KEY (consultationID,drugID)
