@@ -67,6 +67,7 @@ CREATE TABLE PATIENT (
 		patientStatus 	int,
 		nextOfKin		varchar(160),
 		nextofKinNo		varchar(10),
+		patientStatus	varchar(20),
 		
 		CONSTRAINT pk_patientID PRIMARY KEY (patientID)
 
@@ -127,6 +128,7 @@ CREATE TABLE DOCTOR (   -- IMPORTANT!!! Need to double check doctor on call thin
 
 -- CREATE TABLE WARD (
 -- 		wardID			int(2),
+--		departmentID 	int(3),
 -- 		wardName		varchar(35),
 -- 		wardLevel    	varchar(35),
 
