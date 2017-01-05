@@ -102,7 +102,7 @@ CREATE TABLE ONCALL_DOCTOR(
 		doctorLName varchar(30),
 		addressline1 varchar(30),
 		addressline2 varchar(30),
-		specialization varchar(200).
+		specialization varchar(200),
 		mobileNO varchar(10),
 		homeNO varchar (10),
 		consultationFee money,
