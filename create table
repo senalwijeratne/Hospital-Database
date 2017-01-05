@@ -1,5 +1,6 @@
 
 
+
 CREATE TABLE DEPARTMENT (
 		departmentID 		int ,
 		departmentName 		varchar(50),
@@ -16,10 +17,12 @@ CREATE TABLE FACILITIES (
 );
 
 /*DepartmentFacilities Table */
-CREATE TABLE department_facilities(
+CREATE TABLE DEPARTMENT_FACILITIES(
 		departmentID 			int,
 		facilityID 				int,
-		CONSTRAINT pk_availableFacilityID PRIMARY KEY (departmentID,facilityID)
+		CONSTRAINT pk_availableFacilityID PRIMARY KEY (departmentID,facilityID),
+		CONSTRAINT fk_facilitiesdepartment FOREIGN KEY (departmentID) REFERENCES DEPARTMENT(departmentID),
+		CONSTRAINT fk_facilitiesfacilityID FOREIGN KEY (facilityID) REFERENCES DEPARTMENT_FACILITIES(facilityID)
 );
 
 
@@ -40,6 +43,7 @@ CREATE TABLE EMPLOYEE (
 		joinDate		date,
 		CONSTRAINT pk_employeeID PRIMARY KEY (employeeID),
 		CONSTRAINT fk_employeeDepartmentID FOREIGN KEY (departmentID) REFERENCES DEPARTMENT(departmentID),
+		CONSTRAINT fk_employeetype FOREIGN KEY (employeeTypeID) REFERENCES EMPLOYEETYPE(employeeTypeID)
 
 );
 
@@ -49,20 +53,40 @@ CREATE TABLE EMPLOYEETYPE (
 		jobType	varchar(50),
 		salary			money,
 		prefix			varchar(2),
-		description varchar(120),
+		description varchar(200),
 		CONSTRAINT pk_employeeTypeID PRIMARY KEY (employeeTypeID)
 
 );
+
+-- /*acesslevel Table */
+-- CREATE TABLE ACCESS_LEVEL (
+--
+-- 		CONSTRAINT pk_employeeTypeID PRIMARY KEY (employeeTypeID)
+--
+-- );
+--
+-- CREATE TABLE ACCESS_LEVEL_EMPLOYEETYPE (
+--
+-- 		CONSTRAINT pk_employeeTypeID PRIMARY KEY (employeeTypeID)
+--
+-- );
 
 /*resident doctor table*/
 
 CREATE TABLE RESIDENT_DOCTOR(
 		doctorID int,
 		employeeID	int,
+		doctorFName varchar(30),
+		doctorLName varchar(30),
+		addressline1 varchar(30),
+		addressline2 varchar(30),
 		specialization varchar(200).
 		consultationFee money,
 		mobileNO varchar(10),
-		
+		homeNO varchar (10),
+		highestQualification varchar(20),
+
+
 		CONSTRAINT pk_residentDoctorID PRIMARY KEY (doctorID,employeeID),
 		CONSTRAINT fk_ FOREIGN KEY (employeeID) REFERENCES EMPLOYEE(employeeID)
 
@@ -74,7 +98,13 @@ CREATE TABLE RESIDENT_DOCTOR(
 CREATE TABLE ONCALL_DOCTOR(
 		doctorID int,
 		employeeID	int,
+		doctorFName varchar(30),
+		doctorLName varchar(30),
+		addressline1 varchar(30),
+		addressline2 varchar(30),
 		specialization varchar(200).
+		mobileNO varchar(10),
+		homeNO varchar (10),
 		consultationFee money,
 		feePerCall money,
 		paymentDate date,
@@ -93,7 +123,7 @@ CREATE TABLE PATIENT (
 		middleName 		varchar(50),
 		lastName 		varchar(50),
 		age 			int,
-		gender 			varchar(1) CHECK (gender IN ('m','f')), --
+		gender 			varchar(1) CHECK (gender IN ('m','f','M','F')), --
 		addressline1 	varchar(40),
 		addressline2 	varchar(40),
 		addressline3 	varchar(40),
@@ -113,29 +143,57 @@ CREATE TABLE BILL (
 		medicalHistoryID	int,
 		paymentMethod		varchar(10) CHECK ( paymentMethod IN ('cash','credit card','visa','mastercard')),
 		total				money,
+		paymentStatus boolean  DEFAULT FALSE,
 		CONSTRAINT pk_billing PRIMARY KEY (invoiceID),
 		CONSTRAINT fk_PatientID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID)
 );
-
+--
 /*medical history consulatation table*/
-CREATE TABLE MH_CONSULATAION(
+ CREATE TABLE MH_CONSULATAION(
 		consulatationID int,
 		invoiceID int,
+		doctorID 			int,
+		consulataionDate date,
+		nextCheckUp date,
+		doctorReport varchar(255),
+		paymentStatus boolean  DEFAULT FALSE,
 		CONSTRAINT pk_mhconsultationID PRIMARY KEY (consulatationID),
 		CONSTRAINT fk_invoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID)
+		CONSTRAINT fk_rdoctorid FOREIGN KEY (doctorID) REFERENCES RESIDENT_DOCTOR(doctorID)
+		CONSTRAINT fk_odoctorid FOREIGN KEY (doctorID) REFERENCES ONCALL_DOCTOR(doctorID)
+
 );
 
 /*medical history illndess table */
-CREATE TABLE MH_ILLNESSES(
+CREATE TABLE MH_ILLNESS(
 		MHillnessID int,
 		consulatationID int,
-		CONSTRAINT pk_mhillness PRIMARY KEY (),
+		illnessName varchar(100),
+		illnessDescriptopn varchar(255),
+		CONSTRAINT pk_mhillness PRIMARY KEY (MHillnessID),
 		CONSTRAINT fk_consulatation FOREIGN KEY (consulatationID) REFERENCES MH_CONSULATAION(consulatationID)
 
 );
 
+/*illness consulataion table */
+CREATE TABLE MH_CONSULTATION_ILLNESS(
+		MHillnessID int,
+		consulatationID int,
+		CONSTRAINT pk_consulataionillnss PRIMARY KEY (MHillnessID,consulatationID),
+		CONSTRAINT fk_consulataionillnessMHillness FOREIGN KEY (MHillnessID) REFERENCES MH_ILLNESS(MHillnessID),
+		CONSTRAINT fk_consulataionillnessMHillness FOREIGN KEY (consulatationID) REFERENCES MH_CONSULATAION(consulatationID)
+		
+
+);
+
+
+
 /*medical hisory symptoms table */
 CREATE TABLE MH_SYMPTOMS(
+		symptomID int,
+		symptomName varchar(100),
+		symptomDescriptopn varchar(255),
+		CONSTRAINT pk_symptomID PRIMARY KEY (symptomID),
 
 
 
@@ -143,37 +201,40 @@ CREATE TABLE MH_SYMPTOMS(
 
 /*medical hisory consulatationsymptoms table */
 CREATE TABLE MH_CONSULTATION_SYMPTOMS(
-
-
-
-);
-
-
-/*Patient symptoms table*/
-CREATE TABLE PATIENT_SYMPTOMS(
-		patientsymptomID int,
-		symptomname varchar(200),
-		CONSTRAINT pk_symptomID PRIMARY KEY (patientID)
-);
-
-CREATE TABLE MH_CONSULTATION_PATIENT_SYMPTOMS(
-		patientsymptomID int,
+		symptomID int,
 		consulatationID int,
-		CONSTRAINT pk_symptomIDconsultationID PRIMARY KEY (patientsymptomID,consulatationID)
+		CONSTRAINT pk_symptomIDconsultaionID PRIMARY KEY (symptomID,consulatationID),
+		CONSTRAINT fk_mhcondultationsymptomsymptomID FOREIGN KEY (symptomID) REFERENCES MH_SYMPTOMS(symptomID),
+		CONSTRAINT fk_mhcunsultationsymptomsconsultation FOREIGN KEY (consulatationID) REFERENCES MH_CONSULATAION(consulatationID)
+		
+
+
+
 );
+
+
 
 /*mh prescription */
-CREATE TABLE MH_PRESCRIPTION();
+CREATE TABLE MH_PRESCRIPTION(
+		prescriptionID int,
+		startDate date,
+		prescribedDuration varchar(200),
+		prescribedDousage varchar(200),
+		paymentStatus boolean  DEFAULT FALSE,
+		CONSTRAINT pk_prescrionID PRIMARY KEY (prescriptionID)
+);
 
 /*mh consultaion prescription drug*/
-CREATE TABLE MH_CONSULTAION_PRESCRIPTION();
+CREATE TABLE MH_CONSULTAION_PRESCRIPTION(
+			prescriptionID int,
+			consulatationID int,
+			CONSTRAINT pk_symptomIDconsultaionID PRIMARY KEY (consulatationID,prescriptionID),
+			CONSTRAINT fk_mhconsultationprescriptionprescriptionID FOREIGN KEY (prescriptionID) REFERENCES MH_PRESCRIPTION(prescriptionID),
+			CONSTRAINT fk_mhconsultationprescriptionprescrioncinsultationID FOREIGN KEY (consulatationID) REFERENCES MH_CONSULATAION(consulatationID)
 
-/*doctor medicalHistory table*/
-CREATE TABLE DOCTOR_MH_HISTORY(
-		doctorID int,
-		consulatationID int,
-		CONSTRAINT pk_doctormedicalhistory PRIMARY KEY (doctorID,consulatationID)
 );
+
+
 
 
 /*drugs table*/
@@ -187,39 +248,61 @@ CREATE TABLE DRUGS(
 		CONSTRAINT pk_drugID PRIMARY KEY (drugID)
 );
 
-// table already exists
-/*mh prescription drug*/
-CREATE TABLE MH_PRESCRIPTION_DRUG();
 
+
+/*mh prescription drug*/
+CREATE TABLE MH_PRESCRIPTION_DRUG(
+			drugID 		int,
+			prescriptionID int,
+			CONSTRAINT pk_prescriptiondrug PRIMARY KEY (drugID,prescriptionID)
+
+);
+
+
+
+
+
+CREATE TABLE ROOMTYPE(
+		roomtTypeID int,
+		bedID int,
+		description varchar(100),
+		roomPrice money,
+		CONSTRAINT pk_roomtypeid PRIMARY KEY (roomtTypeID)
+);
+
+/*rooms table*/
+
+ CREATE TABLE ROOM(
+ 		roomID int,
+		roomtTypeID int,
+  	bedID int,
+  	status char(1) CHECK DEFAULT N ( status IN ('y'.'n','N','Y')),
+ 		CONSTRAINT pk_roomid PRIMARY KEY (roomtTypeID,roomID,bedID,),
+ 		CONSTRAINT fk_invoiceID FOREIGN KEY (roomtTypeID) REFERENCES ROOMTYPE(roomtTypeID)
+ 
+ );
 
 /* MEDICAL HISTORY ADMISSION Table */
 CREATE TABLE MH_ADMISSION (
 		admissionID			int,
 		invoiceID int,
-		doctorID 			int,
-		bedNo 				int,
+		bedID 				int,
+		roomID int,
+		roomtTypeID int,
 		admissionDate		date,
 		dischargeDate		date,
-		paymentStatus 		int,
+		paymentStatus boolean  DEFAULT FALSE,
+		treatmentAdvice varchar(255),
+		initialCondition varchar(255),
 		CONSTRAINT pk_admissionID PRIMARY KEY (admissionID),
 		CONSTRAINT fk_invoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
+		CONSTRAINT fk_bedID FOREIGN KEY (bedID) REFERENCES ROOM(bedID),
+		CONSTRAINT fk_admissionrooomID FOREIGN KEY (roomID) REFERENCES ROOM(roomID),
+		CONSTRAINT fk_admissionroomtype FOREIGN KEY (roomtTypeID) REFERENCES ROOM(roomtTypeID)
+
 
 );
 
-// table already exists
-/*rooms table*/
-
-CREATE TABLE ROOM(
-		roomID int,
-		bedID int,
-		type varchar(100),
-		status varchar(100),
-		CONSTRAINT pk_roomid PRIMARY KEY (roomID)
-);
-
-
-// table already exists
-/*medical history admisssion room table */
 
 CREATE TABLE MH_ADMISSION_ROOM (
 		roomID int,
@@ -227,12 +310,24 @@ CREATE TABLE MH_ADMISSION_ROOM (
 		CONSTRAINT pk_addmissionroom PRIMARY KEY (roomID,admissionID)
 );
 
-// table already exists
+
+
 /*medical histort test*/
 
-CREATE TABLE TEST (
-		fluidID int,
+CREATE TABLE MH_TEST (
+		mhTestID int,
+		testID int,
 		invoiceID int,
+		testDate date,
+		testReport varchar (255),
+		paymentStatus boolean  DEFAULT FALSE,
+		CONSTRAINT pk_md_testID PRIMARY KEY (mhTestID),
+		CONSTRAINT pk_testID FOREIGN KEY (testID) REFERENCES TEST(testID)
+
+
+
+
+
 );
 
 
@@ -240,66 +335,65 @@ CREATE TABLE TEST (
 /*test table*/
 
 CREATE TABLE TEST (
-		
-	
+		testID int,
+		testName varchar(50),
+		testFee money,
+
+		CONSTRAINT pk_testID PRIMARY KEY (testID)
+
+
+
 );
 
-/*medical history test test*/
 
-CREATE TABLE MH_TEST_TEST(
-
-	
-);
 
 // table already exists
 /*MEDICAL HISTORY SCAN TABLE*/
 
 CREATE TABLE MH_SCAN(
 
-		scanID int,
+		mhscanID int,
 		invoiceID int,
-		
+		scanReport varchar (255),
+		paymentStatus boolean  DEFAULT FALSE,
+		CONSTRAINT pk_mhscanID PRIMARY KEY (mhscanID)
+
+
 );
 
 // table already exists
 /*scan type table */
 
-CREATE TABLE SCANTYPE(
-		scanTypeID int,
-		invoiceID int,
+CREATE TABLE SCAN(
+		scanID int,
+		scanName varchar (100),
+		scanFee money,
+		CONSTRAINT pk_scanID PRIMARY KEY (scanID)
+
 );
 
-
-// table already exists
-/*medical history scan type*/
-
-CREATE TABLE MH_SCAN_TYPE(
-		mh_scantypeID int,
-		
-	
-);
-
-// table already exists
-/*medical surgery table*/
 
 CREATE TABLE MH_SURGERY(
-		mh_surgeryID int,
-		DATE_OF_surgery int,
+		mhsurgeryID int,
+		surgeryID int,
+		surguryDate int,
 		invoiceID int,
+		surguryReport varchar (255),
+		paymentStatus boolean  DEFAULT FALSE,
+		CONSTRAINT pk_mh_surgeryID PRIMARY KEY (mhsurgeryID),
+		CONSTRAINT fk_mh_surguryinvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
+		CONSTRAINT fk_mh_surgury_surgury FOREIGN KEY (surgeryID) REFERENCES SURGERY(surgeryID)
+
 );
 
-// table already exists
-/*surgery table */
 
 CREATE TABLE SURGERY(
 		surgeryID int,
+		surguryName varchar(50),
+		surguryFee money,
+		surguryDescription varchar (255),
+		CONSTRAINT pk_surgeryID PRIMARY KEY (surgeryID)
+
 );
 
-// table already exists
-/*medical surgry surgrytable*/
-
-CREATE TABLE MH_SURGERY_SURGUERY(
-		mh_surgeryID int,
-		surgeryID int,
-);
---
+bn
