@@ -116,12 +116,12 @@ CREATE TABLE EMPLOYEE (
 /*resident doctor table*/
 
 CREATE TABLE RESIDENT_DOCTOR(
-		doctorID int,
+		RdoctorID int,
 		employeeID	int,
 		specialization varchar(200),
 		consultationFee money,
 		highestQualification varchar(20),
-		seniority	varchar(20),
+		seniority	varchar(20),		
 
 
 		CONSTRAINT pk_residentDoctorID PRIMARY KEY (doctorID,employeeID),
@@ -133,7 +133,7 @@ CREATE TABLE RESIDENT_DOCTOR(
 
 /*oncall doctor table*/
 CREATE TABLE ONCALL_DOCTOR(
-		doctorID int,
+		OCdoctorID int,
 		employeeID	int,
 		specialization varchar(200),
 		consultationFee money,	
@@ -165,8 +165,8 @@ CREATE TABLE BILL (
 
 /*medical history consultation table*/
  CREATE TABLE MH_CONSULTATION(
-		consultationID 		int,
 		invoiceID			int,
+		consultationID 		int,
 		employeeID			int,
 		RdoctorID 			int,
 		COdoctorID 			int,
@@ -175,7 +175,7 @@ CREATE TABLE BILL (
 		nextCheckUp 		date,
 		doctorReport 		varchar(255),
 		paymentStatus 		int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
-		CONSTRAINT pk_mhconsultationID PRIMARY KEY (consultationID,invoiceID),
+		CONSTRAINT pk_mhconsultationID PRIMARY KEY (invoiceID,consultationID),
 		CONSTRAINT fk_consultationInvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
 		CONSTRAINT fk_consultationRDoctorid FOREIGN KEY (RdoctorID,employeeID) REFERENCES RESIDENT_DOCTOR(doctorID,employeeID),
 		CONSTRAINT fk_consultationOCDoctorid FOREIGN KEY (COdoctorID,employeeID) REFERENCES ONCALL_DOCTOR(doctorID,employeeID)
@@ -199,10 +199,10 @@ CREATE TABLE ILLNESS (
 
 /*illness consultation table */
 CREATE TABLE MHCONSULTATION_ILLNESS(
-		MHillnessID int,
 		consultationID int,
 		invoiceID int,
-		CONSTRAINT pk_consultationIllness PRIMARY KEY (MHillnessID,consultationID),
+		illnessID int,
+		CONSTRAINT pk_consultationIllness PRIMARY KEY (illnessID,consultationID),
 		CONSTRAINT fk_illnessMHillness FOREIGN KEY (MHillnessID) REFERENCES ILLNESS(illnessID),
 		CONSTRAINT fk_consultationMHillness FOREIGN KEY (consultationID,invoiceID) REFERENCES MH_CONSULTATION(consultationID,invoiceID)
 		
@@ -223,16 +223,13 @@ CREATE TABLE SYMPTOMS(
 
 /*medical hisory consultationsymptoms table */
 CREATE TABLE MHCONSULTATION_SYMPTOMS(
-		symptomID int,
-		consultationID int,
 		invoiceID int,
+		consultationID int,
+		symptomID int,
 		CONSTRAINT pk_symptomIDconsultaionID PRIMARY KEY (symptomID,consultationID),
 		CONSTRAINT fk_mhcondultationsymptomsymptomID FOREIGN KEY (symptomID) REFERENCES SYMPTOMS(symptomID),
 		CONSTRAINT fk_mhcunsultationsymptomsconsultation FOREIGN KEY (consultationID,invoiceID) REFERENCES MH_CONSULTATION(consultationID,invoiceID),
 		CONSTRAINT fk_consultationMHsymptoms FOREIGN KEY (consultationID,invoiceID) REFERENCES MH_CONSULTATION(consultationID,invoiceID)
-
-
-
 
 );
 
@@ -394,11 +391,11 @@ CREATE TABLE SCAN(
 
 CREATE TABLE MH_SCAN(
 
-		invoiceID int,
-		patientID 			int,
-		scanID int,
-		scanReport varchar (255),
-		paymentStatus int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
+		invoiceID 		int,
+		patientID 		int,
+		scanID 			int,
+		scanReport 		varchar (255),
+		paymentStatus 	int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
 		
 		CONSTRAINT pk_mhscanID PRIMARY KEY (invoiceID,scanID),
 		CONSTRAINT fk_mhScanInvoice FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
