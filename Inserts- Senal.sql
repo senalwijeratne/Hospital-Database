@@ -10,16 +10,16 @@ INSERT INTO BILL(invoiceID,patientID,paymentMethod,total,paymentStatus) VALUES
 (9,8,'credit card',0,0),
 (10,2,'credit card',0,1);
 
-INSERT INTO MHConsultation(invoiceID,consultationID,employeeID,RdoctorID,COdoctorID,patientID,consultationDate,nextCheckUp,doctorReport,paymentStatus) VALUES(10,1,8,6,9,5,'07/24/2016','08/19/16','The patient seems to have a cold',0),
-(2,2,9,5,1,8,'02/21/2016','10/19/16','Left femur is fractured',1),
-(7,3,1,5,4,10,'01/08/2016','05/05/16','Right ulna bone fracture',1),
-(8,4,10,8,9,5,'01/20/2016','02/02/16','The patient has a high fever and a mild cold',0),
-(8,5,8,10,10,7,'04/23/2016','04/27/16','The patient is suffering from a muscle tear on the left leg',0),
-(8,6,8,6,9,3,'03/01/2016','08/11/16','The patient has an irregular sleep pattern, also has a defficulty falling asleep',0),
-(8,7,3,2,6,9,'05/31/2016','12/23/16','The patient has an abnormal growth on the right palm',0),
-(7,8,10,8,8,10,'07/18/2016','07/26/16','Abnormal growth on the back of the neck',1),
-(6,9,2,4,10,4,'02/14/2016','11/22/16','The patient suffered a concussion, small fracture in skull: rigth-back',1),
-(8,10,3,8,2,8,'02/10/2016','09/09/16','The patient claims normal breathing causes pain, tests were reccomended',0);
+INSERT INTO MHConsultation(invoiceID,consultationID,employeeID,RdoctorID,COdoctorID,patientID,consultationDate,nextCheckUp,doctorReport,paymentStatus) VALUES(10,1,8,6,9,5,'2016/07/24','2016/08/19','The patient seems to have a cold',0),
+(2,2,9,5,1,8,'2016/02/21','2016/10/19','Left femur is fractured',1),
+(7,3,1,5,4,10,'2016/01/08','2016/05/05','Right ulna bone fracture',1),
+(8,4,10,8,9,5,'2016/01/20','2016/02/02','The patient has a high fever and a mild cold',0),
+(8,5,8,10,10,7,'2016/04/23','2016/04/27','The patient is suffering from a muscle tear on the left leg',0),
+(8,6,8,6,9,3,'2016/03/01','2016/08/11','The patient has an irregular sleep pattern, also has a defficulty falling asleep',0),
+(8,7,3,2,6,9,'2016/05/31','2016/12/23','The patient has an abnormal growth on the right palm',0),
+(7,8,10,8,8,10,'2016/07/18','2016/07/26','Abnormal growth on the back of the neck',1),
+(6,9,2,4,10,4,'2016/02/14','2016/11/22','The patient suffered a concussion, small fracture in skull: rigth-back',1),
+(8,10,3,8,2,8,'2016/02/10','2016/09/09','The patient claims normal breathing causes pain, tests were reccomended',0);
 
 INSERT INTO illness(illnessID,illnessName,illnessDescription) VALUES
 (1,'Cold','Colds usually last 1–2 weeks. However, you could get a bacterial infection after a cold, such as an ear infection or sinus infection, which may mean you’re unwell for longer.'),
