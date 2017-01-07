@@ -350,6 +350,7 @@ CREATE TABLE TEST (
 
 
 
+
 );
 
 
@@ -357,14 +358,17 @@ CREATE TABLE TEST (
 /*medical histort test*/
 
 CREATE TABLE MH_TEST (
-		testID int,
 		invoiceID int,
+		patientID 			int,
+		testID int,
 		testDate date,
 		testReport varchar (255),
 		paymentStatus int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
 		CONSTRAINT pk_md_testID PRIMARY KEY (testID,invoiceID),
 		CONSTRAINT fk_MHtestID FOREIGN KEY (testID) REFERENCES TEST(testID),
 		CONSTRAINT fk_testInvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
+		CONSTRAINT fk_testPatient FOREIGN KEY (patientID) REFERENCES PATIENT(patientID)
+);
 
 
 
@@ -390,13 +394,16 @@ CREATE TABLE SCAN(
 
 CREATE TABLE MH_SCAN(
 
-		scanID int,
 		invoiceID int,
+		patientID 			int,
+		scanID int,
 		scanReport varchar (255),
 		paymentStatus int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
 		
 		CONSTRAINT pk_mhscanID PRIMARY KEY (invoiceID,scanID),
-		CONSTRAINT fk_mhScanInvoice FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID)
+		CONSTRAINT fk_mhScanInvoice FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
+		CONSTRAINT fk_scanPatient FOREIGN KEY (patientID) REFERENCES PATIENT(patientID)
+);
 
 
 
@@ -434,7 +441,7 @@ CREATE TABLE MH_SURGERY(
 		surgeryReport		varchar(255),
 		paymentStatus		int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
 
-		CONSTRAINT pk_mh_surgeryID PRIMARY KEY (surgeryID),
+		CONSTRAINT pk_mh_surgeryID PRIMARY KEY (invoiceID,surgeryID),
 		CONSTRAINT fk_mh_surgeryinvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
 		CONSTRAINT fk_mh_surgerysurgery FOREIGN KEY (surgeryID) REFERENCES SURGERY(surgeryID),
 		CONSTRAINT fk_surgeryRDoctorid FOREIGN KEY (RdoctorID,employeeID) REFERENCES RESIDENT_DOCTOR(doctorID,employeeID),
