@@ -13,17 +13,18 @@
 
 -- Creation Order  = 1.Department > 2.Facilities > 3.AvailableFacilities > 
 				  -- 4.Patient > 5.EmployeeType > 6.Employee >
-				  -- 7.Doctor > 8.RoomType > 9.Room
-				  -- 10.Drug > 11.Symptom > 12.Illness
-				  -- 12.Surgery > 13.MedicalHistory > 14.Admission
-				  -- 15.MedicalTestType > 16.MHSurgeries > 17.MHconsultation >
-				  -- 18.MHSymptoms > 19.MHIllnesses > 20. MHDrugs > 
-				  -- 21.MHMedicalTests > 22. MHMedicalScans > 23. Billing
+				  -- 7.Resident_Doctor > 8.OnCall_Doctor > 9.Bill
+				  -- 10.MHConsultation > 11.Illness > 12.MHConsultation_Illness
+				  -- 12.Symptoms > 13.MHConsultation_Symptoms > 14.Drugs
+				  -- 15.MH_Prescription > 16.RoomType > 17.Room >
+				  -- 18.MH_Admissions > 19.Test > 20. MHTest > 
+				  -- 21.Scan > 22. MHScan > 23. Surgery > 24. MH_Surgery
 
 
 CREATE TABLE DEPARTMENT (
 		departmentID 		int ,
 		departmentName 		varchar(50),
+		departmentLocation	varchar(20),
 		description 		varchar(120),
 		CONSTRAINT pk_departmentID PRIMARY KEY (departmentID)
 );
@@ -31,6 +32,7 @@ CREATE TABLE DEPARTMENT (
 /*Facilities Table */
 CREATE TABLE FACILITIES (
 		facilityID 				int,
+		facilityName			varchar(100),
 		facilityDescription		varchar(80),
 		CONSTRAINT pk_facilityID PRIMARY KEY (facilityID)
 	
@@ -132,10 +134,12 @@ CREATE TABLE RESIDENT_DOCTOR(
 CREATE TABLE ONCALL_DOCTOR(
 		doctorID int,
 		employeeID	int,
-		consultationFee money,
+		specialization varchar(200),
+		consultationFee money,	
 		feePerCall money,
 		paymentDate date,
-			CONSTRAINT pk_onCallDoctorID PRIMARY KEY (doctorID,employeeID),
+		highestQualification varchar(20),
+		CONSTRAINT pk_onCallDoctorID PRIMARY KEY (doctorID,employeeID),
 		CONSTRAINT fk_ FOREIGN KEY (employeeID) REFERENCES EMPLOYEE(employeeID)
 
 		/*add the primary and forign keys*/
