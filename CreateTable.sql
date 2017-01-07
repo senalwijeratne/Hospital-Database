@@ -121,6 +121,7 @@ CREATE TABLE RESIDENT_DOCTOR(
 		specialization varchar(200),
 		consultationFee money,
 		highestQualification varchar(20),
+		seniority	varchar(20),
 
 
 		CONSTRAINT pk_residentDoctorID PRIMARY KEY (doctorID,employeeID),
