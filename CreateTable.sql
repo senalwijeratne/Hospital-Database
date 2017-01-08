@@ -25,7 +25,7 @@ CREATE TABLE DEPARTMENT (
 		departmentID 		int ,
 		departmentName 		varchar(50),
 		departmentLocation	varchar(20),
-		description 		varchar(120),
+		description 		varchar(255),
 		CONSTRAINT pk_departmentID PRIMARY KEY (departmentID)
 );
 
@@ -50,7 +50,8 @@ CREATE TABLE AVAILABLEFACILITIES(
 /*Patient Table */
 CREATE TABLE PATIENT (
 		patientID 		int,
-		NIC				int UNIQUE,
+		NIC				varchar(10) UNIQUE,
+		passportNumber	varchar(10) DEFAULT NULL,
 		firstName 		varchar(50),
 		middleName 		varchar(50),
 		lastName 		varchar(50),
@@ -145,9 +146,6 @@ CREATE TABLE ONCALL_DOCTOR(
 
 		/*add the primary and forign keys*/
 );
-
-
-
 
 
 /*bill Table */
@@ -263,6 +261,7 @@ CREATE TABLE MH_PRESCRIPTION(
 
 
 );
+
 -- /*mh consultaion prescription drug*/
 -- CREATE TABLE MH_CONSULTAION_PRESCRIPTION(
 -- 			prescriptionID int,
@@ -273,21 +272,12 @@ CREATE TABLE MH_PRESCRIPTION(
 
 -- );
 
-
-
-
-
 -- /*mh prescription drug*/
 -- CREATE TABLE MH_PRESCRIPTION_DRUG(
 -- 			drugID 		int,
 -- 			prescriptionID int,
 -- 			CONSTRAINT pk_prescriptiondrug PRIMARY KEY (drugID,prescriptionID)
-
 -- );
-
-
-
-
 
 CREATE TABLE ROOMTYPE(
 		roomTypeID int,
@@ -304,6 +294,8 @@ CREATE TABLE ROOMTYPE(
  		roomID int,
   		bedID int,
   	 	status int DEFAULT '1' CHECK ( status IN (1,0)),
+  	 	
+  	 	
  		CONSTRAINT pk_roomid PRIMARY KEY (roomTypeID,roomID,bedID),
  		CONSTRAINT fk_invoiceID FOREIGN KEY (roomTypeID) REFERENCES ROOMTYPE(roomTypeID)
  
@@ -427,11 +419,11 @@ CREATE TABLE MH_SURGERY(
 		employeeID			int,
 		RdoctorID 			int,
 		COdoctorID 			int,
-		timeScheduled		date,
+		timeScheduled		datetime,
 		RoomTypeID			int,
 		roomID 				int,
 		bedID				int,  -- QUESTION : Do we really need bedNo in this table as a foreign key? ( i dont think so but im putting in just to be safe )
-		timeOutOfSurgery 	date,
+		timeOutOfSurgery 	datetime,
 		timeInSurgery		time, -- IMPORTANT : Need to include calculated column to populate total time taken in surgery ( use AS keyword )
 		preSurgeryNotes 	varchar(255),
 		postSurgeryNotes 	varchar(255),
