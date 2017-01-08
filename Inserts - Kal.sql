@@ -60,29 +60,29 @@ INSERT INTO SCAN(scanName, scanFee) VALUES
 
 
 INSERT INTO MH_SCAN(invoiceID, patientID, testID, testReport, paymentStatus) VALUES 
-(1, 1, 1,'Patient found to have broken several fingers while trying to play baseball',1),
-(2, 2, 1,'Patient neck dislocated',1),
-(2, 2, 4,'MRI Scan found cabbage instead of brain',1),
-(3, 3, 2,'Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
-(4, 4, 6,'Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
-(5, 5, 7,'Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
-(6, 6, 10,'Baby appears to have retractable wolverine claws inside forearms.',1),
-(7, 7, 9,'Lungs are busted. Need replacement filters as soon as possible',1),
-(8, 8, 8,'No significant remarks.',1),
-(9, 9, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
+(1,2, 1,'Patient found to have broken several fingers while trying to play baseball',1),
+(2,1, 1,'Patient neck dislocated',1),
+(7,1, 4,'MRI Scan found cabbage instead of brain',1),
+(8,2, 2,'Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
+(8,2, 6,'Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
+(8,3, 7,'Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
+(8,3, 10,'Baby appears to have retractable wolverine claws inside forearms.',1),
+(7,4, 9,'Lungs are busted. Need replacement filters as soon as possible',1),
+(6,2, 8,'No significant remarks.',1),
+(1,1, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
 
 
 INSERT INTO MH_TEST(invoiceID, patientID, scanID, scanReport, paymentStatus) VALUES /*needs to be rewritten*/
-(1, 1, 1,'Patient found to have broken several fingers while trying to play baseball',1),
-(2, 2, 1,'Patient neck dislocated',1),
-(2, 2, 4,'MRI Scan found cabbage instead of brain',1),
-(3, 3, 2,'Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
-(4, 4, 6,'Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
-(5, 5, 7,'Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
-(6, 6, 10,'Baby appears to have retractable wolverine claws inside forearms.',1),
-(7, 7, 9,'Lungs are busted. Need replacement filters as soon as possible',1),
-(8, 8, 8,'No significant remarks.',1),
-(9, 9, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
+(1,2, 1,'Patient found to have broken several fingers while trying to play baseball',1),
+(2,1, 1,'Patient neck dislocated',1),
+(7,1, 4,'MRI Scan found cabbage instead of brain',1),
+(8,2, 2,'Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
+(8,2, 6,'Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
+(8,3, 7,'Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
+(8,3, 10,'Baby appears to have retractable wolverine claws inside forearms.',1),
+(7,4, 9,'Lungs are busted. Need replacement filters as soon as possible',1),
+(6,2, 8,'No significant remarks.',1),
+(1,1, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
 
 /* http://www.hurleymc.com/services/surgical/types-of-surgery/ */
 INSERT INTO SURGERY(surgeryName, surgeryFee, surgeryDescription) VALUES 

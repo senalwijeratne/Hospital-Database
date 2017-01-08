@@ -303,7 +303,7 @@ CREATE TABLE ROOMTYPE(
   	 	
   	 	
  		CONSTRAINT pk_roomid PRIMARY KEY (roomTypeID,roomID,bedID),
- 		CONSTRAINT fk_invoiceID FOREIGN KEY (roomTypeID) REFERENCES ROOMTYPE(roomTypeID)
+ 		CONSTRAINT fk_roomTypeID FOREIGN KEY (roomTypeID) REFERENCES ROOMTYPE(roomTypeID)
  
  );
 
@@ -379,6 +379,7 @@ CREATE TABLE MH_SCAN(
 		invoiceID 		int,
 		patientID 		int,
 		scanID 			int,
+		scanDate 		date,
 		scanReport 		varchar (255),
 		paymentStatus 	int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
 		
