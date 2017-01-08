@@ -280,7 +280,7 @@ CREATE TABLE MH_PRESCRIPTION(
 -- );
 
 CREATE TABLE ROOMTYPE(
-		roomTypeID int,
+		roomTypeID char CHECK (roomTypeID IN ('G','P','C','S','E')),
 		description varchar(100),
 		roomPrice money,
 
@@ -290,7 +290,7 @@ CREATE TABLE ROOMTYPE(
 /*rooms table*/
 
  CREATE TABLE ROOM(
- 		roomTypeID int,
+ 		roomTypeID char,
  		roomID int,
   		bedID int,
   	 	status int DEFAULT '1' CHECK ( status IN (1,0)),
@@ -306,7 +306,7 @@ CREATE TABLE MH_ADMISSION (
 		admissionID			int,
 		invoiceID 			int,
 		patientID 			int,
-		roomTypeID 			int,
+		roomTypeID 			char,
 		roomID 				int,
 		bedID 				int,
 		admissionDate		date,
@@ -420,7 +420,7 @@ CREATE TABLE MH_SURGERY(
 		RdoctorID 			int,
 		COdoctorID 			int,
 		timeScheduled		datetime,
-		RoomTypeID			int,
+		roomTypeID			char,
 		roomID 				int,
 		bedID				int,  -- QUESTION : Do we really need bedNo in this table as a foreign key? ( i dont think so but im putting in just to be safe )
 		timeOutOfSurgery 	datetime,
