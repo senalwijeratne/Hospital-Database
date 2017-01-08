@@ -68,82 +68,67 @@
 	INSERT INTO EMPLOYEE  (employeeTypeID ,departmentID	,firstName ,middleName ,lastName,gender,addressline1,addressline2,addressline3,mobileNO,homeNO,joinDate)
 	VALUES
 	('1','1','Upil','Sahan','Thilakasiri','M','200','Urapola','Willpalla','0778968854','0127844596','2013/05/22'),
-	('2','2','Tasia','Gauvin','Thilakasiri','M','182','kongama lane','Willpalla','0777505279','0112917439','2014/06/28'),
-	('1','3','Mollie ','Fosdick','Thilakasiri','F','252','jayagama','Willpalla','0774595409','0111354155','2014/09/06'),
-	('1','4','Ethan ','Hillebrand','Thilakasiri','M','381','weera lane','Willpalla','0778123126','0115122718','2015/04/21'),
-	('2','5','Uthpala','Wijerathne','Thilakasiri','M','152','jayawardhanapura','kotte','0713010822','0111613999','2016/10/02'),
-	('2','6','Judah','Josiah Holmes','Justice, Carson B','F','82','kibulawala','homagaama','0761708675','0115673695','2016/03/21'),
+	('1','2','Tasia','Gauvin','Thilakasiri','M','182','kongama lane','Willpalla','0777505279','0112917439','2014/06/28'),
+	('2','3','Mollie ','Fosdick','Thilakasiri','F','252','jayagama','Willpalla','0774595409','0111354155','2014/09/06'),
+	('2','4','Ethan ','Hillebrand','Thilakasiri','M','381','weera lane','Willpalla','0778123126','0115122718','2015/04/21'),
+	('3','5','Uthpala','Wijerathne','Thilakasiri','M','152','jayawardhanapura','kotte','0713010822','0111613999','2016/10/02'),
+	('4','6','Judah','Josiah Holmes','Justice, Carson B','F','82','kibulawala','homagaama','0761708675','0115673695','2016/03/21'),
 	('7','7','Nathan','Kenneth Shepard','Ray, Carol Q.','M','22','manipur','koongama','0768702458','0111413465','2015/02/09'),
 	('8','8','Boris','Vladimir Higgins','Armstrong, Gloria R.','F','28','hongama','Willpalla','0714135152','0119508117','2015/05/31'),
 	('9','9','Craig','Brendan Murray','Roberts, Nicholas F','M','82','galmaduwa','walikada','0775763819','0113898879','2015/04/22'),
 	('10','10','Ivan','Howard Palmer','Prince, Thane N.','F','281','rukmala lane','rukmalgama','0711727065','0115172748','2016/04/21');
 
-
--- 7.Resident_Doctor > 
-	INSERT INTO RESIDENT_DOCTOR (RdoctorID,employeeID,specialization,consultationFee,highestQualification,seniority)
+-- 7.Resident_Doctor > -- Peshala 
+	INSERT INTO RESIDENT_DOCTOR (employeeID,specialization,consultationFee,highestQualification,seniority)
 	VALUES
-	('1','1','Cardiology',2500,'MD','3 year'),
-	('1','1','Plastic Surgery',2500,'MBBS','4 year'),
-	('1','1','Cardiology',2500,'DO','1 year'),
-	('1','1','Cardiology',2500,'MD','6year'),
-	('1','1','Immunologist',2500,'MBBS','3 year'),
-	('1','1','Cardiology',2500,'MD','2 year'),
-	('1','1','Pediatrician',2500,'DO','4 year'),
-	('1','1','Neonatologist',2500,'MD','1 year'),
-	('1','1','Neonatologist',2500,'MBBS','3 year'),
-	('1','1','Physiologist',2500,'MD','4 year');
+	('1','Cardiology',2500,'MD','3 year'),
+	('2','Plastic Surgery',2500,'MBBS','4 year');
 
--- 8.OnCall_Doctor >
-	INSERT INTO ONCALL_DOCTOR (OCdoctorID,employeeID,specialization,consultationFee,feePerCall,paymentDate,highestQualification)
+-- 8.OnCall_Doctor > -- Peshala 
+	INSERT INTO ONCALL_DOCTOR (employeeID,specialization,consultationFee,feePerCall,paymentDate,highestQualification)
 	VALUES
-	('1','1','Dermatology',2000,500,2017/05/01,'MD'),
-	('1','1','Plastic Surgery',3500,1000,2017/05/01,'MBBS'),
-	('1','1','Cardiology',2500,600,2017/05/01,'MBBS'),
-	('1','1','Dentist',2500,500,2017/05/01,'DO'),
-	('1','1','Gynocologist',3500,600,2017/05/01,'MBBCH'),
-	('1','1','Cardiology',3500,500,2017/05/01,'MD'),
-	('1','1','Neonatologist',2500,700,2017/05/01,'DO'),
-	('1','1','Immunologist',3000,300,2017/05/01'MD'),
-	('1','1','Neonatologist',2000,500,2017/05/01,'BMBS'),
-	('1','1','Pediatrician',2500,400,2017/05/01,'MBBS');
+	('3','Dermatology',2000,500,'2017/05/01','MD'),
+	('4','Plastic Surgery',3500,1000,'2017/05/01','MBBS');		
 
--- 9.Bill >
-	INSERT INTO BILL(invoiceID,patientID,paymentMethod,total,paymentStatus) VALUES
-	(1,1,'cash',0,0),
-	(2,8,'credit card',0,1),
-	(3,8,'mastercard',0,1),
-	(4,3,'cash',0,0),
-	(5,10,'visa',0,1),
-	(6,9,'credit card',0,0),
-	(7,9,'credit card',0,0),
-	(8,3,'visa',0,0),
-	(9,8,'credit card',0,0),
-	(10,2,'credit card',0,1);
+-- 9.Bill > -- Senal 
+	INSERT INTO BILL(patientID,paymentMethod,total,paymentStatus) VALUES
+	(1,'cash',0,'N'),
+	(8,'mastercard',0,'Y'),
+	(8,'mastercard',0,'Y'),
+	(3,'cash',0,'N'),
+	(10,'visa',0,'Y'),
+	(9,'mastercard',0,'N'),
+	(9,'mastercard',0,'N'),
+	(3,'visa',0,'N'),
+	(8,'visa',0,'N'),
+	(2,'mastercard',0,'Y');
 
--- 10.MHConsultation >
-	INSERT INTO MHConsultation(invoiceID,consultationID,employeeID,RdoctorID,COdoctorID,patientID,consultationDate,nextCheckUp,doctorReport,paymentStatus) VALUES(10,1,8,6,9,5,'2016/07/24','2016/08/19','The patient seems to have a cold',0),
-	(2,2,9,5,1,8,'2016/02/21','2016/10/19','Left femur is fractured',1),
-	(7,3,1,5,4,10,'2016/01/08','2016/05/05','Right ulna bone fracture',1),
-	(8,4,10,8,9,5,'2016/01/20','2016/02/02','The patient has a high fever and a mild cold',0),
-	(8,5,8,10,10,7,'2016/04/23','2016/04/27','The patient is suffering from a muscle tear on the left leg',0),
-	(8,6,8,6,9,3,'2016/03/01','2016/08/11','The patient has an irregular sleep pattern, also has a difficulty falling asleep',0),
-	(8,7,3,2,6,9,'2016/05/31','2016/12/23','The patient has an abnormal growth on the right palm',0),
-	(7,8,10,8,8,10,'2016/07/18','2016/07/26','Abnormal growth on the back of the neck',1),
-	(6,9,2,4,10,4,'2016/02/14','2016/11/22','The patient suffered a concussion, small fracture in skull: rigth-back',1),
-	(8,10,3,8,2,8,'2016/02/10','2016/09/09','The patient claims normal breathing causes pain, tests were reccomended',0); 
+-- 10.MHConsultation > -- Senal 
+	INSERT INTO MH_Consultation(invoiceID,employeeID,RdoctorID,COdoctorID,patientID,consultationDate,nextCheckUp,doctorReport,paymentStatus) 
+	VALUES
+	(1,2,2,NULL,5,'2016/07/24','2016/08/19','The patient seems to have a cold',0),
+	(2,1,1,NULL,8,'2016/02/21','2016/10/19','Left femur is fractured',1),
+	(7,1,1,NULL,10,'2016/01/08','2016/05/05','Right ulna bone fracture',1),
+	(8,2,2,NULL,5,'2016/01/20','2016/02/02','The patient has a high fever and a mild cold',0),
+	(8,2,2,NULL,7,'2016/04/23','2016/04/27','The patient is suffering from a muscle tear on the left leg',0),
+	(8,3,NULL,1,3,'2016/03/01','2016/08/11','The patient has an irregular sleep pattern, also has a defficulty falling asleep',0),
+	(8,3,NULL,1,9,'2016/05/31','2016/12/23','The patient has an abnormal growth on the right palm',0),
+	(7,4,NULL,2,10,'2016/07/18','2016/07/26','Abnormal growth on the back of the neck',1),
+	(6,2,2,NULL,4,'2016/02/14','2016/11/22','The patient suffered a concussion, small fracture in skull: rigth-back',1),
+	(1,1,1,NULL,8,'2016/02/10','2016/09/09','The patient claims normal breathing causes pain, tests were reccomended',0);
 
 -- 11.Illness >  
-	INSERT INTO illness(illnessID,illnessName,illnessDescription) VALUES
-	(1,'Cold','Colds usually last 1–2 weeks. However, you could get a bacterial infection after a cold, such as an ear infection or sinus infection, which may mean you’re unwell for longer.'),
-	(2,'Asthma','A person’s asthma triggers cause their airways to tighten, partially close up, swell inside and make more mucus. This makes it hard for the person to breathe in – and even harder to breathe out.'),
-	(3,'Bronchiectasis','Bronchiectasis happens when the breathing tubes (called bronchi) in the lungs have been damaged and enlarged – usually due to infection. This causes mucus to build up in the extra space.'),
-	(4,'Arthritis','Arthritis is a form of joint disorder that involves inflammation of one or more joints. The major complaint by individuals who have arthritis is joint pain.'),
-	(5,'Erectile dysfunction','Erectile dysfunction or impotence is sexual dysfunction characterized by the inability to develop or maintain an erection of the penis during sexual activity.'),
-	(6,'Hemorrhage','Bleeding, technically known as hemorrhaging or haemorrhaging, is blood escaping from the circulatory system. '),
-	(7,'Gestational Diabetes','Gestational diabetes is a type of diabetes that develops, or is first diagnosed, during pregnancy. The condition, like other forms of diabetes, involves high blood sugar levels.'),
-	(8,'Macular Degeneration.','Deterioration in the central area of the retina.'),
-	(9,'Insomnia','Sleep disorder characterized by difficulties falling or staying asleep.'),
-	(10,'Hepatitis','Hepatitis is the inflammation of the liver. Although hepatitis can be the symptom of many illnesses, including autoimmune diseases, it is most often caused by a viral infection.');
+	INSERT INTO illness(illnessName,illnessDescription) VALUES
+	('Cold','Colds usually last 1–2 weeks. However, you could get a bacterial infection after a cold, such as an ear infection or sinus infection, which may mean you’re unwell for longer.'),
+	('Asthma','A person’s asthma triggers cause their airways to tighten, partially close up, swell inside and make more mucus. This makes it hard for the person to breathe in – and even harder to breathe out.'),
+	('Bronchiectasis','Bronchiectasis happens when the breathing tubes (lled bronchi) in the lungs have been damaged and enlarged – usually due to infection. This causes mucus to build up in the extra space.'),
+	('Arthritis','Arthritis is a form of joint disorder that involves inflammation of one or more joints. The major complaint by individuals who have arthritis is joint pain.'),
+	('Erectile dysfunction','Erectile dysfunction or impotence is sexual dysfunction characterized by the inability to develop or maintain an erection of the penis during sexual activity.'),
+	('Hemorrhage','Bleeding, technically known as hemorrhaging or haemorrhaging, is blood escaping from the circulatory system.'),
+	('Gestational Diabetes','Gestational diabetes is a type of diabetes that develops, or is first diagnosed, during pregnancy. The condition, like other forms of diabetes, involves high blood sugar levels.'),
+	('Macular Degeneration.','Deterioration in the central area of the retina.'),
+	('Insomnia','Sleep disorder characterized by difficulties falling or staying asleep.'),
+	('Hepatitis','Hepatitis is the inflammation of the liver. Although hepatitis can be the symptom of many illnesses, including autoimmune diseases, it is most often caused by a viral infection.');
 
 -- 12.MHConsultation_Illness >
 	INSERT INTO MHConsultation_Illness(consultationID,invoiceID,illnessID) VALUES
@@ -158,7 +143,7 @@
 	(4,9,5),
 	(5,10,10);
 
--- 13.Symptoms > 
+-- 13.Symptoms > -- Ikhwan
 	INSERT INTO SYMPTOM (symptomName,symptomDescription) VALUES
 	('Headache','a continuous pain in the head.'),
 	('Fever','an abnormally high body temperature, usually accompanied by shivering, headache, and in severe instances, delirium.'),
