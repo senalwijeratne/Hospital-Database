@@ -31,7 +31,7 @@
 	(7,8,10,8,8,10,'2016/07/18','2016/07/26','Abnormal growth on the back of the neck',1),
 	(6,9,2,4,10,4,'2016/02/14','2016/11/22','The patient suffered a concussion, small fracture in skull: rigth-back',1),
 	(8,10,3,8,2,8,'2016/02/10','2016/09/09','The patient claims normal breathing causes pain, tests were reccomended',0); 
--- 11.Illness > 
+-- 11.Illness >  
 	INSERT INTO illness(illnessID,illnessName,illnessDescription) VALUES
 	(1,'Cold','Colds usually last 1–2 weeks. However, you could get a bacterial infection after a cold, such as an ear infection or sinus infection, which may mean you’re unwell for longer.'),
 	(2,'Asthma','A person’s asthma triggers cause their airways to tighten, partially close up, swell inside and make more mucus. This makes it hard for the person to breathe in – and even harder to breathe out.'),
