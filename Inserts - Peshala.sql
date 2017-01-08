@@ -28,15 +28,15 @@ VALUES
 INSERT INTO ONCALL_DOCTOR (OCdoctorID,employeeID,specialization,consultationFee,feePerCall,paymentDate,highestQualification)
 VALUES
 ('1','1','Dermatology',2000,500,2017/05/01,'MD'),
-('1','1','Plastic Surgery',3500,1000,2017/05/01,'MBBS'),
-('1','1','Cardiology',2500,600,2017/05/01,'MBBS'),
-('1','1','Dentist',2500,500,2017/05/01,'DO'),
-('1','1','Gynocologist',3500,600,2017/05/01,'MBBCH'),
-('1','1','Cardiology',3500,500,2017/05/01,'MD'),
-('1','1','Neonatologist',2500,700,2017/05/01,'DO'),
-('1','1','Immunologist',3000,300,2017/05/01'MD'),
-('1','1','Neonatologist',2000,500,2017/05/01,'BMBS'),
-('1','1','Pediatrician',2500,400,2017/05/01,'MBBS'),
+('2','2','Plastic Surgery',3500,1000,2017/05/01,'MBBS'),
+('3','3','Cardiology',2500,600,2017/05/01,'MBBS'),
+('4','4','Dentist',2500,500,2017/05/01,'DO'),
+('5','5','Gynocologist',3500,600,2017/05/01,'MBBCH'),
+('6','6','Cardiology',3500,500,2017/05/01,'MD'),
+('7','7','Neonatologist',2500,700,2017/05/01,'DO'),
+('8','8','Immunologist',3000,300,2017/05/01'MD'),
+('9','9','Neonatologist',2000,500,2017/05/01,'BMBS'),
+('10','10','Pediatrician',2500,400,2017/05/01,'MBBS'),
 
 INSERT INTO EMPLOYEETYPE  (employeeTypeID,jobType,salary,prefix,description)
 VALUES
