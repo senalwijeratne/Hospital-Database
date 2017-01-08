@@ -91,17 +91,17 @@
 	('4','Plastic Surgery',3500,1000,'2017/05/01','MBBS');		
 
 -- 9.Bill > -- Senal 
-	INSERT INTO BILL(patientID,paymentMethod,total,paymentStatus) VALUES
-	(1,'cash',0,'N'),
-	(8,'mastercard',0,'Y'),
-	(8,'mastercard',0,'Y'),
-	(3,'cash',0,'N'),
-	(10,'visa',0,'Y'),
-	(9,'mastercard',0,'N'),
-	(9,'mastercard',0,'N'),
-	(3,'visa',0,'N'),
-	(8,'visa',0,'N'),
-	(2,'mastercard',0,'Y');
+	INSERT INTO BILL(patientID,paymentMethod,total,paidDate,paidBy,paymentStatus) VALUES
+	(1,'cash',0,NULL,NULL,'N'),
+	(8,'mastercard',0,'2016/04/21','Mr.Wijethunga','Y'),
+	(8,'mastercard',0,'2016/12/21','Mrs.Kulatunga','Y'),
+	(3,'cash',0,'2016/02/15','Mr.Wijethunga','Y'),
+	(10,'visa',0,'2016/08/18','Mr.Malvic','Y'),
+	(9,'mastercard',0,NULL,NULL,'N'),
+	(9,'mastercard',0,NULL,NULL,'N'),
+	(3,'visa',0,NULL,NULL,'N'),
+	(8,'visa',0,NULL,NULL,'N'),
+	(2,'mastercard',0,'2016/05/10','Mr.Sheeran','Y');
 
 -- 10.MHConsultation > -- Senal 
 	INSERT INTO MH_Consultation(invoiceID,employeeID,RdoctorID,COdoctorID,patientID,consultationDate,nextCheckUp,doctorReport,paymentStatus) 
@@ -270,18 +270,18 @@
 
 
 
--- 21.MHTest > 
-	INSERT INTO MH_TEST(invoiceID, patientID, scanID, scanReport, paymentStatus) VALUES /*needs to be rewritten*/
-	(1, 1, 1,'Patient found to have broken several fingers while trying to play baseball',1),
-	(2, 2, 1,'Patient neck dislocated',1),
-	(2, 2, 4,'MRI Scan found cabbage instead of brain',1),
-	(3, 3, 2,'Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
-	(4, 4, 6,'Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
-	(5, 5, 7,'Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
-	(6, 6, 10,'Baby appears to have retractable wolverine claws inside forearms.',1),
-	(7, 7, 9,'Lungs are busted. Need replacement filters as soon as possible',1),
-	(8, 8, 8,'No significant remarks.',1),
-	(9, 9, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
+-- 21.MHTest > -- Ikhwan
+	INSERT INTO MH_TEST(invoiceID, testID, testDate, testReport, paymentStatus) VALUES /*needs to be rewritten*/
+	(3, 1,'2016/01/21','Patient found to have broken several fingers while trying to play baseball',1),
+	(2, 2,'2016/02/20','Patient neck dislocated',1),
+	(4, 2,'2016/03/21','MRI Scan found cabbage instead of brain',1),
+	(5, 3,'2016/04/15','Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
+	(2, 4,'2016/05/11','Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
+	(10, 5,'2016/07/11','Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
+	(5, 6, '2016/08/05','Baby appears to have retractable wolverine claws inside forearms.',1),
+	(4, 7,'2016/09/20','Lungs are busted. Need replacement filters as soon as possible',1),
+	(2, 8,'2016/11/09','No significant remarks.',1),
+	(10, 9, '2016/12/21','Voidlings present. Need to be dispersed as soon as possible.',1);
 
 -- 22.Scan > -- Ikhwan
 	INSERT INTO SCAN(scanName, scanFee) VALUES 
