@@ -100,15 +100,15 @@
 -- 9.Bill >
 	INSERT INTO BILL(invoiceID,patientID,paymentMethod,total,paymentStatus) VALUES
 	(1,1,'cash',0,0),
-	(2,8,'credit card',0,1),
+	(2,8,'visa',0,1),
 	(3,8,'mastercard',0,1),
 	(4,3,'cash',0,0),
 	(5,10,'visa',0,1),
-	(6,9,'credit card',0,0),
-	(7,9,'credit card',0,0),
+	(6,9,'visa',0,0),
+	(7,9,'mastercard',0,0),
 	(8,3,'visa',0,0),
-	(9,8,'credit card',0,0),
-	(10,2,'credit card',0,1);
+	(9,8,'mastercard',0,0),
+	(10,2,'visa',0,1);
 
 -- 10.MHConsultation >
 	INSERT INTO MHConsultation(invoiceID,consultationID,employeeID,RdoctorID,COdoctorID,patientID,consultationDate,nextCheckUp,doctorReport,paymentStatus) VALUES(10,1,8,6,9,5,'2016/07/24','2016/08/19','The patient seems to have a cold',0),
@@ -220,21 +220,21 @@
 
 -- 18.Room >
 	INSERT INTO ROOM(roomType,roomID,bedNo,status,patientID) VALUES -- patientID not in the create tables
-	('1','1','1','1','1'),
-	('1','1','2','1','2'),
-	('1','1','3','1','3'),
-	('1','2','1','1','4'),
-	('1','2','2','0',NULL),
-	('1','2','3','0',NULL),
-	('1','2','3','0',NULL),
-	('1','2','4','0',NULL),
-	('2','1','1','1','5'),
-	('2','2','1','1','6'),
-	('2','3','1','1','7'),
-	('2','4','1','0',NULL),
-	('2','5','1','0',NULL),
-	('2','6','1','0',NULL),
-	('4','1','1','1','8');
+	('1','1','1','Y','1'),
+	('1','1','2','Y','2'),
+	('1','1','3','Y','3'),
+	('1','2','1','Y','4'),
+	('1','2','2','N',NULL),
+	('1','2','3','N',NULL),
+	('1','2','3','N',NULL),
+	('1','2','4','N',NULL),
+	('2','1','1','Y','5'),
+	('2','2','1','Y','6'),
+	('2','3','1','Y','7'),
+	('2','4','1','N',NULL),
+	('2','5','1','N',NULL),
+	('2','6','1','N',NULL),
+	('4','1','1','Y','8');
 
 -- 19.MH_Admissions >
 	INSERT INTO MH_ADMISSION (admissionID, invoiceID, patientID, roomTypeID, roomID, bedID,

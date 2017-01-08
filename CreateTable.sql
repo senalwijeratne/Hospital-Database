@@ -159,7 +159,7 @@ CREATE TABLE ONCALL_DOCTOR(
 CREATE TABLE BILL (
 		invoiceID 			int IDENTITY(1,1),
 		patientID 			int,
-		paymentMethod		varchar(10) CHECK ( paymentMethod IN ('cash','credit card','visa','mastercard')),
+		paymentMethod		varchar(10) CHECK ( paymentMethod IN ('cash','visa','mastercard')),
 		total				money,
 		paymentStatus int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
 		CONSTRAINT pk_billing PRIMARY KEY (invoiceID),
@@ -299,7 +299,7 @@ CREATE TABLE ROOMTYPE(
  		roomTypeID char,
  		roomID int,
   		bedID int,
-  	 	status int DEFAULT '1' CHECK ( status IN (1,0)),
+  	 	status char DEFAULT 'N' CHECK ( status IN ('Y','N')),
   	 	
   	 	
  		CONSTRAINT pk_roomid PRIMARY KEY (roomTypeID,roomID,bedID),
