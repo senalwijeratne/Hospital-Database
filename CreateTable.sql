@@ -152,7 +152,7 @@ CREATE TABLE ONCALL_DOCTOR(
 CREATE TABLE BILL (
 		invoiceID 			int,
 		patientID 			int,
-		paymentMethod		varchar(10) CHECK ( paymentMethod IN ('cash','credit card','visa','mastercard')),
+		paymentMethod		varchar(10) CHECK ( paymentMethod IN ('cash','visa','mastercard')),
 		total				money,
 		paymentStatus int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
 		CONSTRAINT pk_billing PRIMARY KEY (invoiceID),
