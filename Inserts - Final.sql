@@ -1,12 +1,13 @@
 -- 1.Department > 
-	INSERT INTO DEPARTMENT VALUES(1,'Orthopedic','Provides expert treatment in sports medicine, trauma, joint replacement, pediatrics, oncology, spine, shoulder and elbow, foot and ankle, and hand'),
-	(2,'Pathology','',''),
-	(3,'Emergency','Just after entering the secondary gate of hospital','provides experienced physician as soon as the patient arrived for any emergency case'),
-	(4,'Dental','left side of builing of hospital','provides procedures like Dental Extractions, RCT, Scaling /Cleaning, Fillings, Local curettage'),
-	(5,'Gynecology','ward 4 in left building of hospital','provides support with all branches of medical facilities for woman'),
-	(6,'Anesthetic','ward  7 in back of hospital',' responsible for the administration of functions and activities pertaining to the delivery of anesthetics'),
-	(7,'I.C.U','second floor right side of the building','unit in the hospital where treat seriously ill patient under well experienced staff'),
-	(8,'Blood Bank','Third floor left of the building','All the blood donations are taken and stored safely for other patients in need');
+	INSERT INTO DEPARTMENT (departmentName, departmentLocation, description) VALUES 
+	('Orthopedic','Provides expert treatment in sports medicine, trauma, joint replacement, pediatrics, oncology, spine, shoulder and elbow, foot and ankle, and hand'),
+	('Pathology','',''),
+	('Emergency','Just after entering the secondary gate of hospital','provides experienced physician as soon as the patient arrived for any emergency case'),
+	('Dental','left side of builing of hospital','provides procedures like Dental Extractions, RCT, Scaling /Cleaning, Fillings, Local curettage'),
+	('Gynecology','ward 4 in left building of hospital','provides support with all branches of medical facilities for woman'),
+	('Anesthetic','ward  7 in back of hospital',' responsible for the administration of functions and activities pertaining to the delivery of anesthetics'),
+	('I.C.U','second floor right side of the building','unit in the hospital where treat seriously ill patient under well experienced staff'),
+	('Blood Bank','Third floor left of the building','All the blood donations are taken and stored safely for other patients in need');
 
 -- 2.Facilities > 
 	INSERT INTO FACILITIES(facilityID,facilityName,facilityDescription) VALUES(1,'OPD','Patients are registered at the reception and are seen on first come, first serve basis, however out of turn consultation may be provided in case of emergency'),
