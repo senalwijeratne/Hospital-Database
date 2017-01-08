@@ -358,7 +358,7 @@ CREATE TABLE MH_TEST (
 		CONSTRAINT pk_md_testID PRIMARY KEY (testID,invoiceID),
 		CONSTRAINT fk_MHtestID FOREIGN KEY (testID) REFERENCES TEST(testID),
 		CONSTRAINT fk_testInvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
-		CONSTRAINT fk_testPatient FOREIGN KEY (patientID) REFERENCES PATIENT(patientID)
+		
 );
 
 
@@ -383,7 +383,6 @@ CREATE TABLE MH_SCAN(
 		
 		CONSTRAINT pk_mhscanID PRIMARY KEY (invoiceID,scanID),
 		CONSTRAINT fk_mhScanInvoice FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
-		CONSTRAINT fk_scanPatient FOREIGN KEY (patientID) REFERENCES PATIENT(patientID)
 );
 
 
