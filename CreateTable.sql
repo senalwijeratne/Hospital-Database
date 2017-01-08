@@ -161,7 +161,7 @@ CREATE TABLE BILL (
 		patientID 			int,
 		paymentMethod		varchar(10) CHECK ( paymentMethod IN ('cash','visa','mastercard')),
 		total				money,
-		paymentStatus varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
+		paymentStatus  		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
 		CONSTRAINT pk_billing PRIMARY KEY (invoiceID),
 		CONSTRAINT fk_patientBillID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID)
 );
@@ -171,7 +171,7 @@ CREATE TABLE BILL (
 /*medical history consultation table*/
  CREATE TABLE MH_CONSULTATION(
 		invoiceID			int,
-		consultationID 		int,
+		consultationID 		int IDENTITY(1,1),
 		employeeID			int,
 		RdoctorID 			int,
 		COdoctorID 			int,

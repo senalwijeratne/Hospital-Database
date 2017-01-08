@@ -105,7 +105,7 @@
 	('1','1','Neonatologist',2500,700,2017/05/01,'DO'),
 	('1','1','Immunologist',3000,300,2017/05/01'MD'),
 	('1','1','Neonatologist',2000,500,2017/05/01,'BMBS'),
-	('1','1','Pediatrician',2500,400,2017/05/01,'MBBS')
+	('1','1','Pediatrician',2500,400,2017/05/01,'MBBS');
 
 -- 9.Bill >
 	INSERT INTO BILL(invoiceID,patientID,paymentMethod,total,paymentStatus) VALUES
@@ -139,7 +139,7 @@
 	(3,'Bronchiectasis','Bronchiectasis happens when the breathing tubes (called bronchi) in the lungs have been damaged and enlarged – usually due to infection. This causes mucus to build up in the extra space.'),
 	(4,'Arthritis','Arthritis is a form of joint disorder that involves inflammation of one or more joints. The major complaint by individuals who have arthritis is joint pain.'),
 	(5,'Erectile dysfunction','Erectile dysfunction or impotence is sexual dysfunction characterized by the inability to develop or maintain an erection of the penis during sexual activity.'),
-	(6,'Hemorrhage','Bleeding, technically known as hemorrhaging or haemorrhaging, is blood escaping from the circulatory system. Bleeding can occur internally, where blood leaks from blood vessels inside the body, or externally, either through a natural opening such as the mouth, nose, ear, urethra, vagina or anus, or through a break in the skin. Hypovolemia is a massive decrease in blood volume, and death by excessive loss of blood is referred to as exsanguination. '),
+	(6,'Hemorrhage','Bleeding, technically known as hemorrhaging or haemorrhaging, is blood escaping from the circulatory system. '),
 	(7,'Gestational Diabetes','Gestational diabetes is a type of diabetes that develops, or is first diagnosed, during pregnancy. The condition, like other forms of diabetes, involves high blood sugar levels.'),
 	(8,'Macular Degeneration.','Deterioration in the central area of the retina.'),
 	(9,'Insomnia','Sleep disorder characterized by difficulties falling or staying asleep.'),
