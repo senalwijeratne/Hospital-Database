@@ -42,11 +42,11 @@ INSERT INTO EMPLOYEETYPE  (employeeTypeID,jobType,salary,prefix,description)
 VALUES
 ('1','Resident Doctor',175000,'RD','Verifies patient information by interviewing patient'),
 ('2','Oncall Doctor',125000,'OD','. Nurses plan and provide medical and nursing care to patients in hospital'),
-('3','Janitor',3000,'JAN','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.'),
-('4','Diatesian',55000,'DIE','promote good dietary health and treat medical conditions by devising eating plans for patients based on the science of nutrition'),
+('3','Janitor',3000,'JA','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.'),
+('4','Diatesian',55000,'DI','promote good dietary health and treat medical conditions by devising eating plans for patients based on the science of nutrition'),
 ('5','Financial Officer',80000,'FO','eports to the Senior Administrative Officer and is responsible for preparing financial statements, maintaining cash controls, preparing the payroll and personnel administration, purchasing, maintaining accounts payable and managing office operations.'),
 ('6','Healthcare Consulting',80000,'HC','management analysts employed by the healthcare industry. They examine the efficiency, profits and structure of the organization, then offer suggestions on methods of improvement. This career requires a minimum of a bachelor's degree, though a master's degree is generally preferred'),
 ('7','Lab Staff',80000,'LS','Assiting the nurses and doctors in the lab work'),
-('8','Attendees',75000,'A','Attending for the needs of the patients'),
-('9','Nurse',80000,'N','. Nurses plan and provide medical and nursing care to patients in hospital');
+('8','Attendees',75000,'AT','Attending for the needs of the patients'),
+('9','Nurse',80000,'NU','. Nurses plan and provide medical and nursing care to patients in hospital');
 
