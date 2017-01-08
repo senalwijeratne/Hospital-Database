@@ -161,7 +161,10 @@ CREATE TABLE BILL (
 		patientID 			int,
 		paymentMethod		varchar(10) CHECK ( paymentMethod IN ('cash','visa','mastercard')),
 		total				money,
+		paidDate			date,
+		paidBy 				varchar(150),
 		paymentStatus  		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
+		
 		CONSTRAINT pk_billing PRIMARY KEY (invoiceID),
 		CONSTRAINT fk_patientBillID FOREIGN KEY (patientID) REFERENCES PATIENT(patientID)
 );
