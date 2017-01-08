@@ -7,6 +7,7 @@
 	(6,'Anesthetic','ward  7 in back of hospital',' responsible for the administration of functions and activities pertaining to the delivery of anesthetics'),
 	(7,'I.C.U','second floor right side of the building','unit in the hospital where treat seriously ill patient under well experienced staff'),
 	(8,'Blood Bank','Third floor left of the building','All the blood donations are taken and stored safely for other patients in need');
+
 -- 2.Facilities > 
 	INSERT INTO FACILITIES(facilityID,facilityName,facilityDescription) VALUES(1,'OPD','Patients are registered at the reception and are seen on first come, first serve basis, however out of turn consultation may be provided in case of emergency'),
 	(2,'Dental','An experienced Dental surgeon provides procedures like Dental Extractions, RCT, Scaling /Cleaning, Fillings, Local curettage'),
@@ -18,6 +19,7 @@
 	(8,'Physiotherapy','Range of physiotherapy services to assist the patients to recover from wide range of musculoskeletal pain-ful disorders. Available modalities are MWD, SWD, U/S, TENS, IFC laser therapy traction unit, magnolia.'),
 	(9,'Minor OT','Provides services for minor surgical procedure like dressing of lacerated wound, suturing of minor lacerations & resuturing, excision of corns and sebaceous cysts (done under local anesthesia.)'),
 	(10,'Hospital/wards','waiting hall with chairs, TVs, public utilities like drinking water and toilets. Sub waiting areas are available in front of individual consultation rooms. Wheel chairs, trolleys and attendants are there to help very sick patients through out the hospital.');
+
 -- 3.AvailableFacilities > 
 	INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES
 	(3,1),
@@ -25,12 +27,75 @@
 	(10,3),
 	(3,7),
 	(9,4);
+
 -- 4.Patient > 
+	INSERT INTO PATIENT(patientID,NIC,passportNO,firstName,middleName,lastName,age,gender,addressline1,addressline2,addressline3,DOB,contactNo,nextOfKin,nextofKinNo,patientStatus) 
+	VALUES(1,'961421563v','','Namal','Premadasa','Kapuge',65 ,'M','31/a','dan lane','kuragama','1996/2/20','0774301808','J.kuragama','0773301868','discharged'),
+	(2 ,'501426563v','','Kamali','Maldiwa','Sirisena',40 ,'F','65/2','lime','pindasale','1950/5/20','0773301868','K.Sirisena','0775301804','discharged'),
+	(3 ,'7561429563v','','Samanmali','Gunathi','Rajapaksha',20 ,'F',' 20/5','janatha lane','jayawardhanapura','1975/2/23','0774301908','G.Rajapaksha','0754301528','discharged'),
+	(4 ,'431421563v','','Randula','Prasan','Kulathunga',34 ,'M',' 245/1','hongama lane','maharagama','1973/2/20','0775301804','W.Kulathunga','0773301868','insurgery'),
+	(5 ,'931423563v','','Geeth','Lakshan','Weerasingha',56 ,'M','46/2','walmal lane','malabe','1993/2/20','0714301867','A.Weerasingha','0773305298','discharged'),
+	(6 ,'991826563v','','Prashan','Sumanadasa','Bandara',13 ,'M','50/b','sakura lane','Colombo 1','1999/2/10','0754301528','S.Bandara','0713301868','admitted'),
+	(7 ,'861425563v','','Rammali','Jayamani','Karunarathna',48 ,' F','40/3','fernando lane','colombo 5','1986/6/20','0774318808','T.Karunarathna','0775301804','discharged'),
+	(8 ,'681461563v','','Ravindu','Ishara','Wijesingha',36 ,'M','401/2','janashakthi lane','thalawathugoda','1968/2/20','0724301808','S.Wijesingha','0725301404','discharged'),
+	(9 ,'591321563v','','Geethma','Saduni','Kulunthunga',19 ,'F','20/1','kusalpura','Ahangama','1959/2/20','0774301768','K.Kulathunga','0753505298','admitted'),
+	(10 ,'731429563v','','Nuwan','Pradarshana','Wimalasena',51 ,'M','30/2','weerakkodi lane','maharagama','1973/2/20','0724301728','P.Wimalasena','0713305278','admitted');
 
 -- 5.EmployeeType >
+	INSERT INTO EMPLOYEETYPE  (employeeTypeID,jobType,salary,prefix,description)
+	VALUES
+	('1','1','Medical Assistants',2000,'','Verifies patient information by interviewing patient'),
+	('1','1','Nurse',3500,'','. Nurses plan and provide medical and nursing care to patients in hospital'),
+	('1','1','Janitor',2500,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.'),
+	('1','1','Diatesian',2500,'','promote good dietary health and treat medical conditions by devising eating plans for patients based on the science of nutrition'),
+	('1','1','Financial Officer',3500,'','eports to the Senior Administrative Officer and is responsible for preparing financial statements, maintaining cash controls, preparing the payroll and personnel administration, purchasing, maintaining accounts payable and managing office operations.'),
+	('1','1','Healthcare Consulting',3500,'','management analysts employed by the healthcare industry. They examine the efficiency, profits and structure of the organization, then offer suggestions on methods of improvement. This career requires a minimum of a bachelor\'s degree, though a master\'s degree is generally preferred'),
+	('1','1','Janitor',2500,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.'),
+	('1','1','Janitor',3000,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.'),
+	('1','1','Nurse',2000,'','. Nurses plan and provide medical and nursing care to patients in hospital'),
+	('1','1','Nurse',2500,'','. Nurses plan and provide medical and nursing care to patients in hospital');
+
 -- 6.Employee >
+	INSERT INTO EMPLOYEETYPE  (employeeTypeID,jobType,salary,prefix,description)
+	VALUES
+	('1','1','Medical Assistants',2000,'','Verifies patient information by interviewing patient')
+	('1','1','Nurse',3500,'','. Nurses plan and provide medical and nursing care to patients in hospital')
+	('1','1','Janitor',2500,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.')
+	('1','1','Diatesian',2500,'','promote good dietary health and treat medical conditions by devising eating plans for patients based on the science of nutrition')
+	('1','1','Financial Officer',3500,'','eports to the Senior Administrative Officer and is responsible for preparing financial statements, maintaining cash controls, preparing the payroll and personnel administration, purchasing, maintaining accounts payable and managing office operations.')
+	('1','1','Healthcare Consulting',3500,'','management analysts employed by the healthcare industry. They examine the efficiency, profits and structure of the organization, then offer suggestions on methods of improvement. This career requires a minimum of a bachelor's degree, though a master's degree is generally preferred')
+	('1','1','Janitor',2500,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.')
+	('1','1','Janitor',3000,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.')
+	('1','1','Nurse',2000,'','. Nurses plan and provide medical and nursing care to patients in hospital')
+	('1','1','Nurse',2500,'','. Nurses plan and provide medical and nursing care to patients in hospital')
+
 -- 7.Resident_Doctor > 
+	INSERT INTO RESIDENT_DOCTOR (RdoctorID,employeeID,specialization,consultationFee,highestQualification,seniority)
+	VALUES
+	('1','1','Cardiology',2500,'MD','3 year'),
+	('1','1','Plastic Surgery',2500,'MBBS','4 year'),
+	('1','1','Cardiology',2500,'DO','1 year'),
+	('1','1','Cardiology',2500,'MD','6year'),
+	('1','1','Immunologist',2500,'MBBS','3 year'),
+	('1','1','Cardiology',2500,'MD','2 year'),
+	('1','1','Pediatrician',2500,'DO','4 year'),
+	('1','1','Neonatologist',2500,'MD','1 year'),
+	('1','1','Neonatologist',2500,'MBBS','3 year'),
+	('1','1','Physiologist',2500,'MD','4 year');
+
 -- 8.OnCall_Doctor >
+	INSERT INTO ONCALL_DOCTOR (OCdoctorID,employeeID,specialization,consultationFee,feePerCall,paymentDate,highestQualification)
+	VALUES
+	('1','1','Dermatology',2000,500,2017/05/01,'MD'),
+	('1','1','Plastic Surgery',3500,1000,2017/05/01,'MBBS'),
+	('1','1','Cardiology',2500,600,2017/05/01,'MBBS'),
+	('1','1','Dentist',2500,500,2017/05/01,'DO'),
+	('1','1','Gynocologist',3500,600,2017/05/01,'MBBCH'),
+	('1','1','Cardiology',3500,500,2017/05/01,'MD'),
+	('1','1','Neonatologist',2500,700,2017/05/01,'DO'),
+	('1','1','Immunologist',3000,300,2017/05/01'MD'),
+	('1','1','Neonatologist',2000,500,2017/05/01,'BMBS'),
+	('1','1','Pediatrician',2500,400,2017/05/01,'MBBS')
 
 -- 9.Bill >
 	INSERT INTO BILL(invoiceID,patientID,paymentMethod,total,paymentStatus) VALUES
@@ -56,6 +121,7 @@
 	(7,8,10,8,8,10,'2016/07/18','2016/07/26','Abnormal growth on the back of the neck',1),
 	(6,9,2,4,10,4,'2016/02/14','2016/11/22','The patient suffered a concussion, small fracture in skull: rigth-back',1),
 	(8,10,3,8,2,8,'2016/02/10','2016/09/09','The patient claims normal breathing causes pain, tests were reccomended',0); 
+
 -- 11.Illness >  
 	INSERT INTO illness(illnessID,illnessName,illnessDescription) VALUES
 	(1,'Cold','Colds usually last 1–2 weeks. However, you could get a bacterial infection after a cold, such as an ear infection or sinus infection, which may mean you’re unwell for longer.'),
@@ -81,7 +147,6 @@
 	(9,7,3),
 	(4,9,5),
 	(5,10,10);
-
 
 -- 13.Symptoms > 
 	INSERT INTO SYMPTOM (symptomName,symptomDescription) VALUES
@@ -114,6 +179,7 @@
 	(8,9,2),
 	(9,10,1),
 	(10,8,5); 
+
 -- 15.Drugs >
 	INSERT INTO DRUGS(drugID, drugName, drugCompany, drugPrice, drugPurpose, legalClassification)
 
@@ -127,6 +193,7 @@
 	(8,'Ibuprofen','Reckitt Benckiser',9.00,'Relieves muscle pain','Class B'),
 	(9,'Panretin','Sunovione',20.00,'Boosts blood glucose levels','Class C'),
 	(10,'Cabergoline','Renovo',35.00,'Promotes better skin','Class B');
+
 -- 16.MH_Prescription >
 	INSERT INTO MH_PRESCRIPTION(consultationID, invoiceID, prescriptionID, drugID, startDate,
 
@@ -142,6 +209,7 @@
 	 (4,7,8,10, '2016/11/23','3 months', 'Thrice per day', 0),
 	 (1,5,9,1, '2016/07/15','4 months', 'Twice per day', 1),
 	 (10,10,10,8, '2016/10/14','2 months', 'Twice per day', 1);
+
 -- 17.RoomType >
 	INSERT INTO ROOMTYPE (roomTypeID,description,roomPrice) VALUES
 	('G','general','2000'),
@@ -149,6 +217,7 @@
 	('C','consultation','700'),
 	('S','surgery','12000'),
 	('E','emergency','2200');
+
 -- 18.Room >
 	INSERT INTO ROOM(roomType,roomID,bedNo,status,patientID) VALUES -- patientID not in the create tables
 	('1','1','1','1','1'),
@@ -166,6 +235,7 @@
 	('2','5','1','0',NULL),
 	('2','6','1','0',NULL),
 	('4','1','1','1','8');
+
 -- 19.MH_Admissions >
 	INSERT INTO MH_ADMISSION (admissionID, invoiceID, patientID, roomTypeID, roomID, bedID,
 
@@ -190,8 +260,32 @@
 	 (9,4,6,7,4,3, '2016/08/21', '2016/09/12',0,' Exercise daily', 'Breathing disorder'),
 	 (10,10,9,8,5,5, '2016/01/24', '2016/03/20',1,'Maintain a quiet restful environment', 'Severe
 	headache');
+
 -- 20.Test >
+	INSERT INTO TEST(testID,testName,testFee) 
+	VALUES(1,'Cholesterol ',500),
+	(2,'Complete blood count ',300 ),
+	(3,'Fasting blood sugar ',600 ),
+	(4,'Urea & electrolytes ',700 ),
+	(5,'Urine full report ',1000 ),
+	(6,'HIV 4th Generation ',2500 ),
+	(7,'Pediatric Allergist ',1500 ),
+	(8,'Tacrolimus ',500 ),
+	(9,'H-SFABPt ',2000 ),
+	(10,'Filaria antibody test',3000 );
+
 -- 21.MHTest > 
+	INSERT INTO MH_TEST(invoiceID, patientID, scanID, scanReport, paymentStatus) VALUES /*needs to be rewritten*/
+	(1, 1, 1,'Patient found to have broken several fingers while trying to play baseball',1),
+	(2, 2, 1,'Patient neck dislocated',1),
+	(2, 2, 4,'MRI Scan found cabbage instead of brain',1),
+	(3, 3, 2,'Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
+	(4, 4, 6,'Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
+	(5, 5, 7,'Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
+	(6, 6, 10,'Baby appears to have retractable wolverine claws inside forearms.',1),
+	(7, 7, 9,'Lungs are busted. Need replacement filters as soon as possible',1),
+	(8, 8, 8,'No significant remarks.',1),
+	(9, 9, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
 
 -- 22.Scan >
 	INSERT INTO SCAN(scanName, scanFee) VALUES 
