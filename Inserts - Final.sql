@@ -132,19 +132,19 @@
 
 -- 12.MHConsultation_Illness > -- Senal 
 	INSERT INTO MHConsultation_Illness(consultationID,invoiceID,illnessID) VALUES
-	(1,2,6),
-	(2,1,10),
-	(7,1,7),
-	(8,2,5),
-	(8,2,3),
-	(8,3,4),
-	(8,3,2),
-	(7,4,3),
-	(6,2,5),
-	(1,10,10);
+	(1,1,6),
+	(1,10,10),
+	(2,2,7),
+	(6,9,5),
+	(7,3,3),
+	(7,8,4),
+	(8,4,2),
+	(8,5,3),
+	(8,6,5),
+	(8,7,10);
 
 -- 13.Symptoms > -- Ikhwan
-	INSERT INTO SYMPTOM (symptomName,symptomDescription) VALUES
+	INSERT INTO SYMPTOMS (symptomName,symptomDescription) VALUES
 	('Headache','a continuous pain in the head.'),
 	('Fever','an abnormally high body temperature, usually accompanied by shivering, headache, and in severe instances, delirium.'),
 	('Nausea','a feeling of sickness with an inclination to vomit.'),
