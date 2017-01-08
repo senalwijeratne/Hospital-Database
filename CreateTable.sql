@@ -292,7 +292,7 @@ CREATE TABLE ROOMTYPE(
  		roomTypeID char,
  		roomID int,
   		bedID int,
-  	 	status int DEFAULT '1' CHECK ( status IN (1,0)),
+  	 	status char DEFAULT 'N' CHECK ( status IN ('Y','N')),
   	 	
   	 	
  		CONSTRAINT pk_roomid PRIMARY KEY (roomTypeID,roomID,bedID),
