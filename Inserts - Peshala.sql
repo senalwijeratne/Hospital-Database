@@ -1,16 +1,16 @@
 /* by :  Peshala Rasanga */
 INSERT INTO EMPLOYEE  (employeeTypeID ,employeeID	,departmentID	,firstName ,middleName ,lastName,gender,addressline1,addressline2,addressline3,mobileNO,homeNO,joinDate)
 VALUES
-('1','1','1','Upil','Sahan','Thilakasiri','282','Urapola','Willpalla',0778968854,1127844596,2013/05/22),
-('1','1','1','Tasia','Gauvin','Thilakasiri','282','Urapola','Willpalla',0777505279,01129174396,2014/06/28),
-('1','1','1','Mollie ','Fosdick','Thilakasiri','282','Urapola','Willpalla',0774595409,0111354155,2014/09/06),
-('1','1','1','Ethan ','Hillebrand','Thilakasiri','282','Urapola','Willpalla'0778123126,0115122718,2015/04/21),
-('1','1','1','Uthpala','Wijerathne','Thilakasiri','282','Urapola','Willpalla',0713010822,0111613999,2016/10/02),
-('1','1','1','Judah','Josiah Holmes','Justice, Carson B','282','Urapola','Willpalla',761708675,0115673695,2016/03/21),
-('1','1','1','Nathan','Kenneth Shepard','Ray, Carol Q.','282','Urapola','Willpalla',0768702458,0111413465,2015/02/09),
-('1','1','1','Boris','Vladimir Higgins','Armstrong, Gloria R.','282','Urapola','Willpalla'0714135152,0119508117,2015/05/31),
-('1','1','1','Craig','Brendan Murray','Roberts, Nicholas F','282','Urapola','Willpalla',0775763819,0113898879,2015/04/22),
-('1','1','1','Ivan','Howard Palmer','Prince, Thane N.','282','Urapola','Willpalla',0711727065,0115172748,22-04-15);
+('1','1','1','Upil','Sahan','Thilakasiri','M','282','Urapola','Willpalla',0778968854,1127844596,2013/05/22),
+('1','1','1','Tasia','Gauvin','Thilakasiri','M','282','Urapola','Willpalla',0777505279,01129174396,2014/06/28),
+('1','1','1','Mollie ','Fosdick','Thilakasiri','F','282','Urapola','Willpalla',0774595409,0111354155,2014/09/06),
+('1','1','1','Ethan ','Hillebrand','Thilakasiri','M','282','Urapola','Willpalla'0778123126,0115122718,2015/04/21),
+('1','1','1','Uthpala','Wijerathne','Thilakasiri','M','282','Urapola','Willpalla',0713010822,0111613999,2016/10/02),
+('1','1','1','Judah','Josiah Holmes','Justice, Carson B','F','282','Urapola','Willpalla',761708675,0115673695,2016/03/21),
+('1','1','1','Nathan','Kenneth Shepard','Ray, Carol Q.','M','282','Urapola','Willpalla',0768702458,0111413465,2015/02/09),
+('1','1','1','Boris','Vladimir Higgins','Armstrong, Gloria R.','F','282','Urapola','Willpalla'0714135152,0119508117,2015/05/31),
+('1','1','1','Craig','Brendan Murray','Roberts, Nicholas F','M','282','Urapola','Willpalla',0775763819,0113898879,2015/04/22),
+('1','1','1','Ivan','Howard Palmer','Prince, Thane N.','F','282','Urapola','Willpalla',0711727065,0115172748,22-04-15);
 
  INSERT INTO RESIDENT_DOCTOR (RdoctorID,employeeID,specialization,consultationFee,highestQualification,seniority)
 VALUES
