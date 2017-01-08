@@ -297,18 +297,18 @@
 	('Dual Energy X-ray Absorptiometry ', 6000),
 	('Voiding Cystourethrogram ', 7000);
 
--- 23.MHScan > 
-INSERT INTO MH_SCAN(invoiceID, patientID, testID, testReport, paymentStatus) VALUES 
-(1,2, 1,'Patient found to have broken several fingers while trying to play baseball',1),
-(2,1, 1,'Patient neck dislocated',1),
-(7,1, 4,'MRI Scan found cabbage instead of brain',1),
-(8,2, 2,'Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
-(8,2, 6,'Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
-(8,3, 7,'Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
-(8,3, 10,'Baby appears to have retractable wolverine claws inside forearms.',1),
-(7,4, 9,'Lungs are busted. Need replacement filters as soon as possible',1),
-(6,2, 8,'No significant remarks.',1),
-(1,1, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
+-- 23.MHScan > -- Ikhwan
+INSERT INTO MH_SCAN(invoiceID, scanID, scanDate, scanReport, paymentStatus) VALUES 
+(3,1,'2016/02/21','Patient found to have broken several fingers while trying to play baseball',1),
+(2,1,'2016/03/20','Patient neck dislocated',1),
+(4,4,'2016/04/21','MRI Scan found cabbage instead of brain',1),
+(5,5,'2016/05/15','Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
+(2,6,'2016/06/11','Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
+(10,2,'2016/08/11','Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
+(5,1, '2016/09/05','Baby appears to have retractable wolverine claws inside forearms.',1),
+(4,9,'2016/10/20','Lungs are busted. Need replacement filters as soon as possible',1),
+(2,11,'2016/12/09','No significant remarks.',1),
+(10,10, '2016/01/21','Voidlings present. Need to be dispersed as soon as possible.',1);
 
 -- 24.Surgery > -- Ikhwan
 	INSERT INTO SURGERY(surgeryName, surgeryFee, surgeryDescription) VALUES 
