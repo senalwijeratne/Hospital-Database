@@ -22,16 +22,16 @@
 
 
 CREATE TABLE DEPARTMENT (
-		departmentID 		int ,
-		departmentName 		varchar(50) UNIQUE,
-		departmentLocation	varchar(20),
-		description 		varchar(255),
+		departmentID 		int 			IDENTITY(1,1),
+		departmentName 		varchar			(50) UNIQUE,
+		departmentLocation	varchar			(20),
+		description 		varchar			(255),
 		CONSTRAINT pk_departmentID PRIMARY KEY (departmentID)
 );
 
 /*Facilities Table */
 CREATE TABLE FACILITIES (
-		facilityID 				int,
+		facilityID 				int IDENTITY(1,1),
 		facilityName			varchar(100),
 		facilityDescription		varchar(80),
 		CONSTRAINT pk_facilityID PRIMARY KEY (facilityID)
@@ -49,13 +49,13 @@ CREATE TABLE AVAILABLEFACILITIES(
 
 /*Patient Table */
 CREATE TABLE PATIENT (
-		patientID 		int,
+		patientID 		int IDENTITY(1,1),
 		NIC				varchar(10) UNIQUE,
 		passportNumber	varchar(10) DEFAULT NULL,
 		firstName 		varchar(50),
 		middleName 		varchar(50),
 		lastName 		varchar(50),
-		age 			int,
+		age 			int, -- Needs calculated column code. ( AS keyword)
 		gender 			varchar(1) CHECK (gender IN ('m','f','M','F')), --
 		addressline1 	varchar(40),
 		addressline2 	varchar(40),
@@ -70,7 +70,7 @@ CREATE TABLE PATIENT (
 
 /*EmployeeType Table */
 CREATE TABLE EMPLOYEETYPE (
-		employeeTypeID 	int,
+		employeeTypeID 	int IDENTITY(1,1),
 		jobType			varchar(50),
 		salary			money,
 		prefix			varchar(2),
@@ -82,7 +82,7 @@ CREATE TABLE EMPLOYEETYPE (
 /*Employee Table */
 CREATE TABLE EMPLOYEE (
 		employeeTypeID 	int,
-		employeeID		int,
+		employeeID		int IDENTITY(1,1),
 		departmentID	int,
 		firstName 		varchar(50),
 		middleName 		varchar(50),
@@ -117,10 +117,10 @@ CREATE TABLE EMPLOYEE (
 /*resident doctor table*/
 
 CREATE TABLE RESIDENT_DOCTOR(
-		RdoctorID int,
-		employeeID	int,
-		specialization varchar(200),
-		consultationFee money,
+		RdoctorID 			int IDENTITY(1,1),
+		employeeID			int,
+		specialization 		varchar(200),
+		consultationFee 	money,
 		highestQualification varchar(20),
 		seniority	varchar(20),		
 
@@ -134,7 +134,7 @@ CREATE TABLE RESIDENT_DOCTOR(
 
 /*oncall doctor table*/
 CREATE TABLE ONCALL_DOCTOR(
-		OCdoctorID int,
+		OCdoctorID int IDENTITY(1,1),
 		employeeID	int,
 		specialization varchar(200),
 		consultationFee money,	
@@ -150,7 +150,7 @@ CREATE TABLE ONCALL_DOCTOR(
 
 /*bill Table */
 CREATE TABLE BILL (
-		invoiceID 			int,
+		invoiceID 			int IDENTITY(1,1),
 		patientID 			int,
 		paymentMethod		varchar(10) CHECK ( paymentMethod IN ('cash','credit card','visa','mastercard')),
 		total				money,
@@ -184,7 +184,7 @@ CREATE TABLE BILL (
 
 /*Create Illness Table */
 CREATE TABLE ILLNESS (
-		illnessID 		int,
+		illnessID 		int IDENTITY(1,1),
 		illnessName  	varchar,
 		illnessDescription varchar(255),
 
@@ -210,7 +210,7 @@ CREATE TABLE MHCONSULTATION_ILLNESS(
 
 /*medical hisory symptoms table */
 CREATE TABLE SYMPTOMS(
-		symptomID int,
+		symptomID int IDENTITY(1,1),
 		symptomName varchar(100),
 		symptomDescription varchar(255),
 		
@@ -233,7 +233,7 @@ CREATE TABLE MHCONSULTATION_SYMPTOMS(
 
 /*drugs table*/
 CREATE TABLE DRUGS(
-		drugID 		int,
+		drugID 		int IDENTITY(1,1),
 		drugName 	varchar(255),
 		drugCompany	varchar(100),
 		drugPrice	money,
@@ -302,7 +302,7 @@ CREATE TABLE ROOMTYPE(
 
 /* MEDICAL HISTORY ADMISSION Table */
 CREATE TABLE MH_ADMISSION (
-		admissionID			int,
+		admissionID			int IDENTITY(1,1),
 		invoiceID 			int,
 		patientID 			int,
 		roomTypeID 			char,
@@ -330,7 +330,7 @@ CREATE TABLE MH_ADMISSION (
 /*test table*/
 
 CREATE TABLE TEST (
-		testID int,
+		testID int IDENTITY(1,1),
 		testName varchar(50),
 		testFee money,
 
@@ -372,7 +372,7 @@ CREATE TABLE MH_TEST (
 /*MEDICAL HISTORY SCAN TABLE*/
 
 CREATE TABLE SCAN(
-		scanID int,
+		scanID int IDENTITY(1,1),
 		scanName varchar (100),
 		scanFee money,
 		
@@ -396,7 +396,7 @@ CREATE TABLE MH_SCAN(
 
 
 CREATE TABLE SURGERY(
-		surgeryID int,
+		surgeryID int IDENTITY(1,1),
 		surgeryName varchar(50),
 		surgeryFee money,
 		surgeryDescription varchar (255),
