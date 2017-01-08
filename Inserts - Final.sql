@@ -1,7 +1,32 @@
 -- 1.Department > 
+	INSERT INTO DEPARTMENT VALUES(1,'Orthopedic','Provides expert treatment in sports medicine, trauma, joint replacement, pediatrics, oncology, spine, shoulder and elbow, foot and ankle, and hand'),
+	(2,'Pathology','',''),
+	(3,'Emergency','Just after entering the secondary gate of hospital','provides experienced physician as soon as the patient arrived for any emergency case'),
+	(4,'Dental','left side of builing of hospital','provides procedures like Dental Extractions, RCT, Scaling /Cleaning, Fillings, Local curettage'),
+	(5,'Gynecology','ward 4 in left building of hospital','provides support with all branches of medical facilities for woman'),
+	(6,'Anesthetic','ward  7 in back of hospital',' responsible for the administration of functions and activities pertaining to the delivery of anesthetics'),
+	(7,'I.C.U','second floor right side of the building','unit in the hospital where treat seriously ill patient under well experienced staff'),
+	(8,'Blood Bank','Third floor left of the building','All the blood donations are taken and stored safely for other patients in need');
 -- 2.Facilities > 
+	INSERT INTO FACILITIES(facilityID,facilityName,facilityDescription) VALUES(1,'OPD','Patients are registered at the reception and are seen on first come, first serve basis, however out of turn consultation may be provided in case of emergency'),
+	(2,'Dental','An experienced Dental surgeon provides procedures like Dental Extractions, RCT, Scaling /Cleaning, Fillings, Local curettage'),
+	(3,'Laboratory services','Trained laboratory staff are providing best services which includes painless blood withdrawal Services of one NABL accredited laboratory are also available for carrying out specialised tests'),
+	(4,'ECG','24hours ECG services including machine report, done by trained staff'),
+	(5,'Pharmacy','Free reliable quality medicines are available to beneficiaries on doctor prescription during OPD hours'),
+	(6,'Radiology/X-ray','ALL the body x rays are done with quality machines'),
+	(7,'Ambulance','24 hours patient transport vehicle available.'),
+	(8,'Physiotherapy','Range of physiotherapy services to assist the patients to recover from wide range of musculoskeletal pain-ful disorders. Available modalities are MWD, SWD, U/S, TENS, IFC laser therapy traction unit, magnolia.'),
+	(9,'Minor OT','Provides services for minor surgical procedure like dressing of lacerated wound, suturing of minor lacerations & resuturing, excision of corns and sebaceous cysts (done under local anesthesia.)'),
+	(10,'Hospital/wards','waiting hall with chairs, TVs, public utilities like drinking water and toilets. Sub waiting areas are available in front of individual consultation rooms. Wheel chairs, trolleys and attendants are there to help very sick patients through out the hospital.');
 -- 3.AvailableFacilities > 
+	INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES
+	(3,1),
+	(4,2),
+	(10,3),
+	(3,7),
+	(9,4);
 -- 4.Patient > 
+
 -- 5.EmployeeType >
 -- 6.Employee >
 -- 7.Resident_Doctor > 
@@ -31,7 +56,7 @@
 	(7,8,10,8,8,10,'2016/07/18','2016/07/26','Abnormal growth on the back of the neck',1),
 	(6,9,2,4,10,4,'2016/02/14','2016/11/22','The patient suffered a concussion, small fracture in skull: rigth-back',1),
 	(8,10,3,8,2,8,'2016/02/10','2016/09/09','The patient claims normal breathing causes pain, tests were reccomended',0); 
--- 11.Illness > 
+-- 11.Illness >  
 	INSERT INTO illness(illnessID,illnessName,illnessDescription) VALUES
 	(1,'Cold','Colds usually last 1–2 weeks. However, you could get a bacterial infection after a cold, such as an ear infection or sinus infection, which may mean you’re unwell for longer.'),
 	(2,'Asthma','A person’s asthma triggers cause their airways to tighten, partially close up, swell inside and make more mucus. This makes it hard for the person to breathe in – and even harder to breathe out.'),
@@ -118,12 +143,12 @@
 	 (1,5,9,1, '2016/07/15','4 months', 'Twice per day', 1),
 	 (10,10,10,8, '2016/10/14','2 months', 'Twice per day', 1);
 -- 17.RoomType >
-	INSERT INTO ROOMTYPE (description,roomPrice) VALUES
-	('general','2000'),
-	('private','4500'),
-	('consultation','700'),
-	('surgery','12000'),
-	('emergency','2200');
+	INSERT INTO ROOMTYPE (roomTypeID,description,roomPrice) VALUES
+	('G','general','2000'),
+	('P','private','4500'),
+	('C','consultation','700'),
+	('S','surgery','12000'),
+	('E','emergency','2200');
 -- 18.Room >
 	INSERT INTO ROOM(roomType,roomID,bedNo,status,patientID) VALUES -- patientID not in the create tables
 	('1','1','1','1','1'),

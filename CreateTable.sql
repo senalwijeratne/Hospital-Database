@@ -18,12 +18,12 @@
 				  -- 12.Symptoms > 13.MHConsultation_Symptoms > 14.Drugs
 				  -- 15.MH_Prescription > 16.RoomType > 17.Room >
 				  -- 18.MH_Admissions > 19.Test > 20. MHTest > 
-				  -- 21.Scan > 22. MHScan > 23. Surgery > 24. MH_Surgery
+				  -- 21.Scan > 22. MHScan > 23. Surgery > 24. MH_Surgery TEST
 
 
 CREATE TABLE DEPARTMENT (
 		departmentID 		int ,
-		departmentName 		varchar(50),
+		departmentName 		varchar(50) UNIQUE,
 		departmentLocation	varchar(20),
 		description 		varchar(255),
 		CONSTRAINT pk_departmentID PRIMARY KEY (departmentID)
