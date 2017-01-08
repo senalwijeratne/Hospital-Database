@@ -132,16 +132,16 @@
 
 -- 12.MHConsultation_Illness >
 	INSERT INTO MHConsultation_Illness(consultationID,invoiceID,illnessID) VALUES
-	(7,1,6),
-	(4,6,10),
-	(7,2,7),
-	(1,8,5),
-	(9,10,3),
-	(8,4,4),
-	(7,2,2),
-	(9,7,3),
-	(4,9,5),
-	(5,10,10);
+	(1,2,6),
+	(2,1,10),
+	(7,1,7),
+	(8,2,5),
+	(8,2,3),
+	(8,3,4),
+	(8,3,2),
+	(7,4,3),
+	(6,2,5),
+	(1,10,10);
 
 -- 13.Symptoms > -- Ikhwan
 	INSERT INTO SYMPTOM (symptomName,symptomDescription) VALUES
