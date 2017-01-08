@@ -1,4 +1,4 @@
-INSERT INTO MHAdmissions (admissionID, invoiceID, patientID, roomTypeID, roomID, bedID,
+INSERT INTO MH_ADMISSION (admissionID, invoiceID, patientID, roomTypeID, roomID, bedID,
 
 admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition)
 
@@ -35,7 +35,7 @@ VALUES (1,'Acetaminophen','Abbot Laboratories',20.00,'Relieving severe headache'
 (9,'Panretin','Sunovione',20.00,'Boosts blood glucose levels','Class C'),
 (10,'Cabergoline','Renovo',35.00,'Promotes better skin','Class B');
 
-INSERT INTO MHPrescription(consultationID, invoiceID, prescriptionID, drugID, startDate,
+INSERT INTO MH_PRESCRIPTION(consultationID, invoiceID, prescriptionID, drugID, startDate,
 
 prescribedDuration, prescribedDosage, paymentStatus)
 
@@ -49,3 +49,22 @@ VALUES (3,2,1,4,'2016/02/09','3 months', 'Twice per day', 1),
  (4,7,8,10, '2016/11/23','3 months', 'Thrice per day', 0),
  (1,5,9,1, '2016/07/15','4 months', 'Twice per day', 1),
  (10,10,10,8, '2016/10/14','2 months', 'Twice per day', 1);
+
+
+
+
+
+
+
+INSERT INTO MHCONSULTATION_SYMPTOMS (invoiceID,consultationID,symptomID)
+VALUES(1,,4,6),
+(2,6,7),
+(3,1,3),
+(4,5,8),
+(5,4,6),
+(6,2,9),
+(7,7,10),
+(8,9,2),
+(9,10,1),
+(10,8,5);
+
