@@ -18,14 +18,21 @@
 				  -- 12.Symptoms > 13.MHConsultation_Symptoms > 14.Drugs
 				  -- 15.MH_Prescription > 16.RoomType > 17.Room >
 				  -- 18.MH_Admissions > 19.Test > 20. MHTest > 
-				  -- 21.Scan > 22. MHScan > 23. Surgery > 24. MH_Surgery TEST
+				  -- 21.Scan > 22. MHScan > 23. Surgery > 24. MH_Surgery
 
+/* 
+
+DROP TABLE MH_Surgery, Surgery, MH_Scan, Scan, MH_Test, Test, MH_Admission, Room, RoomType, MH_Prescription, Drugs,
+MHConsultation_Symptoms, Symptoms, MHConsultation_Illness, Illness, MH_Consultation, Bill, OnCall_Doctor, Resident_Doctor, 
+Employee, EmployeeType, Patient, AvailableFacilities, Facilities, Department;
+
+*/
 
 CREATE TABLE DEPARTMENT (
 		departmentID 		int 			IDENTITY(1,1),
 		departmentName 		varchar			(50) UNIQUE,
-		departmentLocation	varchar			(20),
-		description 		varchar			(255),
+		departmentLocation	varchar			(100),
+		description 		varchar			(250),
 		CONSTRAINT pk_departmentID PRIMARY KEY (departmentID)
 );
 
@@ -33,13 +40,13 @@ CREATE TABLE DEPARTMENT (
 CREATE TABLE FACILITIES (
 		facilityID 				int IDENTITY(1,1),
 		facilityName			varchar(100),
-		facilityDescription		varchar(80),
+		facilityDescription		varchar(200),
 		CONSTRAINT pk_facilityID PRIMARY KEY (facilityID)
 	
 );
 
 /*AvailableFacilities Table */
-CREATE TABLE AVAILABLEFACILITIES(
+CREATE TABLE AVAILABLE_FACILITIES(
 		departmentID 			int,
 		facilityID 				int,
 		CONSTRAINT pk_availableFacilityID PRIMARY KEY (departmentID,facilityID),
@@ -87,7 +94,7 @@ CREATE TABLE EMPLOYEE (
 		firstName 		varchar(50),
 		middleName 		varchar(50),
 		lastName 		varchar(50),
-		gender 			varchar(1) CHECK (gender IN ('m','f')),
+		gender 			varchar(1) CHECK (gender IN ('m','f','M','F')),
 		addressline1 	varchar(40),
 		addressline2 	varchar(40),
 		addressline3 	varchar(40),
@@ -336,9 +343,6 @@ CREATE TABLE TEST (
 
 		CONSTRAINT pk_testID PRIMARY KEY (testID)
 
-
-
-
 );
 
 
@@ -357,16 +361,6 @@ CREATE TABLE MH_TEST (
 		CONSTRAINT fk_testInvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
 		CONSTRAINT fk_testPatient FOREIGN KEY (patientID) REFERENCES PATIENT(patientID)
 );
-
-
-
-
-
-);
-
-
-
-
 
 
 /*MEDICAL HISTORY SCAN TABLE*/
