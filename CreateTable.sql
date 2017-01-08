@@ -351,7 +351,6 @@ CREATE TABLE TEST (
 
 CREATE TABLE MH_TEST (
 		invoiceID int,
-		patientID 			int,
 		testID int,
 		testDate date,
 		testReport varchar (255),
@@ -377,7 +376,6 @@ CREATE TABLE SCAN(
 CREATE TABLE MH_SCAN(
 
 		invoiceID 		int,
-		patientID 		int,
 		scanID 			int,
 		scanDate 		date,
 		scanReport 		varchar (255),
