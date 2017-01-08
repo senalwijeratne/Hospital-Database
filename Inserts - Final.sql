@@ -117,7 +117,7 @@
 	(6,2,2,NULL,4,'2016/02/14','2016/11/22','The patient suffered a concussion, small fracture in skull: rigth-back',1),
 	(1,1,1,NULL,8,'2016/02/10','2016/09/09','The patient claims normal breathing causes pain, tests were reccomended',0);
 
--- 11.Illness >  
+-- 11.Illness >  -- Senal
 	INSERT INTO illness(illnessName,illnessDescription) VALUES
 	('Cold','Colds usually last 1–2 weeks. However, you could get a bacterial infection after a cold, such as an ear infection or sinus infection, which may mean you’re unwell for longer.'),
 	('Asthma','A person’s asthma triggers cause their airways to tighten, partially close up, swell inside and make more mucus. This makes it hard for the person to breathe in – and even harder to breathe out.'),
@@ -130,7 +130,7 @@
 	('Insomnia','Sleep disorder characterized by difficulties falling or staying asleep.'),
 	('Hepatitis','Hepatitis is the inflammation of the liver. Although hepatitis can be the symptom of many illnesses, including autoimmune diseases, it is most often caused by a viral infection.');
 
--- 12.MHConsultation_Illness >
+-- 12.MHConsultation_Illness > -- Senal 
 	INSERT INTO MHConsultation_Illness(consultationID,invoiceID,illnessID) VALUES
 	(1,2,6),
 	(2,1,10),
@@ -162,74 +162,75 @@
 	('Medium Pain','medium amount of pain'),
 	('Intense Pain','intense amount of pain');
 
--- 14.MHConsultation_Symptoms >
+-- 14.MHConsultation_Symptoms > -- Ikhwan
 	INSERT INTO MHCONSULTATION_SYMPTOMS (invoiceID,consultationID,symptomID)
-	VALUES(1,,4,6),
-	(2,6,7),
-	(3,1,3),
-	(4,5,8),
-	(5,4,6),
-	(6,2,9),
-	(7,7,10),
-	(8,9,2),
-	(9,10,1),
-	(10,8,5); 
+	VALUES
+	(1,1,6),
+	(2,2,8),
+	(3,7,5),
+	(4,8,5),
+	(5,8,6),
+	(6,8,4),
+	(7,8,2),
+	(8,7,3),
+	(9,6,5),
+	(10,1,10);
 
--- 15.Drugs >
-	INSERT INTO DRUGS(drugID, drugName, drugCompany, drugPrice, drugPurpose, legalClassification)
+-- 15.Drugs > -- Sadikeen
+	INSERT INTO DRUGS( drugName, drugCompany, drugPrice, drugPurpose, legalClassification)
+	VALUES 
+	('Acetaminophen','Abbot Laboratories',20.00,'Relieving severe headache', 'Class B'),
+	('Adapalene','Grifols',15.00,'Reduces stomach bloating', 'Class C'),
+	('Gablofen','Julphar',26.00,'Treats acne blemishes', 'Class B'),
+	('Palerfirmin','Abbvie',12.00,'Relieves muscle pain', 'Class C'),
+	('Lamotrigine','Diabetology Ltd.',13.50,'Increases insulin levels', 'Class C'),
+	('Kantrex','Hovione',23.00,'Anti-Depressant','Class C'),
+	('Yohimbine','Noxxon',45.00,'Enhances hair growth','Class B'),
+	('Ibuprofen','Reckitt Benckiser',9.00,'Relieves muscle pain','Class B'),
+	('Panretin','Sunovione',20.00,'Boosts blood glucose levels','Class C'),
+	('Cabergoline','Renovo',35.00,'Promotes better skin','Class B');
 
-	VALUES (1,'Acetaminophen','Abbot Laboratories',20.00,'Relieving severe headache', 'Class B'),
-	(2,'Adapalene','Grifols',15.00,'Reduces stomach bloating', 'Class C'),
-	(3,'Gablofen','Julphar',26.00,'Treats acne blemishes', 'Class B'),
-	(4,'Palerfirmin','Abbvie',12.00,'Relieves muscle pain', 'Class C'),
-	(5,'Lamotrigine','Diabetology Ltd.',13.50,'Increases insulin levels', 'Class C'),
-	(6,'Kantrex','Hovione',23.00,'Anti-Depressant','Class C'),
-	(7,'Yohimbine','Noxxon',45.00,'Enhances hair growth','Class B'),
-	(8,'Ibuprofen','Reckitt Benckiser',9.00,'Relieves muscle pain','Class B'),
-	(9,'Panretin','Sunovione',20.00,'Boosts blood glucose levels','Class C'),
-	(10,'Cabergoline','Renovo',35.00,'Promotes better skin','Class B');
 
--- 16.MH_Prescription >
-	INSERT INTO MH_PRESCRIPTION(consultationID, invoiceID, prescriptionID, drugID, startDate,
+-- 16.MH_Prescription >  -- Sadikeen 
+	INSERT INTO MH_PRESCRIPTION( invoiceID, consultationID, prescriptionID, drugID, startDate,
+	prescribedDuration, prescribedDosage, paymentStatus) VALUES 
+	(1,1,1,4,'2016/02/09','3 months', 'Twice per day', 1),
+	(2,2,2,7, '2016/02/15','2 months', 'Thrice per day', 0),
+	(3,7,3,5, '2016/01/03','5 months', 'Twice per day', 1),
+	(4,8,4,3, '2016/05/25','2 months', 'Once per day', 1),
+	(5,8,5,6, '2016/04/13','2 months', 'Twice per day', 1),
+	(6,8,6,2, '2016/01/20','4 months', 'Twice per day', 0),
+	(7,8,7,9, '2016/06/25','5 months', 'Once per day', 1),
+	(8,7,8,10, '2016/11/23','3 months', 'Thrice per day', 0),
+	(9,6,9,1, '2016/07/15','4 months', 'Twice per day', 1),
+	(10,1,10,8, '2016/10/14','2 months', 'Twice per day', 1); 
 
-	prescribedDuration, prescribedDosage, paymentStatus)
 
-	VALUES (3,2,1,4,'2016/02/09','3 months', 'Twice per day', 1),
-	 (7,4,2,7, '2016/02/15','2 months', 'Thrice per day', 0),
-	 (9,3,3,5, '2016/01/03','5 months', 'Twice per day', 1),
-	 (8,9,4,3, '2016/05/25','2 months', 'Once per day', 1),
-	 (5,6,5,6, '2016/04/13','2 months', 'Twice per day', 1),
-	 (2,8,6,2, '2016/01/20','4 months', 'Twice per day', 0),
-	 (6,1,7,9, '2016/06/25','5 months', 'Once per day', 1),
-	 (4,7,8,10, '2016/11/23','3 months', 'Thrice per day', 0),
-	 (1,5,9,1, '2016/07/15','4 months', 'Twice per day', 1),
-	 (10,10,10,8, '2016/10/14','2 months', 'Twice per day', 1);
-
--- 17.RoomType >
-	INSERT INTO ROOMTYPE (roomTypeID,description,roomPrice) VALUES
+-- 17.RoomType > -- Ikhwan
+	INSERT INTO ROOMTYPE (roomTypeID, description,roomPrice) VALUES
 	('G','general','2000'),
 	('P','private','4500'),
 	('C','consultation','700'),
 	('S','surgery','12000'),
 	('E','emergency','2200');
 
--- 18.Room >
-	INSERT INTO ROOM(roomType,roomID,bedNo,status,patientID) VALUES -- patientID not in the create tables
-	('1','1','1','1','1'),
-	('1','1','2','1','2'),
-	('1','1','3','1','3'),
-	('1','2','1','1','4'),
-	('1','2','2','0',NULL),
-	('1','2','3','0',NULL),
-	('1','2','3','0',NULL),
-	('1','2','4','0',NULL),
-	('2','1','1','1','5'),
-	('2','2','1','1','6'),
-	('2','3','1','1','7'),
-	('2','4','1','0',NULL),
-	('2','5','1','0',NULL),
-	('2','6','1','0',NULL),
-	('4','1','1','1','8');
+-- 18.Room > -- Ikhwan
+	INSERT INTO ROOM(roomTypeID,roomID,bedID,status) VALUES -- patientID not in the create tables
+	('G','1','1','Y'),
+	('G','1','2','Y'),
+	('G','1','3','Y'),
+	('G','2','1','Y'),
+	('G','2','2','N'),
+	('G','2','3','N'),
+	('G','2','4','N'),
+	('G','2','5','N'),
+	('P','1','1','Y'),
+	('P','2','1','Y'),
+	('P','3','1','Y'),
+	('P','4','1','N'),
+	('P','5','1','N'),
+	('P','6','1','N'),
+	('S','1','1','Y');
 
 -- 19.MH_Admissions >
 	INSERT INTO MH_ADMISSION (admissionID, invoiceID, patientID, roomTypeID, roomID, bedID,
@@ -256,8 +257,19 @@
 	 (10,10,9,8,5,5, '2016/01/24', '2016/03/20',1,'Maintain a quiet restful environment', 'Severe
 	headache');
 
--- 20.Test >
-   -- Hashan
+-- 20.Test > -- Hashan 
+	INSERT INTO TEST(testName,testFee) VALUES
+	('Cholesterol ',500),
+	('Complete blood count ',300 ),
+	('Fasting blood sugar ',600 ),
+	('Urea & electrolytes ',700 ),
+	('Urine full report ',1000 ),
+	('HIV 4th Generation ',2500 ),
+	('Pediatric Allergist ',1500 ),
+	('Tacrolimus ',500 ),
+	('H-SFABPt ',2000 ),
+	('Filaria antibody test',3000 );
+
 
 
 -- 21.MHTest > 
@@ -273,7 +285,7 @@
 	(8, 8, 8,'No significant remarks.',1),
 	(9, 9, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
 
--- 22.Scan >
+-- 22.Scan > -- Ikhwan
 	INSERT INTO SCAN(scanName, scanFee) VALUES 
 	('X-ray', 1000),
 	('Foetal Ultrasound', 2000),

@@ -1,28 +1,29 @@
 
 /*Written by : Mohamed Ikhwan */
-INSERT INTO ROOMTYPE (description,roomPrice) VALUES
-('general','2000'),
-('private','4500'),
-('consultation','700'),
-('surgery','12000'),
-('emergency','2200');
+INSERT INTO ROOMTYPE (roomTypeID, description,roomPrice) VALUES
+('G','general','2000'),
+('P','private','4500'),
+('C','consultation','700'),
+('S','surgery','12000'),
+('E','emergency','2200');
 
-INSERT INTO ROOM(roomType,roomID,bedNo,status,patientID) VALUES -- patientID not in the create tables
-('1','1','1','1','1'),
-('1','1','2','1','2'),
-('1','1','3','1','3'),
-('1','2','1','1','4'),
-('1','2','2','0',NULL),
-('1','2','3','0',NULL),
-('1','2','3','0',NULL),
-('1','2','4','0',NULL),
-('2','1','1','1','5'),
-('2','2','1','1','6'),
-('2','3','1','1','7'),
-('2','4','1','0',NULL),
-('2','5','1','0',NULL),
-('2','6','1','0',NULL),
-('4','1','1','1','8');
+
+INSERT INTO ROOM(roomTypeID,roomID,bedID,status) VALUES -- patientID not in the create tables
+('G','1','1','Y'),
+('G','1','2','Y'),
+('G','1','3','Y'),
+('G','2','1','Y'),
+('G','2','2','N'),
+('G','2','3','N'),
+('G','2','4','N'),
+('G','2','5','N'),
+('P','1','1','Y'),
+('P','2','1','Y'),
+('P','3','1','Y'),
+('P','4','1','N'),
+('P','5','1','N'),
+('P','6','1','N'),
+('S','1','1','Y');
 
 INSERT INTO SYMPTOM (symptomName,symptomDescription) VALUES
 ('Headache','a continuous pain in the head.'),

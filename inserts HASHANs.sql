@@ -52,13 +52,14 @@ INSERT INTO PATIENT(NIC,firstName,middleName,lastName,gender,addressline1,addres
 
 
 -- //test//
-INSERT INTO TEST(testID,testName,testFee) VALUES(1,'Cholesterol ',500),
-(2,'Complete blood count ',300 ),
-(3,'Fasting blood sugar ',600 ),
-(4,'Urea & electrolytes ',700 ),
-(5,'Urine full report ',1000 ),
-(6,'HIV 4th Generation ',2500 ),
-(7,'Pediatric Allergist ',1500 ),
-(8,'Tacrolimus ',500 ),
-(9,'H-SFABPt ',2000 ),
-(10,'Filaria antibody test',3000 );
+INSERT INTO TEST(testID,testName,testFee) VALUES
+('Cholesterol ',500),
+('Complete blood count ',300 ),
+('Fasting blood sugar ',600 ),
+('Urea & electrolytes ',700 ),
+('Urine full report ',1000 ),
+('HIV 4th Generation ',2500 ),
+('Pediatric Allergist ',1500 ),
+('Tacrolimus ',500 ),
+('H-SFABPt ',2000 ),
+('Filaria antibody test',3000 );

@@ -192,7 +192,7 @@ CREATE TABLE BILL (
 /*Create Illness Table */
 CREATE TABLE ILLNESS (
 		illnessID 		int IDENTITY(1,1),
-		illnessName  	varchar,
+		illnessName  	varchar(50),
 		illnessDescription varchar(255),
 
 		CONSTRAINT pk_illnessID PRIMARY KEY (illnessID)
