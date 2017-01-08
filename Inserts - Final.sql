@@ -1,74 +1,83 @@
--- 1.Department > 
-	INSERT INTO DEPARTMENT (departmentName, departmentLocation, description) VALUES 
-	('Orthopedic','Provides expert treatment in sports medicine, trauma, joint replacement, pediatrics, oncology, spine, shoulder and elbow, foot and ankle, and hand'),
-	('Pathology','',''),
+-- 1.Department > -- Hashan 
+	INSERT INTO DEPARTMENT (departmentName, departmentLocation, description) VALUES
+	('Orthopedic','8th ward','Provides expert treatment in sports medicine, trauma, joint replacement, pediatrics, oncology, spine, shoulder and elbow, foot and ankle, and hand'),
+	('Pathology','the ward just after emergency on right','that branch of medicine which treats of the essential nature of disease'),
 	('Emergency','Just after entering the secondary gate of hospital','provides experienced physician as soon as the patient arrived for any emergency case'),
-	('Dental','left side of builing of hospital','provides procedures like Dental Extractions, RCT, Scaling /Cleaning, Fillings, Local curettage'),
+	('Dental','left side of building of hospital','provides procedures like Dental Extractions, RCT, Scaling /Cleaning, Fillings, Local curettage'),
 	('Gynecology','ward 4 in left building of hospital','provides support with all branches of medical facilities for woman'),
 	('Anesthetic','ward  7 in back of hospital',' responsible for the administration of functions and activities pertaining to the delivery of anesthetics'),
 	('I.C.U','second floor right side of the building','unit in the hospital where treat seriously ill patient under well experienced staff'),
-	('Blood Bank','Third floor left of the building','All the blood donations are taken and stored safely for other patients in need');
+	('Blood Bank','Third floor left of the building','All the blood donations are taken and stored safely for other patients in need'),
+	('Operation Theater','ward 2 in first floor','All operations for the patients are done with experienced doctors'),
+	('Laboratory','third floor right side of building','Provides accurate reports on the tests done'),
+	('M.R.I','third floor right side of building',' Magnetic resonance imaging is a department that uses a magnetic field and radio waves to create detailed images of the organs and tissues within your body'),
+	('Neurology','ward 4 in second building',' specializes in treating diseases of the nervous system'),
+	('Cardiology','second floor right side','medical diagnosis and treatment of congenital heart defects, coronary artery disease, heart failure, valvular heart disease and electrophysiology are treated in this department'),
+	('Cancer Department','separated building in right after entering from main entrance','Provides treatments by considering the cancel stages'),
+	('Mortuary','ground floor at the back end of the hospital','Provides space for the dead people until the gurdians decisions');  -- Hashan
 
--- 2.Facilities > 
-	INSERT INTO FACILITIES(facilityID,facilityName,facilityDescription) VALUES(1,'OPD','Patients are registered at the reception and are seen on first come, first serve basis, however out of turn consultation may be provided in case of emergency'),
-	(2,'Dental','An experienced Dental surgeon provides procedures like Dental Extractions, RCT, Scaling /Cleaning, Fillings, Local curettage'),
-	(3,'Laboratory services','Trained laboratory staff are providing best services which includes painless blood withdrawal Services of one NABL accredited laboratory are also available for carrying out specialised tests'),
-	(4,'ECG','24hours ECG services including machine report, done by trained staff'),
-	(5,'Pharmacy','Free reliable quality medicines are available to beneficiaries on doctor prescription during OPD hours'),
-	(6,'Radiology/X-ray','ALL the body x rays are done with quality machines'),
-	(7,'Ambulance','24 hours patient transport vehicle available.'),
-	(8,'Physiotherapy','Range of physiotherapy services to assist the patients to recover from wide range of musculoskeletal pain-ful disorders. Available modalities are MWD, SWD, U/S, TENS, IFC laser therapy traction unit, magnolia.'),
-	(9,'Minor OT','Provides services for minor surgical procedure like dressing of lacerated wound, suturing of minor lacerations & resuturing, excision of corns and sebaceous cysts (done under local anesthesia.)'),
-	(10,'Hospital/wards','waiting hall with chairs, TVs, public utilities like drinking water and toilets. Sub waiting areas are available in front of individual consultation rooms. Wheel chairs, trolleys and attendants are there to help very sick patients through out the hospital.');
+-- 2.Facilities > -- Hashan 
+	INSERT INTO FACILITIES(facilityName,facilityDescription) VALUES
+	('X-rays','a photographic or digital image of the internal composition of something, produced by X-rays being passed through it and being absorbed to different degrees by different materials.'),
+	('Care Takers','An arrangement can be made to assign a personal care taker for a patient.'),
+	('Fluid Test','The gustatory profiling, quality and consistency of bodily fluids will be tested be trained professionals'),
+	('ECG','24hours ECG services including machine report, done by trained staff'),
+	('Pharmacy','Free reliable quality medicines are available to beneficiaries on doctor prescription during OPD hours'),
+	('MRI','Magnetic resonance imaging-MRI- is a type of scan that uses strong magnetic fields and radio waves to produce detailed images of the inside of the body.'),
+	('Ambulance','24 hours patient transport vehicle available.'),
+	('Physiotherapy','Range of physiotherapy services to assist the patients to recover from wide range of musculoskeletal pain-ful disorders.'),
+	('Minor Surgeries','Provides services for minor surgical procedure like dressing of lacerated wound etc.'),
+	('Accommodation','waiting hall with chairs, TVs, public utilities like drinking water and toilets.');	-- Hashan
 
--- 3.AvailableFacilities > 
+-- 3.AvailableFacilities > -- HASHAN needs to be re written
 	INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES
 	(3,1),
 	(4,2),
 	(10,3),
 	(3,7),
-	(9,4);
+	(9,4); 
 
--- 4.Patient > 
-	INSERT INTO PATIENT(patientID,NIC,passportNO,firstName,middleName,lastName,age,gender,addressline1,addressline2,addressline3,DOB,contactNo,nextOfKin,nextofKinNo,patientStatus) 
-	VALUES(1,'961421563v','','Namal','Premadasa','Kapuge',65 ,'M','31/a','dan lane','kuragama','1996/2/20','0774301808','J.kuragama','0773301868','discharged'),
-	(2 ,'501426563v','','Kamali','Maldiwa','Sirisena',40 ,'F','65/2','lime','pindasale','1950/5/20','0773301868','K.Sirisena','0775301804','discharged'),
-	(3 ,'7561429563v','','Samanmali','Gunathi','Rajapaksha',20 ,'F',' 20/5','janatha lane','jayawardhanapura','1975/2/23','0774301908','G.Rajapaksha','0754301528','discharged'),
-	(4 ,'431421563v','','Randula','Prasan','Kulathunga',34 ,'M',' 245/1','hongama lane','maharagama','1973/2/20','0775301804','W.Kulathunga','0773301868','insurgery'),
-	(5 ,'931423563v','','Geeth','Lakshan','Weerasingha',56 ,'M','46/2','walmal lane','malabe','1993/2/20','0714301867','A.Weerasingha','0773305298','discharged'),
-	(6 ,'991826563v','','Prashan','Sumanadasa','Bandara',13 ,'M','50/b','sakura lane','Colombo 1','1999/2/10','0754301528','S.Bandara','0713301868','admitted'),
-	(7 ,'861425563v','','Rammali','Jayamani','Karunarathna',48 ,' F','40/3','fernando lane','colombo 5','1986/6/20','0774318808','T.Karunarathna','0775301804','discharged'),
-	(8 ,'681461563v','','Ravindu','Ishara','Wijesingha',36 ,'M','401/2','janashakthi lane','thalawathugoda','1968/2/20','0724301808','S.Wijesingha','0725301404','discharged'),
-	(9 ,'591321563v','','Geethma','Saduni','Kulunthunga',19 ,'F','20/1','kusalpura','Ahangama','1959/2/20','0774301768','K.Kulathunga','0753505298','admitted'),
-	(10 ,'731429563v','','Nuwan','Pradarshana','Wimalasena',51 ,'M','30/2','weerakkodi lane','maharagama','1973/2/20','0724301728','P.Wimalasena','0713305278','admitted');
+-- 4.Patient > -- Hashan 
+	INSERT INTO PATIENT(NIC,firstName,middleName,lastName,gender,addressline1,addressline2,addressline3,DOB,contactNo,nextOfKin,nextofKinNo,patientStatus) VALUES
+	('961421563v','Namal','Premadasa','Kapuge','M','31/a','dan lane','kuragama','1996/2/20','0774301808','J.kuragama','0773301868','discharged'),
+	('501426563v','Kamali','Maldiwa','Sirisena' ,'F','65/2','lime','pindasale','1950/5/20','0773301868','K.Sirisena','0775301804','discharged'),
+	('756142953v','Samanmali','Gunathi','Rajapaksha' ,'F',' 20/5','janatha lane','jayawardhanapura','1975/2/23','0774301908','G.Rajapaksha','0754301528','discharged'),
+	('431421563v','Randula','Prasan','Kulathunga','M',' 245/1','hongama lane','maharagama','1973/2/20','0775301804','W.Kulathunga','0773301868','insurgery'),
+	('931423563v','Geeth','Lakshan','Weerasingha','M','46/2','walmal lane','malabe','1993/2/20','0714301867','A.Weerasingha','0773305298','discharged'),
+	('991826563v','Prashan','Sumanadasa','Bandara','M','50/b','sakura lane','Colombo 1','1999/2/10','0754301528','S.Bandara','0713301868','admitted'),
+	('861425563v','Rammali','Jayamani','Karunarathna','F','40/3','fernando lane','colombo 5','1986/6/20','0774318808','T.Karunarathna','0775301804','discharged'),
+	('681461563v','Ravindu','Ishara','Wijesingha','M','401/2','janashakthi lane','thalawathugoda','1968/2/20','0724301808','S.Wijesingha','0725301404','discharged'),
+	('591321563v','Geethma','Saduni','Kulunthunga','F','20/1','kusalpura','Ahangama','1959/2/20','0774301768','K.Kulathunga','0753505298','admitted'),
+	('731429563v','Nuwan','Pradarshana','Wimalasena','M','30/2','weerakkodi lane','maharagama','1973/2/20','0724301728','P.Wimalasena','0713305278','admitted');  
 
--- 5.EmployeeType >
-	INSERT INTO EMPLOYEETYPE  (employeeTypeID,jobType,salary,prefix,description)
+-- 5.EmployeeType > -- Peshala 	
+	INSERT INTO EMPLOYEETYPE  (jobType,salary,prefix,description)
 	VALUES
-	('1','1','Medical Assistants',2000,'','Verifies patient information by interviewing patient'),
-	('1','1','Nurse',3500,'','. Nurses plan and provide medical and nursing care to patients in hospital'),
-	('1','1','Janitor',2500,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.'),
-	('1','1','Diatesian',2500,'','promote good dietary health and treat medical conditions by devising eating plans for patients based on the science of nutrition'),
-	('1','1','Financial Officer',3500,'','eports to the Senior Administrative Officer and is responsible for preparing financial statements, maintaining cash controls, preparing the payroll and personnel administration, purchasing, maintaining accounts payable and managing office operations.'),
-	('1','1','Healthcare Consulting',3500,'','management analysts employed by the healthcare industry. They examine the efficiency, profits and structure of the organization, then offer suggestions on methods of improvement. This career requires a minimum of a bachelor\'s degree, though a master\'s degree is generally preferred'),
-	('1','1','Janitor',2500,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.'),
-	('1','1','Janitor',3000,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.'),
-	('1','1','Nurse',2000,'','. Nurses plan and provide medical and nursing care to patients in hospital'),
-	('1','1','Nurse',2500,'','. Nurses plan and provide medical and nursing care to patients in hospital');
+	('Resident Doctor',175000,'RD','Verifies patient information by interviewing patient'),
+	('Oncall Doctor',125000,'OD','. Nurses plan and provide medical and nursing care to patients in hospital'),
+	('Janitor',3000,'JA','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.'),
+	('Diatecian',55000,'DI','promote good dietary health and treat medical conditions by devising eating plans for patients based on the science of nutrition'),
+	('Financial Officer',80000,'FO','Responsible for preparing financial statements, maintaining cash controls, preparing the payroll and personnel administration, purchasing, maintaining accounts payable and managing office operations.'),
+	('Healthcare Consulting',80000,'HC','They examine the efficiency, profits and structure of the organization, then offer suggestions on methods of improvement.'),
+	('Lab Staff',80000,'LS','Assiting the nurses and doctors in the lab work'),
+	('Attendees',75000,'AT','Attending for the needs of the patients'),
+	('Nurse',80000,'NU','. Nurses plan and provide medical and nursing care to patients in hospital'),
+	('Department Supervisor',100000,'DS','In charge of supervising the day to day operations of the entire department');
 
--- 6.Employee >
-	INSERT INTO EMPLOYEETYPE  (employeeTypeID,jobType,salary,prefix,description)
+-- 6.Employee >  -- Peshala  
+	INSERT INTO EMPLOYEE  (employeeTypeID ,departmentID	,firstName ,middleName ,lastName,gender,addressline1,addressline2,addressline3,mobileNO,homeNO,joinDate)
 	VALUES
-	('1','1','Medical Assistants',2000,'','Verifies patient information by interviewing patient')
-	('1','1','Nurse',3500,'','. Nurses plan and provide medical and nursing care to patients in hospital')
-	('1','1','Janitor',2500,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.')
-	('1','1','Diatesian',2500,'','promote good dietary health and treat medical conditions by devising eating plans for patients based on the science of nutrition')
-	('1','1','Financial Officer',3500,'','eports to the Senior Administrative Officer and is responsible for preparing financial statements, maintaining cash controls, preparing the payroll and personnel administration, purchasing, maintaining accounts payable and managing office operations.')
-	('1','1','Healthcare Consulting',3500,'','management analysts employed by the healthcare industry. They examine the efficiency, profits and structure of the organization, then offer suggestions on methods of improvement. This career requires a minimum of a bachelor's degree, though a master's degree is generally preferred')
-	('1','1','Janitor',2500,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.')
-	('1','1','Janitor',3000,'','Janitor. Keep buildings in clean and orderly condition. Perform heavy cleaning duties, such as cleaning floors, shampooing rugs, washing walls and glass, and removing rubbish.')
-	('1','1','Nurse',2000,'','. Nurses plan and provide medical and nursing care to patients in hospital')
-	('1','1','Nurse',2500,'','. Nurses plan and provide medical and nursing care to patients in hospital')
+	('1','1','Upil','Sahan','Thilakasiri','M','200','Urapola','Willpalla','0778968854','0127844596','2013/05/22'),
+	('2','2','Tasia','Gauvin','Thilakasiri','M','182','kongama lane','Willpalla','0777505279','0112917439','2014/06/28'),
+	('1','3','Mollie ','Fosdick','Thilakasiri','F','252','jayagama','Willpalla','0774595409','0111354155','2014/09/06'),
+	('1','4','Ethan ','Hillebrand','Thilakasiri','M','381','weera lane','Willpalla','0778123126','0115122718','2015/04/21'),
+	('2','5','Uthpala','Wijerathne','Thilakasiri','M','152','jayawardhanapura','kotte','0713010822','0111613999','2016/10/02'),
+	('2','6','Judah','Josiah Holmes','Justice, Carson B','F','82','kibulawala','homagaama','0761708675','0115673695','2016/03/21'),
+	('7','7','Nathan','Kenneth Shepard','Ray, Carol Q.','M','22','manipur','koongama','0768702458','0111413465','2015/02/09'),
+	('8','8','Boris','Vladimir Higgins','Armstrong, Gloria R.','F','28','hongama','Willpalla','0714135152','0119508117','2015/05/31'),
+	('9','9','Craig','Brendan Murray','Roberts, Nicholas F','M','82','galmaduwa','walikada','0775763819','0113898879','2015/04/22'),
+	('10','10','Ivan','Howard Palmer','Prince, Thane N.','F','281','rukmala lane','rukmalgama','0711727065','0115172748','2016/04/21');
+
 
 -- 7.Resident_Doctor > 
 	INSERT INTO RESIDENT_DOCTOR (RdoctorID,employeeID,specialization,consultationFee,highestQualification,seniority)
@@ -101,15 +110,15 @@
 -- 9.Bill >
 	INSERT INTO BILL(invoiceID,patientID,paymentMethod,total,paymentStatus) VALUES
 	(1,1,'cash',0,0),
-	(2,8,'visa',0,1),
+	(2,8,'credit card',0,1),
 	(3,8,'mastercard',0,1),
 	(4,3,'cash',0,0),
 	(5,10,'visa',0,1),
-	(6,9,'visa',0,0),
-	(7,9,'mastercard',0,0),
+	(6,9,'credit card',0,0),
+	(7,9,'credit card',0,0),
 	(8,3,'visa',0,0),
-	(9,8,'mastercard',0,0),
-	(10,2,'visa',0,1);
+	(9,8,'credit card',0,0),
+	(10,2,'credit card',0,1);
 
 -- 10.MHConsultation >
 	INSERT INTO MHConsultation(invoiceID,consultationID,employeeID,RdoctorID,COdoctorID,patientID,consultationDate,nextCheckUp,doctorReport,paymentStatus) VALUES(10,1,8,6,9,5,'2016/07/24','2016/08/19','The patient seems to have a cold',0),
@@ -221,21 +230,21 @@
 
 -- 18.Room >
 	INSERT INTO ROOM(roomType,roomID,bedNo,status,patientID) VALUES -- patientID not in the create tables
-	('1','1','1','Y','1'),
-	('1','1','2','Y','2'),
-	('1','1','3','Y','3'),
-	('1','2','1','Y','4'),
-	('1','2','2','N',NULL),
-	('1','2','3','N',NULL),
-	('1','2','3','N',NULL),
-	('1','2','4','N',NULL),
-	('2','1','1','Y','5'),
-	('2','2','1','Y','6'),
-	('2','3','1','Y','7'),
-	('2','4','1','N',NULL),
-	('2','5','1','N',NULL),
-	('2','6','1','N',NULL),
-	('4','1','1','Y','8');
+	('1','1','1','1','1'),
+	('1','1','2','1','2'),
+	('1','1','3','1','3'),
+	('1','2','1','1','4'),
+	('1','2','2','0',NULL),
+	('1','2','3','0',NULL),
+	('1','2','3','0',NULL),
+	('1','2','4','0',NULL),
+	('2','1','1','1','5'),
+	('2','2','1','1','6'),
+	('2','3','1','1','7'),
+	('2','4','1','0',NULL),
+	('2','5','1','0',NULL),
+	('2','6','1','0',NULL),
+	('4','1','1','1','8');
 
 -- 19.MH_Admissions >
 	INSERT INTO MH_ADMISSION (admissionID, invoiceID, patientID, roomTypeID, roomID, bedID,
@@ -263,17 +272,8 @@
 	headache');
 
 -- 20.Test >
-	INSERT INTO TEST(testID,testName,testFee) 
-	VALUES(1,'Cholesterol ',500),
-	(2,'Complete blood count ',300 ),
-	(3,'Fasting blood sugar ',600 ),
-	(4,'Urea & electrolytes ',700 ),
-	(5,'Urine full report ',1000 ),
-	(6,'HIV 4th Generation ',2500 ),
-	(7,'Pediatric Allergist ',1500 ),
-	(8,'Tacrolimus ',500 ),
-	(9,'H-SFABPt ',2000 ),
-	(10,'Filaria antibody test',3000 );
+   -- Hashan
+
 
 -- 21.MHTest > 
 	INSERT INTO MH_TEST(invoiceID, patientID, scanID, scanReport, paymentStatus) VALUES /*needs to be rewritten*/

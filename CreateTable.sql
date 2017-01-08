@@ -24,7 +24,7 @@
 
 DROP TABLE MH_Surgery, Surgery, MH_Scan, Scan, MH_Test, Test, MH_Admission, Room, RoomType, MH_Prescription, Drugs,
 MHConsultation_Symptoms, Symptoms, MHConsultation_Illness, Illness, MH_Consultation, Bill, OnCall_Doctor, Resident_Doctor, 
-Employee, EmployeeType, Patient, AvailableFacilities, Facilities, Department;
+Employee, EmployeeType, Patient, Available_Facilities, Facilities, Department;
 
 */
 
