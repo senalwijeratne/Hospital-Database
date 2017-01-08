@@ -26,16 +26,15 @@ INSERT INTO FACILITIES(facilityID,facilityName,facilityDescription) VALUES(6,'Ra
 INSERT INTO FACILITIES(facilityID,facilityName,facilityDescription) VALUES(7,'Ambulance','24 hours patient transport vehicle available.');
 INSERT INTO FACILITIES(facilityID,facilityName,facilityDescription) VALUES(8,'Physiotherapy','Range of physiotherapy services to assist the patients to recover from wide range of musculoskeletal pain-ful disorders. Available modalities are MWD, SWD, U/S, TENS, IFC laser therapy traction unit, magnolia.');
 INSERT INTO FACILITIES(facilityID,facilityName,facilityDescription) VALUES(9,'Minor OT','Provides services for minor surgical procedure like dressing of lacerated wound, suturing of minor lacerations & resuturing, excision of corns and sebaceous cysts (done under local anesthesia.)');
-INSERT INTO FACILITIES(facilityID,facilityName,facilityDescription) VALUES(10,'Hospital/wards','waiting hall with chairs, TV's, public utilities like drinking water and toilets. Sub waiting areas are available in front of individual consultation rooms. Wheel chairs, trolleys and attendants are there to help very sick patients through out the hospital.');
+INSERT INTO FACILITIES(facilityID,facilityName,facilityDescription) VALUES(10,'Hospital/wards','waiting hall with chairs, TVs, public utilities like drinking water and toilets. Sub waiting areas are available in front of individual consultation rooms. Wheel chairs, trolleys and attendants are there to help very sick patients through out the hospital.');
 
 /available_facilities/
-INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES(3,1);
-INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES(4,2);
-INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES(10,3);
-INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES(3,7);
-INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES(9,4);
-INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES(,);
-INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES(,);
+INSERT INTO AVAILABLE_FACILITIES(departmentID,facilityID) VALUES
+(3,1),
+(4,2),
+(10,3),
+(3,7),
+(9,4),
 
 //patient/
 INSERT INTO PATIENT(patientID,NIC,passportNO,firstName,middleName,lastName,age,gender,addressline1,addressline2,addressline3,DOB,contactNo,nextOfKin,nextofKinNo,patientStatus) VALUES(1,'961421563v','','Namal','Premadasa','Kapuge',65 ,'M','31/a','dan lane','kuragama','1996/2/20','0774301808','J.kuragama','0773301868','discharged');
@@ -56,7 +55,7 @@ INSERT INTO PATIENT(patientID,NIC,passportNO,firstName,middleName,lastName,age,g
 
 INSERT INTO PATIENT(patientID,NIC,passportNO,firstName,middleName,lastName,age,gender,addressline1,addressline2,addressline3,DOB,contactNo,nextOfKin,nextofKinNo,patientStatus) VALUES(9 ,'591321563v','','Geethma','Saduni','Kulunthunga',19 ,'F','20/1','kusalpura','Ahangama','1959/2/20','0774301768','K.Kulathunga','0753505298','admitted');
 
-INSERT INTO PATIENT(patientID,NIC,passportNO,firstName,middleName,lastName,age,gender,addressline1,addressline2,addressline3,DOB,contactNo,nextOfKin,nextofKinNo,patientStatus) VALUES(10 ,'731429563v','','Nuwan','Pradarshana','Wimalasena',51 ,'M,'30/2','weerakkodi lane','maharagama','1973/2/20','0724301728','P.Wimalasena','0713305278','admitted');
+INSERT INTO PATIENT(patientID,NIC,passportNO,firstName,middleName,lastName,age,gender,addressline1,addressline2,addressline3,DOB,contactNo,nextOfKin,nextofKinNo,patientStatus) VALUES(10 ,'731429563v','','Nuwan','Pradarshana','Wimalasena',51 ,'M','30/2','weerakkodi lane','maharagama','1973/2/20','0724301728','P.Wimalasena','0713305278','admitted');
 
 
 //test//
