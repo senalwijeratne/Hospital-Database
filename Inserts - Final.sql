@@ -312,7 +312,7 @@
 	(8, 8, 8,'No significant remarks.',1),
 	(9, 9, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
 
--- 24.Surgery >
+-- 24.Surgery > -- Ikhwan
 	INSERT INTO SURGERY(surgeryName, surgeryFee, surgeryDescription) VALUES 
 	('Outpatient Surgery', 7000,' same day surgery or ambulatory surgery'),
 	('Bariatric Surgery', 1000,''),
@@ -326,8 +326,8 @@
 	('Neurosurgery', 6000,'Specializing in surgery on the brain and other parts of the nervous system'),
 	('Ophthalmological Surgery', 6000,'Eye surgery, also known as ocular surgery, is surgery performed on the eye or its adnexa,');	
 
--- 25.MH_Surgery
-	INSERT INTO MHSURGERY(invoiceID, surgeryID, patientID, employeeID, RdoctorID, COdoctorID, timeScheduled, 
+-- 25.MH_Surgery > -- Ikhwan
+	INSERT INTO MH_SURGERY(invoiceID, surgeryID, patientID, employeeID, RdoctorID, COdoctorID, timeScheduled, 
 	RoomTypeID, roomID, bedID, timeOutOfSurgery, preSurgeryNotes, 
 	postSurgeryNotes, surgeryReport, paymentStatus) VALUES
 	(1,1,1,1,1,NULL,
@@ -342,7 +342,7 @@
 	'Surgery progressed without any complications.',
 	'Removed portion of the stomach.',
 	1),
-	(2,3,2,2,NULL,1, --doctor is a CO doctor... might run into issues here
+	(2,3,2,3,NULL,1, --doctor is a CO doctor... might run into issues here
 	'20170103 10:00:00 AM',4,1,1,'20170103 11:00:00 AM', 
 	'Patient requested smaller mammarian glands',
 	'Surgery progressed without any complications.',
@@ -390,3 +390,4 @@
 	'Surgery progressed without any complications.',
 	'Vasectomy performed.',
 	1);
+
