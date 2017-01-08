@@ -286,7 +286,7 @@ CREATE TABLE MH_PRESCRIPTION(
 -- );
 
 CREATE TABLE ROOMTYPE(
-		roomTypeID char CHECK (roomTypeID IN ('G','P','C','S','E')),
+		roomTypeID varchar(1) CHECK (roomTypeID IN ('G','P','C','S','E')),
 		description varchar(100),
 		roomPrice money,
 
@@ -296,7 +296,7 @@ CREATE TABLE ROOMTYPE(
 /*rooms table*/
 
  CREATE TABLE ROOM(
- 		roomTypeID char,
+ 		roomTypeID varchar(1) CHECK (roomTypeID IN ('G','P','C','S','E')),
  		roomID int,
   		bedID int,
   	 	status char DEFAULT 'N' CHECK ( status IN ('Y','N')),
@@ -312,7 +312,7 @@ CREATE TABLE MH_ADMISSION (
 		admissionID			int IDENTITY(1,1),
 		invoiceID 			int,
 		patientID 			int,
-		roomTypeID 			char,
+		roomTypeID 			varchar(1) CHECK (roomTypeID IN ('G','P','C','S','E')),
 		roomID 				int,
 		bedID 				int,
 		admissionDate		date,

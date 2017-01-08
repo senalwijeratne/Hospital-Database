@@ -215,7 +215,7 @@
 	('E','emergency','2200');
 
 -- 18.Room > -- Ikhwan
-	INSERT INTO ROOM(roomTypeID,roomID,bedID,status) VALUES -- patientID not in the create tables
+	INSERT INTO ROOM(roomTypeID,roomID,bedID,status) VALUES 
 	('G','1','1','Y'),
 	('G','1','2','Y'),
 	('G','1','3','Y'),
@@ -232,29 +232,27 @@
 	('P','6','1','N'),
 	('S','1','1','Y');
 
--- 19.MH_Admissions >
-	INSERT INTO MH_ADMISSION (admissionID, invoiceID, patientID, roomTypeID, roomID, bedID,
-
+-- 19.MH_Admissions > -- Rimzan 
+	INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID,
 	admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition)
-
-	VALUES (1, 5, 2, 3, 4, 1,'2016/05/03', '2016/05/20',1,'Manage work stress', 'Severe Headache and
+	VALUES ( 5, 'G', 1, 1,'2016/05/03', '2016/05/20',1,'Manage work stress', 'Severe Headache and
 	nausea'),
-	 (2,6,7,2,8,9, '2016/04/15', '2016/05/05',0, 'Quit smoking' ,'Shortness of breath and
+	 (6,'G',1,2, '2016/04/15', '2016/05/05',0, 'Quit smoking' ,'Shortness of breath and
 	chest pain'),
-	 (3,2,8,4,9,6, '2016/07/09', '2016/07/21',0, 'Take medicine as prescribed', 'Medium
+	 (2,'G',1,3, '2016/07/09', '2016/07/21',0, 'Take medicine as prescribed', 'Medium
 	phlegm and fever'),
-	 (4,5,3,1,10,4, '2016/02/22', '2016/04/10',1,' Drink Water as much as possible', 'Burning
+	 (5,'G',2,1, '2016/02/22', '2016/04/10',1,' Drink Water as much as possible', 'Burning
 	sensation when urinating'),
-	 (5,3,9,10,8,7, '2016/05/15', '2016/05/27',1,'Consume food containing fiber', 'Loss of
+	 (3,'G',2,2, '2016/05/15', '2016/05/27',1,'Consume food containing fiber', 'Loss of
 	appetite and bloating of the stomach'),
-	 (6, 9, 1, 5,3,10, '2016/02/03', '2016/05/20',0, 'please stop drinking',' Inflammation of
+	 ( 9,'G',2,3, '2016/02/03', '2016/05/20',0, 'please stop drinking',' Inflammation of
 	the liver'),
-	 (7,7,10,9,6,8, '2016/06/11', '2016/06/30',1,'Be consistent in taking meals on time',' Bloating
+	 (7,'P',1,1, '2016/06/11', '2016/06/30',1,'Be consistent in taking meals on time',' Bloating
 	of the stomach and severe abdomen pain'),
-	 (8,1,8,3,7,2, '2016/03/09', '2016/04/03',0, 'Reschedule sleeping hours', 'Severe
+	 (1,'P',2,1, '2016/03/09', '2016/04/03',0, 'Reschedule sleeping hours', 'Severe
 	headache and stress'),
-	 (9,4,6,7,4,3, '2016/08/21', '2016/09/12',0,' Exercise daily', 'Breathing disorder'),
-	 (10,10,9,8,5,5, '2016/01/24', '2016/03/20',1,'Maintain a quiet restful environment', 'Severe
+	 (4,'P',3,1, '2016/08/21', '2016/09/12',0,' Exercise daily', 'Breathing disorder'),
+	 (10,'P',4,1, '2016/01/24', '2016/03/20',1,'Maintain a quiet restful environment', 'Severe
 	headache');
 
 -- 20.Test > -- Hashan 
@@ -300,17 +298,17 @@
 	('Voiding Cystourethrogram ', 7000);
 
 -- 23.MHScan > 
-	INSERT INTO MH_SCAN(invoiceID, patientID, testID, testReport, paymentStatus) VALUES 
-	(1, 1, 1,'Patient found to have broken several fingers while trying to play baseball',1),
-	(2, 2, 1,'Patient neck dislocated',1),
-	(2, 2, 4,'MRI Scan found cabbage instead of brain',1),
-	(3, 3, 2,'Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
-	(4, 4, 6,'Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
-	(5, 5, 7,'Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
-	(6, 6, 10,'Baby appears to have retractable wolverine claws inside forearms.',1),
-	(7, 7, 9,'Lungs are busted. Need replacement filters as soon as possible',1),
-	(8, 8, 8,'No significant remarks.',1),
-	(9, 9, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
+INSERT INTO MH_SCAN(invoiceID, patientID, testID, testReport, paymentStatus) VALUES 
+(1,2, 1,'Patient found to have broken several fingers while trying to play baseball',1),
+(2,1, 1,'Patient neck dislocated',1),
+(7,1, 4,'MRI Scan found cabbage instead of brain',1),
+(8,2, 2,'Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
+(8,2, 6,'Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
+(8,3, 7,'Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
+(8,3, 10,'Baby appears to have retractable wolverine claws inside forearms.',1),
+(7,4, 9,'Lungs are busted. Need replacement filters as soon as possible',1),
+(6,2, 8,'No significant remarks.',1),
+(1,1, 11,'Voidlings present. Need to be dispersed as soon as possible.',1);
 
 -- 24.Surgery >
 	INSERT INTO SURGERY(surgeryName, surgeryFee, surgeryDescription) VALUES 
