@@ -2,7 +2,7 @@
 INSERT INTO DEPARTMENT VALUES(1,'Orthopedic','Provides expert treatment in sports medicine, trauma, joint replacement, pediatrics, oncology, spine, shoulder and elbow, foot and ankle, and hand'),
 (2,'Pathology','the ward just after emergency on right','that branch of medicine which treats of the essential nature of disease'),
 (3,'Emergency','Just after entering the secondary gate of hospital','provides experienced physician as soon as the patient arrived for any emergency case'),
-(4,'Dental','left side of builiSng of hospital','provides procedures like Dental Extractions, RCT, Scaling /Cleaning, Fillings, Local curettage'),
+(4,'Dental','left side of building of hospital','provides procedures like Dental Extractions, RCT, Scaling /Cleaning, Fillings, Local curettage'),
 (5,'Gynecology','ward 4 in left building of hospital','provides support with all branches of medical facilities for woman'),
 (6,'Anesthetic','ward  7 in back of hospital',' responsible for the administration of functions and activities pertaining to the delivery of anesthetics'),
 (7,'I.C.U','second floor right side of the building','unit in the hospital where treat seriously ill patient under well experienced staff'),
