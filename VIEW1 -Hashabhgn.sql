@@ -1,34 +1,16 @@
 
 
 
-CREATE VIEW patient_MH_History
-AS SELECT PATIENT.patientID,PATIENT.patientName,BILL.invoiceID,MH_PRESCRIPTION.prescriptionID,
-MH_CONSULTATION.consultationID,MH_ADMISSION.admissionID,MH_TEST.testID,MH_SCAN.scanID,MH_SURGERY.surgeryID,DRUGS.drugID
 
- FROM PATIENT
- INNER JOIN BILL
- ON PATIENT.patientID=BILL.patientID
+create view patient_MedicalHistory
+AS SELECT
+a.invoiceID ,c.consultationID, b.patientID, d.prescriptionID 
 
- INNER JOIN MH_CONSULTATION
- ON BILL.invoiceID=MH_CONSULTATION.invoiceID
- 
- INNER JOIN MH_PRESCRIPTION
- ON BILL.invoiceID=MH_PRESCRIPTION.invoiceID
- 
- INNER JOIN DRUGS
- ON MH_PRESCRIPTION.drugID=DRUGS.drugID
+FROM bill a, patient b, mh_consultation c, mh_prescription d , mh_admission e , mh_test f, mh_scan g,mh_surgery h
 
- ON MH_PRECRIPTION
- INNER JOIN MH_ADMISSION.admissionID=DRUGS.drugID
- 
- ON BILL.invoiceID=MH_ADMISSION.invoiceID
- INNER JOIN MH_TEST
- 
- ON BILL.invoiceID=MH_TEST.invoiceID
- INNER JOIN MH_SCAN
- 
- ON BILL.invoiceID=MH_SCAN.invoiceID
- 
- INNER JOIN MH_SURGERY
- ON BILL.invoiceID=MH_SURGERY.invoiceID
-
+WHERE a.invoiceID = c.invoiceID AND
+      a.invoiceID =  d.invoiceID;
+	a.invoiceID =  e.invoiceID AND
+	a.invoiceID =  f.invoiceID AND
+	a.invoiceID =  g.invoiceID AND
+	a.invoiceID =  h.invoiceID ;
