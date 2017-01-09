@@ -22,9 +22,9 @@
 
 
    
-    ----------------------------------- this works BUT you need to add patient details/check if the patient id is correct
+    ----------------------------------- added patient details/check if the patient id is correct
     CREATE VIEW Drug_fee AS
-    SELECT PATIENT.patientID,DRUGS.drugName ,DRUGS.drugCompany,DRUGS.drugPrice,DRUGS.drugPurpose,DRUGS.legalClassification,MH_PRESCRIPTION.consultationID ,MH_PRESCRIPTION.invoiceID,MH_PRESCRIPTION.prescriptionID ,MH_PRESCRIPTION.drugID,MH_PRESCRIPTION.startDate,MH_PRESCRIPTION.prescribedDuration,MH_PRESCRIPTION.prescribedDosage,MH_PRESCRIPTION.paymentStatuS
+    SELECT PATIENT.patientID,PATIENT.firstName,PATIENT.lastName,DRUGS.drugName ,DRUGS.drugCompany,DRUGS.drugPrice,DRUGS.drugPurpose,DRUGS.legalClassification,MH_PRESCRIPTION.consultationID ,MH_PRESCRIPTION.invoiceID,MH_PRESCRIPTION.prescriptionID ,MH_PRESCRIPTION.drugID,MH_PRESCRIPTION.startDate,MH_PRESCRIPTION.prescribedDuration,MH_PRESCRIPTION.prescribedDosage,MH_PRESCRIPTION.paymentStatuS
     FROM MH_PRESCRIPTION
     JOIN DRUGS ON MH_PRESCRIPTION.drugID = DRUGS.drugID
     JOIN BILLS ON MH_PRESCRIPTION.invoiceID = BILLS.invoiceID
