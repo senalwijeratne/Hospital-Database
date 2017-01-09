@@ -1,7 +1,38 @@
-CREATE PROCEDURE Insert_consultation(@invoiceID	int,@employeeID int,@RdoctorID int,@COdoctorID int,	@patientID 	int,@consultationDate date,	@nextCheckUp 	date,@doctorReport varchar,@paymentStatus int )
+CREATE PROCEDURE Insert_consultation(
+    @invoiceID	int,
+    @employeeID int,
+    @RdoctorID int,
+    @COdoctorID int,	
+    @patientID 	int,
+    @consultationDate date,	
+    @nextCheckUp 	date,
+    @doctorReport varchar,
+    @paymentStatus int )
 AS BEGIN
 
 INSERT INTO MH_Consultation([invoiceID],[employeeID],[RdoctorID],[COdoctorID],[patientID],[consultationDate],[nextCheckUp],[doctorReport],[paymentStatus]) 
 VALUES (@invoiceID,@employeeID,@RdoctorID,@COdoctorID,@patientID ,@consultationDate,@nextCheckUp ,@doctorReport,@paymentStatus)
+
+
+
+CREATE PROCEDURE Insert_prescription (
+    @consultationID int,
+		@invoiceID int,
+		@prescriptionID int,
+		@drugID int,
+		@startDate date,
+		@prescribedDuration varchar,
+		@prescribedDosage varchar,
+		@paymentStatus int )
+AS BEGIN
+
+INSERT INTO MH_PRESCRIPTION([invoiceID],[prescriptionID],[drugID],[startDate],[prescribedDuration],[prescribedDosage],[paymentStatus]) 
+VALUES (@invoiceID,@prescriptionID,@drugID,@startDate,@prescribedDuration ,@prescribedDosage,@paymentStatus)
+
+END
+
+
+
+
 
 END
