@@ -67,7 +67,7 @@
 
 
      CREATE VIEW Room_fee AS
-     SELECT PATIENTS.patientI,MH_ADMISSION.invoiceID,PATIENT.firstName , PATIENT.lastName,ROOM.roomID,ROOM.bedID,ROOMTYPE.roomTypeID,ROOMTYPE.description,ROOMTYPE.roomPrice ,ROOM.status
+     SELECT PATIENT.patientID,MH_ADMISSION.invoiceID,PATIENT.firstName , PATIENT.lastName,ROOM.roomID,ROOM.bedID,ROOMTYPE.roomTypeID,ROOMTYPE.description,ROOMTYPE.roomPrice
      FROM ROOMTYPE 
      JOIN ROOM  ON ROOMTYPE.roomTypeID = ROOM.roomTypeID
      JOIN MH_ADMISSION ON ROOMTYPE.roomTypeID = MH_ADMISSION.roomTypeID
