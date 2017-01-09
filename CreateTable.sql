@@ -62,7 +62,7 @@ CREATE TABLE PATIENT (
 		firstName 		varchar(50),
 		middleName 		varchar(50),
 		lastName 		varchar(50),
-		age 			int, -- Needs calculated column code. ( AS keyword)
+		age AS CONVERT(INT, ROUND(DATEDIFF(D, DOB, GETDATE()) / 365.25, 0)),
 		gender 			varchar(1) CHECK (gender IN ('m','f','M','F')), --
 		addressline1 	varchar(40),
 		addressline2 	varchar(40),
