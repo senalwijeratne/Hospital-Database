@@ -33,6 +33,37 @@ VALUES (@invoiceID,@prescriptionID,@drugID,@startDate,@prescribedDuration ,@pres
 END
 
 
+CREATE PROCEDURE MH_TEST_INPUT(
+    @invoiceID	int,
+    @testID int,
+    @testDate date,,
+    @testReport varchar ,	
+    @paymentStatus int,
+    )
+AS BEGIN
+
+INSERT INTO MH_Consultation([invoiceID],[testID],[testDate],[testReport],[paymentStatus]) 
+VALUES (@invoiceID,@testID,@testDate,@testReport,@paymentStatus)
+
+END
+
+
+CREATE PROCEDURE MH_SCAN_INPUT(
+    @invoiceID	int,
+    @scanID int,
+    @scanDate date,,
+    @scanReport varchar ,	
+    @paymentStatus int,
+    )
+AS BEGIN
+
+INSERT INTO MH_Consultation([invoiceID],[scanID],[scanDate],[scanReport],[paymentStatus]) 
+VALUES (@invoiceID,@scanID,@scanDate,@scanReport,@paymentStatus)
+
+END
+
+
+
 
 
 
