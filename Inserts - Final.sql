@@ -106,16 +106,16 @@
 -- 10.MHConsultation > -- Senal 
 	INSERT INTO MH_Consultation(invoiceID,employeeID,RdoctorID,OCdoctorID,consultationDate,nextCheckUp,doctorReport,paymentStatus) 
 	VALUES
-	(1,2,2,NULL,'2016/07/24','2016/08/19','The patient seems to have a cold',0),
-	(2,1,1,NULL,'2016/02/21','2016/10/19','Left femur is fractured',1),
-	(7,1,1,NULL,'2016/01/08','2016/05/05','Right ulna bone fracture',1),
-	(8,2,2,NULL,'2016/01/20','2016/02/02','The patient has a high fever and a mild cold',0),
-	(8,2,2,NULL,'2016/04/23','2016/04/27','The patient is suffering from a muscle tear on the left leg',0),
-	(8,3,NULL,1,'2016/03/01','2016/08/11','The patient has an irregular sleep pattern, also has a defficulty falling asleep',0),
-	(8,3,NULL,1,'2016/05/31','2016/12/23','The patient has an abnormal growth on the right palm',0),
-	(7,4,NULL,2,'2016/07/18','2016/07/26','Abnormal growth on the back of the neck',1),
-	(6,2,2,NULL,'2016/02/14','2016/11/22','The patient suffered a concussion, small fracture in skull: rigth-back',1),
-	(1,1,1,NULL,'2016/02/10','2016/09/09','The patient claims normal breathing causes pain, tests were reccomended',0);
+	(1,2,2,NULL,'2016/07/24','2016/08/19','The patient seems to have a cold','N'),
+	(2,1,1,NULL,'2016/02/21','2016/10/19','Left femur is fractured','Y'),
+	(7,1,1,NULL,'2016/01/08','2016/05/05','Right ulna bone fracture','Y'),
+	(8,2,2,NULL,'2016/01/20','2016/02/02','The patient has a high fever and a mild cold','N'),
+	(8,2,2,NULL,'2016/04/23','2016/04/27','The patient is suffering from a muscle tear on the left leg','N'),
+	(8,3,NULL,1,'2016/03/01','2016/08/11','The patient has an irregular sleep pattern, also has a defficulty falling asleep','N'),
+	(8,3,NULL,1,'2016/05/31','2016/12/23','The patient has an abnormal growth on the right palm','N'),
+	(7,4,NULL,2,'2016/07/18','2016/07/26','Abnormal growth on the back of the neck','Y'),
+	(6,2,2,NULL,'2016/02/14','2016/11/22','The patient suffered a concussion, small fracture in skull: rigth-back','Y'),
+	(1,1,1,NULL,'2016/02/10','2016/09/09','The patient claims normal breathing causes pain, tests were reccomended','N');
 
 -- 11.Illness >  -- Senal
 	INSERT INTO illness(illnessName,illnessDescription) VALUES
@@ -194,16 +194,16 @@
 -- 16.MH_Prescription >  -- Sadikeen 
 	INSERT INTO MH_PRESCRIPTION( invoiceID, consultationID, prescriptionID, drugID, startDate,
 	prescribedDuration, prescribedDosage, paymentStatus) VALUES 
-	(1,1,1,4,'2016/02/09','3 months', 'Twice per day', 1),
-	(2,2,2,7, '2016/02/15','2 months', 'Thrice per day', 0),
-	(3,7,3,5, '2016/01/03','5 months', 'Twice per day', 1),
-	(4,8,4,3, '2016/05/25','2 months', 'Once per day', 1),
-	(5,8,5,6, '2016/04/13','2 months', 'Twice per day', 1),
-	(6,8,6,2, '2016/01/20','4 months', 'Twice per day', 0),
-	(7,8,7,9, '2016/06/25','5 months', 'Once per day', 1),
-	(8,7,8,10, '2016/11/23','3 months', 'Thrice per day', 0),
-	(9,6,9,1, '2016/07/15','4 months', 'Twice per day', 1),
-	(10,1,10,8, '2016/10/14','2 months', 'Twice per day', 1); 
+	(1,1,1,4,'2016/02/09','3 months', 'Twice per day', 'Y'),
+	(2,2,2,7, '2016/02/15','2 months', 'Thrice per day', 'N'),
+	(3,7,3,5, '2016/01/03','5 months', 'Twice per day', 'Y'),
+	(4,8,4,3, '2016/05/25','2 months', 'Once per day', 'Y'),
+	(5,8,5,6, '2016/04/13','2 months', 'Twice per day', 'Y'),
+	(6,8,6,2, '2016/01/20','4 months', 'Twice per day', 'N'),
+	(7,8,7,9, '2016/06/25','5 months', 'Once per day', 'Y'),
+	(8,7,8,10, '2016/11/23','3 months', 'Thrice per day', 'N'),
+	(9,6,9,1, '2016/07/15','4 months', 'Twice per day', 'Y'),
+	(10,1,10,8, '2016/10/14','2 months', 'Twice per day', 'Y'); 
 
 
 -- 17.RoomType > -- Ikhwan
@@ -235,24 +235,24 @@
 -- 19.MH_Admissions > -- Rimzan 
 	INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID,
 	admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition)
-	VALUES ( 5, 'G', 1, 1,'2016/05/03', '2016/05/20',1,'Manage work stress', 'Severe Headache and
+	VALUES ( 5, 'G', 1, 1,'2016/05/03', '2016/05/20','Y','Manage work stress', 'Severe Headache and
 	nausea'),
-	 (6,'G',1,2, '2016/04/15', '2016/05/05',0, 'Quit smoking' ,'Shortness of breath and
+	 (6,'G',1,2, '2016/04/15', '2016/05/05','N', 'Quit smoking' ,'Shortness of breath and
 	chest pain'),
-	 (2,'G',1,3, '2016/07/09', '2016/07/21',0, 'Take medicine as prescribed', 'Medium
+	 (2,'G',1,3, '2016/07/09', '2016/07/21','N', 'Take medicine as prescribed', 'Medium
 	phlegm and fever'),
-	 (5,'G',2,1, '2016/02/22', '2016/04/10',1,' Drink Water as much as possible', 'Burning
+	 (5,'G',2,1, '2016/02/22', '2016/04/10','Y',' Drink Water as much as possible', 'Burning
 	sensation when urinating'),
-	 (3,'G',2,2, '2016/05/15', '2016/05/27',1,'Consume food containing fiber', 'Loss of
+	 (3,'G',2,2, '2016/05/15', '2016/05/27','Y','Consume food containing fiber', 'Loss of
 	appetite and bloating of the stomach'),
-	 ( 9,'G',2,3, '2016/02/03', '2016/05/20',0, 'please stop drinking',' Inflammation of
+	 ( 9,'G',2,3, '2016/02/03', '2016/05/20','N', 'please stop drinking',' Inflammation of
 	the liver'),
-	 (7,'P',1,1, '2016/06/11', '2016/06/30',1,'Be consistent in taking meals on time',' Bloating
+	 (7,'P',1,1, '2016/06/11', '2016/06/30','Y','Be consistent in taking meals on time',' Bloating
 	of the stomach and severe abdomen pain'),
-	 (1,'P',2,1, '2016/03/09', '2016/04/03',0, 'Reschedule sleeping hours', 'Severe
+	 (1,'P',2,1, '2016/03/09', '2016/04/03','N', 'Reschedule sleeping hours', 'Severe
 	headache and stress'),
-	 (4,'P',3,1, '2016/08/21', '2016/09/12',0,' Exercise daily', 'Breathing disorder'),
-	 (10,'P',4,1, '2016/01/24', '2016/03/20',1,'Maintain a quiet restful environment', 'Severe
+	 (4,'P',3,1, '2016/08/21', '2016/09/12','N',' Exercise daily', 'Breathing disorder'),
+	 (10,'P',4,1, '2016/01/24', '2016/03/20','Y','Maintain a quiet restful environment', 'Severe
 	headache');
 
 -- 20.Test > -- Hashan 
@@ -272,16 +272,16 @@
 
 -- 21.MHTest > -- Ikhwan
 	INSERT INTO MH_TEST(invoiceID, testID, testDate, testReport, paymentStatus) VALUES /*needs to be rewritten*/
-	(3, 1,'2016/01/21','Patient found to have broken several fingers while trying to play baseball',1),
-	(2, 2,'2016/02/20','Patient neck dislocated',1),
-	(4, 2,'2016/03/21','MRI Scan found cabbage instead of brain',1),
-	(5, 3,'2016/04/15','Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
-	(2, 4,'2016/05/11','Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
-	(10, 5,'2016/07/11','Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
-	(5, 6, '2016/08/05','Baby appears to have retractable wolverine claws inside forearms.',1),
-	(4, 7,'2016/09/20','Lungs are busted. Need replacement filters as soon as possible',1),
-	(2, 8,'2016/11/09','No significant remarks.',1),
-	(10, 9, '2016/12/21','Voidlings present. Need to be dispersed as soon as possible.',1);
+	(3, 1,'2016/01/21','Patient found to have broken several fingers while trying to play baseball','Y'),
+	(2, 2,'2016/02/20','Patient neck dislocated','Y'),
+	(4, 2,'2016/03/21','MRI Scan found cabbage instead of brain','Y'),
+	(5, 3,'2016/04/15','Baby Appears to be healthy. Father might be disappointed with the race of the child','Y'),
+	(2, 4,'2016/05/11','Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.','Y'),
+	(10, 5,'2016/07/11','Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ','Y'),
+	(5, 6, '2016/08/05','Baby appears to have retractable wolverine claws inside forearms.','Y'),
+	(4, 7,'2016/09/20','Lungs are busted. Need replacement filters as soon as possible','Y'),
+	(2, 8,'2016/11/09','No significant remarks.','Y'),
+	(10, 9, '2016/12/21','Voidlings present. Need to be dispersed as soon as possible.','Y');
 
 -- 22.Scan > -- Ikhwan
 	INSERT INTO SCAN(scanName, scanFee) VALUES 
@@ -299,16 +299,16 @@
 
 -- 23.MHScan > -- Ikhwan
 INSERT INTO MH_SCAN(invoiceID, scanID, scanDate, scanReport, paymentStatus) VALUES 
-(3,1,'2016/02/21','Patient found to have broken several fingers while trying to play baseball',1),
-(2,1,'2016/03/20','Patient neck dislocated',1),
-(4,4,'2016/04/21','MRI Scan found cabbage instead of brain',1),
-(5,5,'2016/05/15','Baby Appears to be healthy. Father might be disappointed with the race of the child',1),
-(2,6,'2016/06/11','Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.',1),
-(10,2,'2016/08/11','Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ',1),
-(5,1, '2016/09/05','Baby appears to have retractable wolverine claws inside forearms.',1),
-(4,9,'2016/10/20','Lungs are busted. Need replacement filters as soon as possible',1),
-(2,11,'2016/12/09','No significant remarks.',1),
-(10,10, '2016/01/21','Voidlings present. Need to be dispersed as soon as possible.',1);
+(3,1,'2016/02/21','Patient found to have broken several fingers while trying to play baseball','Y'),
+(2,1,'2016/03/20','Patient neck dislocated','Y'),
+(4,4,'2016/04/21','MRI Scan found cabbage instead of brain','Y'),
+(5,5,'2016/05/15','Baby Appears to be healthy. Father might be disappointed with the race of the child','Y'),
+(2,6,'2016/06/11','Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.','Y'),
+(10,2,'2016/08/11','Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ','Y'),
+(5,1, '2016/09/05','Baby appears to have retractable wolverine claws inside forearms.','Y'),
+(4,9,'2016/10/20','Lungs are busted. Need replacement filters as soon as possible','Y'),
+(2,11,'2016/12/09','No significant remarks.','Y'),
+(10,10, '2016/01/21','Voidlings present. Need to be dispersed as soon as possible.','Y');
 
 -- 24.Surgery > -- Ikhwan
 	INSERT INTO SURGERY(surgeryName, surgeryFee, surgeryDescription) VALUES 
@@ -333,59 +333,59 @@ INSERT INTO MH_SCAN(invoiceID, scanID, scanDate, scanReport, paymentStatus) VALU
 	'patient requires careful attention to fluctuations in blood pressure.',
 	'Surgery progressed without any complications.',
 	'Hip replacement surgery successfully completed on the right side.',
-	1),
+	'Y'),
 	(1,2,1,1,NULL,
 	'20170102 8:00:00 AM',4,2,1,'20170102 11:00:00 AM', 
 	'patient has successfully fasted for 12 hours prior to surgery',
 	'Surgery progressed without any complications.',
 	'Removed portion of the stomach.',
-	1),
+	'Y'),
 	(2,3,3,NULL,1, --doctor is a CO doctor... might run into issues here
 	'20170103 10:00:00 AM',4,1,1,'20170103 11:00:00 AM', 
 	'Patient requested smaller mammarian glands',
 	'Surgery progressed without any complications.',
 	'Reduced mammary glands',
-	1),
+	'Y'),
 	(3,4,1,1,NULL,
 	'20170104 10:00:00 AM',4,1,1,'20170104 11:00:00 AM', 
 	'Cavities have been expunged of any foreign material before surgery',
 	'Surgery progressed without any complications.',
 	'Colon surgery completed. Follow up required.',
-	1),
+	'Y'),
 	(4,5,1,1,NULL,
 	'20170106 10:00:00 AM',4,1,1,'20170106 11:00:00 AM', 
 	'Immediate surgery recommended',
 	'Surgery progressed without any complications.',
 	'Endocrine surgery performed in record time.',
-	1),
+	'Y'),
 	(5,6,1,1,NULL,
 	'20170107 10:00:00 AM',4,1,1,'20170107 11:00:00 AM', 
 	'Patient requires care in being put under anesthesia',
 	'Surgery progressed without any complications.',
 	'Knee ligament surgery successfully completed on the left knee.',
-	1),
+	'Y'),
 	(6,6,1,1,NULL,
 	'20170108 10:00:00 AM',4,1,1,'20170108 11:00:00 AM', 
 	'patient requires careful attention to diet prior to surgery',
 	'Surgery progressed without any complications.',
 	'Kidney removed with prejudice.',
-	1),
+	'Y'),
 	(7,8,1,1,NULL,
 	'20170109 10:00:00 AM',4,1,1,'20170109 11:00:00 AM', 
 	'Need to re connect nervous system',
 	'Surgery progressed without any complications.',
 	'Patient can now play the piano like a maestro.',
-	1),
+	'Y'),
 	(8,1,1,1,NULL,
 	'20170110 10:00:00 AM',4,1,1,'20170110 11:00:00 AM', 
 	'Pubic hair needs to be removed prior to surgery',
 	'Surgery progressed without any complications.',
 	'Prostate surgery completed',
-	1),
+	'Y'),
 	(9,1,1,1,NULL,
 	'20170111 10:00:00 AM',4,1,1,'20170111 11:00:00 AM', 
 	'Pubic hair needs to be removed prior to surgery',
 	'Surgery progressed without any complications.',
 	'Vasectomy performed.',
-	1);
+	'Y');
 

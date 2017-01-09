@@ -188,7 +188,7 @@ CREATE TABLE BILL (
         consultationDate 	date,
         nextCheckUp 		date,
         doctorReport 		varchar(255),
-        paymentStatus 		int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
+        paymentStatus 		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
         CONSTRAINT pk_mhconsultationID PRIMARY KEY (invoiceID,consultationID),
         CONSTRAINT fk_consultationInvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
         CONSTRAINT fk_consultationRDoctorid FOREIGN KEY (RdoctorID,employeeID) REFERENCES RESIDENT_DOCTOR(RdoctorID,employeeID),
@@ -267,7 +267,7 @@ CREATE TABLE MH_PRESCRIPTION(
         startDate date,
         prescribedDuration varchar(200),
         prescribedDosage varchar(200),
-        paymentStatus int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
+        paymentStatus varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
 
         CONSTRAINT pk_prescriptonID PRIMARY KEY (prescriptionID),
         CONSTRAINT fk_consultationMHPrescriptions FOREIGN KEY (consultationID,invoiceID) REFERENCES MH_CONSULTATION(invoiceID,consultationID),
@@ -307,7 +307,7 @@ CREATE TABLE ROOMTYPE(
         roomTypeID varchar(1) CHECK (roomTypeID IN ('G','P','C','S','E')),
         roomID int,
         bedID int,
-        status char DEFAULT 'N' CHECK ( status IN ('Y','N')),
+        status varchar(1) DEFAULT 'N' CHECK (status IN ('Y','N','n','y')),
 
 
         CONSTRAINT pk_roomid PRIMARY KEY (roomTypeID,roomID,bedID),
@@ -324,7 +324,7 @@ CREATE TABLE MH_ADMISSION (
         bedID 				int,
         admissionDate		date,
         dischargeDate		date,
-        paymentStatus 		int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
+        paymentStatus 		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
         treatmentAdvice 	varchar(255),
         initialCondition 	varchar(255),
 
@@ -361,7 +361,7 @@ CREATE TABLE MH_TEST (
         testID int,
         testDate date,
         testReport varchar (255),
-        paymentStatus int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
+        paymentStatus varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
         CONSTRAINT pk_md_testID PRIMARY KEY (testID,invoiceID),
         CONSTRAINT fk_MHtestID FOREIGN KEY (testID) REFERENCES TEST(testID),
         CONSTRAINT fk_testInvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
@@ -386,7 +386,7 @@ CREATE TABLE MH_SCAN(
         scanID 			int,
         scanDate 		date,
         scanReport 		varchar (255),
-        paymentStatus 	int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
+        paymentStatus 	varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
 
         CONSTRAINT pk_mhscanID PRIMARY KEY (invoiceID,scanID),
         CONSTRAINT fk_MHscanID FOREIGN KEY (scanID) REFERENCES scan(scanID),
@@ -422,7 +422,7 @@ CREATE TABLE MH_SURGERY(
         preSurgeryNotes 	varchar(255),
         postSurgeryNotes 	varchar(255),
         surgeryReport		varchar(255),
-        paymentStatus		int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
+        paymentStatus		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
 
         CONSTRAINT pk_mh_surgeryID PRIMARY KEY (invoiceID,surgeryID),
         CONSTRAINT fk_mh_surgeryinvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
