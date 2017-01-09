@@ -1,19 +1,18 @@
-CREATE PROCEDURE Insert_consultation(
-    @invoiceID	int,
-    @employeeID int,
-    @RdoctorID int,
-    @COdoctorID int,	
-    @patientID 	int,
-    @consultationDate date,	
-    @nextCheckUp 	date,
-    @doctorReport varchar,
-    @paymentStatus int )
-AS BEGIN
+    CREATE PROCEDURE Insert_consultation(
+        @invoiceID  int,
+        @employeeID int,
+        @RdoctorID int,
+        @OCdoctorID int,    
+        @consultationDate date, 
+        @nextCheckUp    date,
+        @doctorReport varchar,
+        @paymentStatus int )
+    AS BEGIN
 
-INSERT INTO MH_Consultation([invoiceID],[employeeID],[RdoctorID],[COdoctorID],[patientID],[consultationDate],[nextCheckUp],[doctorReport],[paymentStatus]) 
-VALUES (@invoiceID,@employeeID,@RdoctorID,@COdoctorID,@patientID ,@consultationDate,@nextCheckUp ,@doctorReport,@paymentStatus)
+    INSERT INTO MH_Consultation([invoiceID],[employeeID],[RdoctorID],[OCdoctorID],[consultationDate],[nextCheckUp],[doctorReport],[paymentStatus]) 
+    VALUES (@invoiceID,@employeeID,@RdoctorID,@OCdoctorID,@consultationDate,@nextCheckUp ,@doctorReport,@paymentStatus)
 
-END
+    END
 
 
 CREATE PROCEDURE Insert_prescription (
