@@ -17,6 +17,6 @@ BEGIN
     INNER JOIN Surgury_fee ON BILLS.invoiceID = Surgury_fee.invoiceID  
     INNER JOIN Room_fee ON BILLS.invoiceID = Room_fee.invoiceID
     
-    RETURN Total
+    RETURN @Total
 END 
 
