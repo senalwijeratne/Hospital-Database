@@ -1,7 +1,16 @@
 
-    
-    
-    
+    ----------------------------------- this works
+   CREATE VIEW consultfee2 AS
+   SELECT a.invoiceID, b.consultationID, c.patientID, e.RdoctorID, e.consultationFee, a.paymentStatus
+   FROM bill a, MH_consultation b, patient c,  resident_doctor e
+   
+   WHERE a.invoiceID = b.invoiceID AND
+     e.RdoctorID = b.RdoctorID AND
+     c.patientID = a.patientID
+    -----------------------------------------------------------
+
+
+
     CREATE VIEW Doctor_fee AS
     SELECT 			RESIDENT_DOCTOR.consultationFee,ONCALL_DOCTOR.consultationFee,ONCALL_DOCTOR.feePerCall,ONCALL_DOCTOR.paymentDate,MH_CONSULTATION.invoiceID,MH_CONSULTATION.patientID,
     MH_CONSULTATION.consultationDate,MH_CONSULTATION.nextCheckUp,MH_CONSULTATION.doctorReport,MH_CONSULTATION.paymentStatus 
