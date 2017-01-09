@@ -83,3 +83,22 @@ ON MH_CONSULTATION.consultationID = MHCONSULTATION_ILLNESS.consultationID
 INNER JOIN MH_PRESCRIPTION
 ON MH_CONSULTATION.consultationID = MH_PRESCRIPTION.consultationID
 
+
+
+
+
+-------------------- RIMZANS SHIT BELOW THIS LINE ---------------------
+
+CREATE VIEW vw_Presc AS
+
+--SELECT a.patientID, b.invoiceID, c.prescriptionID, d.consultationID
+
+SELECT a.patientID, a.firstName,a.lastName, d.consultationID,d.consultationDate, d.RdoctorID, d.COdoctorID, e.drugID, e.drugName, c.prescribedDosage
+FROM patient a, bill b, MH_Prescription c, MH_Consultation d, Drugs e
+
+WHERE b.invoiceID = c.invoiceID AND 
+    b.invoiceID = d.invoiceID AND
+    b.patientID = a.patientID AND
+    e.drugID = c.drugID;
+
+
