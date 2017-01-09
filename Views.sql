@@ -1,12 +1,11 @@
-CREATE VIEW Test_fee AS
-   SELECT *
+ 
+--- FIXED CODE
+    CREATE VIEW Test_fee AS
+   SELECT MH_TEST.testID ,MH_TEST.testDate ,MH_TEST.testReport ,MH_TEST.paymentStatus,TEST.testName ,TEST.testFee, MH_TEST.invoiceID
     FROM MH_TEST 
-    INNER JOIN TEST ON MH_TEST.testID = TEST.testID
-  --   CREATE VIEW Test_fee AS
-  --  SELECT MH_TEST.testID ,MH_TEST.testDate ,MH_TEST.testReport ,MH_TEST.paymentStatus,TEST.testName ,TEST.testFee 
-  --   FRO M MH_TEST 
-  --   JOIN TEST ON MH_TEST.testID = TEST.testID
+    JOIN TEST ON MH_TEST.testID = TEST.testID
 
+  select * from Test_fee
 CREATE VIEW Scan_fee AS
     SELECT *
       FROM MH_SCAN 
