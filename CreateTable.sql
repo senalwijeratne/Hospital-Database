@@ -125,11 +125,12 @@ CREATE TABLE EMPLOYEE (
 
 CREATE TABLE RESIDENT_DOCTOR(
 		RdoctorID 			int IDENTITY(1,1),
-        RDID as (SELECT a.prefix  ------ DOESNT WORK YET -----------===============<<<<<<<<<<<<<
-				 FROM employeeType a, employee b, Resident_Doctor c WHERE 
-				 c.employeeID = b.employeeID AND b.employeeTypeID = a.employeeTypeID
-				 GROUP BY a.prefix;
-        		  )+right('000'+cast(RdoctorID as varchar(5)), 5) persisted,
+     --    RDID as (SELECT a.prefix  ------ DOESNT WORK YET -----------===============<<<<<<<<<<<<<
+				 -- FROM employeeType a, employee b, Resident_Doctor c WHERE 
+				 -- c.employeeID = b.employeeID AND b.employeeTypeID = a.employeeTypeID
+				 -- GROUP BY a.prefix;
+     --    		  )+right('000'+cast(RdoctorID as varchar(5)), 5) persisted,
+        RDID as 'RD'+right('000'+cast(RdoctorID as varchar(5)), 5) persisted,
 		employeeID			int,
 		specialization 		varchar(200),
 		consultationFee 	money,
