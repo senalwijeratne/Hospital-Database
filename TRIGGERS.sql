@@ -1,87 +1,48 @@
-CREATE TRIGGER Check_Room_True FOR
-AFTER UPDATE 
-AS
-BEGIN 
-  
+-- Both work perfectly with single inserts, fucks up for batch inserts(will try to fix it)
 
-  IF (SELECT patientStatus FROM PATIENT )
-  LIKE 'discharged%'
-  BEGIN
-    UPDATE ROOM
-    SET status='N'
-    WHERE patientID IN (SELECT patientID FROM INSERTED)
-    AND
-      BEGIN
-        UPDATE BILL
-        SET status='N'
-        WHERE patientID IN (SELECT patientID FROM INSERTED)
-      END
-      
-  END
-GO
-
-----------------------------------------------------------------------
-
-  
-CREATE TRIGGER When_PatientIsAdmitted ON whatTheShit.PATIENT
-FOR	AFTER UPDATE
-AS 
-BEGIN
-    SET NOCOUNT ON;
-    If (SELECT patientStatus FROM INSERTED) LIKE 'admitt%'
-    BEGIN
-        UPDATE ROOM 
-        SET Status='Y'
-	WHERE patientID IN (SELECT patientID FROM INSERTED)
-        AND
-	UPDATE BILL 
-        SET Status='Y'
-	WHERE patientID IN (SELECT patientID FROM INSERTED)
-    END 
-END
-GO
-
-------------------------------------------------------------------------
-
-CREATE TRIGGER whenPatientAdmittedTrigger
- 
-AFTER INSERT 
+CREATE TRIGGER whenPatientAdmittedTrigger 
 ON mh_admission
+AFTER INSERT 
 AS
 BEGIN
+	declare @admissionDate date;
+	select @admissionDate=i.admissionDate from inserted i;
+	IF ( @admissionDate < getdate() )
+	BEGIN
+		UPDATE patient
+			SET patientStatus='admitted'
+			WHERE patientID=(SELECT patientID FROM BILL WHERE BILL.patientID=(SELECT invoiceID FROM INSERTED))
  
-    UPDATE patient 
- 
-        SET patientStatus='admitted'
-        WHERE patientID=(SELECT patientID FROM BILL WHERE=(SELECT invoiceID FROM INSERTED))
- 
-    UPDATE ROOM 
-        SET status='Y'
-        WHERE roomID=(SELECT roomID FROM INSERTED) AND bedID=(SELECT bedID FROM INSERTED)
- 
-END        
+		UPDATE ROOM 
+			SET status='Y'
+			WHERE roomID=(SELECT roomID FROM INSERTED) AND bedID=(SELECT bedID FROM INSERTED)
+
+		PRINT 'whenPatientAdmittedTrigger after insert trigger fired'
+	END
+ END
+ GO
  
   ---------------------------------------------------------------------------- ---
  
 CREATE TRIGGER whenPatientDischargedTrigger
- 
-AFTER INSERT 
 ON mh_admission
+AFTER INSERT 
 AS
 BEGIN
- 
-    UPDATE patient 
- 
-        SET patientStatus='discharged'
-        WHERE patientID=(SELECT patientID FROM BILL WHERE=(SELECT invoiceID FROM INSERTED))
- 
-    UPDATE ROOM 
-        SET status='N'
-        WHERE roomID=(SELECT roomID FROM INSERTED) AND bedID=(SELECT bedID FROM INSERTED)
- 
-END        
- 
+	declare @dischargeDate date;
+	select @dischargeDate=i.dischargeDate from inserted i;
+	IF ( @dischargeDate < getdate() )
+	BEGIN
+		UPDATE patient 
+		SET patientStatus='discharged'
+		WHERE patientID=(SELECT patientID FROM BILL WHERE BILL.patientID=(SELECT invoiceID FROM INSERTED))
 
- 
-/*where (bill.invoiceID = inserted.invoiceID)
-  No newline at end of file */
+		UPDATE ROOM 
+		SET status='N'
+		WHERE roomID=(SELECT roomID FROM INSERTED) AND bedID=(SELECT bedID FROM INSERTED)
+
+		PRINT 'whenPatientDischargedTrigger after trigger is fired'
+	END
+END
+GO
+
