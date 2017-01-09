@@ -402,16 +402,16 @@ CREATE TABLE MH_SURGERY(
         RdoctorID 			int,
         OCdoctorID 			int,
         timeScheduled		datetime,
-        roomTypeID			varchar(1) CHECK (roomTypeID IN ('G','P','C','S','E')),
+        roomTypeID			char,
         roomID 				int,
         bedID				int,  -- QUESTION : Do we really need bedNo in this table as a foreign key? ( i dont think so but im putting in just to be safe )
         timeOutOfSurgery 	datetime,
-        timeInSurgery		time, as cast(
+        timeInSurgery		as cast( --- http://stackoverflow.com/questions/13866850/sql-server-calculate-elapsed-time-between-two-datetime-stamps-in-hhmmss-form
 									        (cast(cast(timeOutOfSurgery as float) - cast(timeScheduled as float) as int) * 24) /* hours over 24 */
 									        + datepart(hh, timeOutOfSurgery - timeScheduled) /* hours */
 									        as varchar(10))
 									    + ':' + right('0' + cast(datepart(mi, timeOutOfSurgery - timeScheduled) as varchar(2)), 2) /* minutes */
-									    + ':' + right('0' + cast(datepart(ss, timeOutOfSurgery - timeScheduled) as varchar(2)), 2) /* seconds */
+									    + ':' + right('0' + cast(datepart(ss, timeOutOfSurgery - timeScheduled) as varchar(2)), 2), /* seconds */
         preSurgeryNotes 	varchar(255),
         postSurgeryNotes 	varchar(255),
         surgeryReport		varchar(255),
