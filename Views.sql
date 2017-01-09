@@ -22,47 +22,52 @@
 
 
    
-    ----------------------------------- this works BUT you need to add patient details
+    ----------------------------------- this works BUT you need to add patient details/check if the patient id is correct
     CREATE VIEW Drug_fee AS
-    SELECT DRUGS.drugName ,DRUGS.drugCompany,DRUGS.drugPrice,DRUGS.drugPurpose,DRUGS.legalClassification,MH_PRESCRIPTION.consultationID ,MH_PRESCRIPTION.invoiceID,MH_PRESCRIPTION.prescriptionID ,MH_PRESCRIPTION.drugID,MH_PRESCRIPTION.startDate,MH_PRESCRIPTION.prescribedDuration,MH_PRESCRIPTION.prescribedDosage,MH_PRESCRIPTION.paymentStatuS
+    SELECT BILLS.patientID,DRUGS.drugName ,DRUGS.drugCompany,DRUGS.drugPrice,DRUGS.drugPurpose,DRUGS.legalClassification,MH_PRESCRIPTION.consultationID ,MH_PRESCRIPTION.invoiceID,MH_PRESCRIPTION.prescriptionID ,MH_PRESCRIPTION.drugID,MH_PRESCRIPTION.startDate,MH_PRESCRIPTION.prescribedDuration,MH_PRESCRIPTION.prescribedDosage,MH_PRESCRIPTION.paymentStatuS
     FROM MH_PRESCRIPTION
     JOIN DRUGS ON MH_PRESCRIPTION.drugID = DRUGS.drugID
+    JOIN BILLS ON MH_PRESCRIPTION.patientID = BILLS.patientID
   -----------------------------------------------------------
  
 
 
 
-    ----------------------------------- this works BUT you need to add patient details
+    ----------------------------------- this works BUT you need to add patient details/check if the patient id is correct
     CREATE VIEW Test_fee AS
-    SELECT MH_TEST.testID ,MH_TEST.testDate ,MH_TEST.testReport ,MH_TEST.paymentStatus,TEST.testName ,TEST.testFee, MH_TEST.invoiceID
+    SELECT BILLS.patientID,MH_TEST.testID ,MH_TEST.testDate ,MH_TEST.testReport ,MH_TEST.paymentStatus,TEST.testName ,TEST.testFee, MH_TEST.invoiceID
     FROM MH_TEST 
     JOIN TEST ON MH_TEST.testID = TEST.testID
+    JOIN BILLS ON MH_TEST.invoiceID = BILLS.invoiceID
      select * from test_fee
     -----------------------------------------------------------
 
 
-     ----------------------------------- this works BUT you need to add patient details
+     ----------------------------------- this works BUT you need to add patient details/check if the patient id is correct
     CREATE VIEW Scan_fee AS
-    SELECT MH_SCAN.invoiceID  ,MH_SCAN.scanID ,MH_SCAN.scanReport ,MH_SCAN.scanDate,MH_SCAN.paymentStatus,SCAN.scanName ,SCAN.scanFee
+    SELECT BILLS.patientID,MH_SCAN.invoiceID ,MH_SCAN.scanID ,MH_SCAN.scanReport ,MH_SCAN.scanDate,MH_SCAN.paymentStatus,SCAN.scanName ,SCAN.scanFee
     FROM MH_SCAN 
-    INNER JOIN SCAN ON MH_SCAN.scanID = SCAN.scanID
+    JOIN SCAN ON MH_SCAN.scanID = SCAN.scanID
+    JOIN BILLS ON MH_SCAN.invoiceID = BILLS.invoiceID
      -----------------------------------------------------------
 
 
-     ----------------------------------- this works BUT you need to add patient details
+     ----------------------------------- this works BUT you need to add patient details/check if the patient id is correct
      CREATE VIEW Surgery_fee AS
-     SELECT  MH_SURGERY.invoiceID,SURGERY.surgeryName,SURGERY.surgeryFee,SURGERY.surgeryDescription,MH_SURGERY.surgeryID,MH_SURGERY.employeeID,MH_SURGERY.RdoctorID,MH_SURGERY.OCdoctorID ,MH_SURGERY.timeScheduled,MH_SURGERY.RoomTypeID,MH_SURGERY.roomID ,MH_SURGERY.bedID,MH_SURGERY.timeOutOfSurgery,MH_SURGERY.timeInSurgery,MH_SURGERY.preSurgeryNotes ,MH_SURGERY.postSurgeryNotes,MH_SURGERY.surgeryReport,MH_SURGERY.paymentStatus
+     SELECT  BILLS.patientID,MH_SURGERY.invoiceID,SURGERY.surgeryName,SURGERY.surgeryFee,SURGERY.surgeryDescription,MH_SURGERY.surgeryID,MH_SURGERY.employeeID,MH_SURGERY.RdoctorID,MH_SURGERY.OCdoctorID ,MH_SURGERY.timeScheduled,MH_SURGERY.RoomTypeID,MH_SURGERY.roomID ,MH_SURGERY.bedID,MH_SURGERY.timeOutOfSurgery,MH_SURGERY.timeInSurgery,MH_SURGERY.preSurgeryNotes ,MH_SURGERY.postSurgeryNotes,MH_SURGERY.surgeryReport,MH_SURGERY.paymentStatus
      FROM MH_SURGERY 
-     INNER JOIN SURGERY  ON MH_SURGERY.surgeryID = SURGERY.surgeryID
+     JOIN SURGERY  ON MH_SURGERY.surgeryID = SURGERY.surgeryID
+     JOIN BILLS ON MH_SURGERY.invoiceID = BILLS.invoiceID
      -----------------------------------------------------------
 
 
 
      CREATE VIEW Room_fee AS
-     SELECT MH_ADMISSION.invoiceID,MH_ADMISSION.patientID,ROOMTYPE.roomTypeID,ROOMTYPE.description,ROOMTYPE.roomPrice,ROOM.roomID ,ROOM.bedID,ROOM.status
+     SELECT BILLS.patientI,MH_ADMISSION.invoiceID,MH_ADMISSION.patientID,ROOMTYPE.roomTypeID,ROOMTYPE.description,ROOMTYPE.roomPrice,ROOM.roomID ,ROOM.bedID,ROOM.status
      FROM ROOMTYPE 
-     INNER JOIN ROOM  ON ROOMTYPE.roomTypeID = ROOM.roomTypeID
-     INNER JOIN MH_ADMISSION ON ROOMTYPE.roomTypeID = MH_ADMISSION.roomTypeID
+     JOIN ROOM  ON ROOMTYPE.roomTypeID = ROOM.roomTypeID
+     JOIN MH_ADMISSION ON ROOMTYPE.roomTypeID = MH_ADMISSION.roomTypeID
+     JOIN BILLS ON MH_ADMISSION.invoiceID = BILLS.invoiceID
 
  /*   select * from Test_fee
 CREATE VIEW Scan_fee AS
