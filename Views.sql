@@ -27,19 +27,20 @@
     SELECT PATIENT.patientID,PATIENT.firstName,PATIENT.lastName,DRUGS.drugName ,DRUGS.drugCompany,DRUGS.drugPrice,DRUGS.drugPurpose,DRUGS.legalClassification,MH_PRESCRIPTION.consultationID ,MH_PRESCRIPTION.invoiceID,MH_PRESCRIPTION.prescriptionID ,MH_PRESCRIPTION.drugID,MH_PRESCRIPTION.startDate,MH_PRESCRIPTION.prescribedDuration,MH_PRESCRIPTION.prescribedDosage,MH_PRESCRIPTION.paymentStatuS
     FROM MH_PRESCRIPTION
     JOIN DRUGS ON MH_PRESCRIPTION.drugID = DRUGS.drugID
-    JOIN BILLS ON MH_PRESCRIPTION.invoiceID = BILLS.invoiceID
+    JOIN BILL ON MH_PRESCRIPTION.invoiceID = BILL.invoiceID
     JOIN PATIENT ON BILL.patientID = PATIENT.patientID
   -----------------------------------------------------------
  
 
 
 
-    ----------------------------------- this works BUT you need to add patient details/check if the patient id is correct
+    ----------------------------------- patient details added/check if the patient id is correct
     CREATE VIEW Test_fee AS
-    SELECT BILLS.patientID,MH_TEST.testID ,MH_TEST.testDate ,MH_TEST.testReport ,MH_TEST.paymentStatus,TEST.testName ,TEST.testFee, MH_TEST.invoiceID
+    SELECT PATIENT.patientID,PATIENT.firstName , PATIENT.lastName,MH_TEST.testID ,MH_TEST.testDate ,MH_TEST.testReport ,MH_TEST.paymentStatus,TEST.testName ,TEST.testFee, MH_TEST.invoiceID
     FROM MH_TEST 
     JOIN TEST ON MH_TEST.testID = TEST.testID
-    JOIN BILLS ON MH_TEST.invoiceID = BILLS.invoiceID
+    JOIN BILL ON MH_TEST.invoiceID = BILL.invoiceID
+    JOIN PATIENT ON BILL.patientID= PATIENT.patientID
      select * from test_fee
     -----------------------------------------------------------
 
