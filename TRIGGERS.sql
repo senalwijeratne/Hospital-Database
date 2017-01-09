@@ -1,4 +1,3 @@
-
 CREATE TRIGGER Check_Room_True FOR
 AFTER UPDATE 
 AS
@@ -19,7 +18,10 @@ BEGIN
       END
       
   END
-  
+GO
+
+----------------------------------------------------------------------
+
   
 CREATE TRIGGER When_PatientIsAdmitted ON whatTheShit.PATIENT
 FOR	AFTER UPDATE
@@ -37,3 +39,41 @@ BEGIN
 	WHERE patientID IN (SELECT patientID FROM INSERTED)
     END 
 END
+GO
+
+------------------------------------------------------------------------
+
+CREATE TRIGGER whenPatientAdmittedTrigger
+ 
+AFTER INSERT 
+ 
+ON mh_admission
+ 
+
+ 
+BEGIN
+ 
+    UPDATE patient 
+ 
+        SET patientStatus='admitted'
+ 
+        WHERE patientID=(SELECT patientID FROM BILL WHERE=(SELECT invoiceID FROM INSERTED))
+ 
+
+ 
+    UPDATE ROOM 
+ 
+        SET status='Y'
+ 
+      WHERE =
+ 
+END        
+ 
+    
+ 
+
+ 
+
+ 
+where (bill.invoiceID = inserted.invoiceID)
+ \ No newline at end of file 
