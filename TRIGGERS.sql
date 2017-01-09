@@ -46,34 +46,42 @@ GO
 CREATE TRIGGER whenPatientAdmittedTrigger
  
 AFTER INSERT 
- 
 ON mh_admission
- 
-
- 
+AS
 BEGIN
  
     UPDATE patient 
  
         SET patientStatus='admitted'
- 
         WHERE patientID=(SELECT patientID FROM BILL WHERE=(SELECT invoiceID FROM INSERTED))
  
-
- 
     UPDATE ROOM 
- 
         SET status='Y'
- 
-      WHERE =
+        WHERE roomID=(SELECT roomID FROM INSERTED) AND bedID=(SELECT bedID FROM INSERTED)
  
 END        
  
-    
+  ----------------------------------------------------------------------------  
+ 
+CREATE TRIGGER whenPatientDischargedTrigger
+ 
+AFTER INSERT 
+ON mh_admission
+AS
+BEGIN
+ 
+    UPDATE patient 
+ 
+        SET patientStatus='discharged'
+        WHERE patientID=(SELECT patientID FROM BILL WHERE=(SELECT invoiceID FROM INSERTED))
+ 
+    UPDATE ROOM 
+        SET status='N'
+        WHERE roomID=(SELECT roomID FROM INSERTED) AND bedID=(SELECT bedID FROM INSERTED)
+ 
+END        
  
 
  
-
- 
-where (bill.invoiceID = inserted.invoiceID)
- \ No newline at end of file 
+/*where (bill.invoiceID = inserted.invoiceID)
+  No newline at end of file */
