@@ -387,6 +387,7 @@ CREATE TABLE MH_SCAN(
 		paymentStatus 	int DEFAULT '0' CHECK (paymentStatus IN (0,1)),
 		
 		CONSTRAINT pk_mhscanID PRIMARY KEY (invoiceID,scanID),
+		CONSTRAINT fk_MHscanID FOREIGN KEY (scanID) REFERENCES scan(scanID),
 		CONSTRAINT fk_mhScanInvoice FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
 );
 
