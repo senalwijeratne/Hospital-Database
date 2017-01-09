@@ -47,19 +47,21 @@
 
      ----------------------------------- this works BUT you need to add patient details/check if the patient id is correct
     CREATE VIEW Scan_fee AS
-    SELECT BILLS.patientID,MH_SCAN.invoiceID ,MH_SCAN.scanID ,MH_SCAN.scanReport ,MH_SCAN.scanDate,MH_SCAN.paymentStatus,SCAN.scanName ,SCAN.scanFee
+    SELECT PATIENT.patientID,PATIENT.firstName , PATIENT.lastName,MH_SCAN.invoiceID ,MH_SCAN.scanID ,MH_SCAN.scanReport ,MH_SCAN.scanDate,MH_SCAN.paymentStatus,SCAN.scanName ,SCAN.scanFee
     FROM MH_SCAN 
     JOIN SCAN ON MH_SCAN.scanID = SCAN.scanID
-    JOIN BILLS ON MH_SCAN.invoiceID = BILLS.invoiceID
+    JOIN BILL ON MH_SCAN.invoiceID = BILL.invoiceID
+    JOIN PATIENT ON BILL.patientID= PATIENT.patientID
      -----------------------------------------------------------
 
 
      ----------------------------------- this works BUT you need to add patient details/check if the patient id is correct
      CREATE VIEW Surgery_fee AS
-     SELECT  BILLS.patientID,MH_SURGERY.invoiceID,SURGERY.surgeryName,SURGERY.surgeryFee,SURGERY.surgeryDescription,MH_SURGERY.surgeryID,MH_SURGERY.employeeID,MH_SURGERY.RdoctorID,MH_SURGERY.OCdoctorID ,MH_SURGERY.timeScheduled,MH_SURGERY.RoomTypeID,MH_SURGERY.roomID ,MH_SURGERY.bedID,MH_SURGERY.timeOutOfSurgery,MH_SURGERY.timeInSurgery,MH_SURGERY.preSurgeryNotes ,MH_SURGERY.postSurgeryNotes,MH_SURGERY.surgeryReport,MH_SURGERY.paymentStatus
+     SELECT  PATIENT.patientID,MH_SURGERY.invoiceID,SURGERY.surgeryName,SURGERY.surgeryFee,SURGERY.surgeryDescription,MH_SURGERY.surgeryID,MH_SURGERY.employeeID,MH_SURGERY.RdoctorID,MH_SURGERY.OCdoctorID ,MH_SURGERY.timeScheduled,MH_SURGERY.RoomTypeID,MH_SURGERY.roomID ,MH_SURGERY.bedID,MH_SURGERY.timeOutOfSurgery,MH_SURGERY.timeInSurgery,MH_SURGERY.preSurgeryNotes ,MH_SURGERY.postSurgeryNotes,MH_SURGERY.surgeryReport,MH_SURGERY.paymentStatus
      FROM MH_SURGERY 
      JOIN SURGERY  ON MH_SURGERY.surgeryID = SURGERY.surgeryID
-     JOIN BILLS ON MH_SURGERY.invoiceID = BILLS.invoiceID
+     JOIN BILL ON MH_SURGERY.invoiceID = BILL.invoiceID
+     JOIN PATIENT ON BILL.patientID= PATIENT.patientID
      -----------------------------------------------------------
 
 
