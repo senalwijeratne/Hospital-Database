@@ -184,7 +184,7 @@ CREATE TABLE PATIENT (
 			consultationID 		int IDENTITY(1,1),
 			employeeID			int,
 			RdoctorID 			int,
-			COdoctorID 			int,	
+			OCdoctorID 			int,	
 			consultationDate 	date,
 			nextCheckUp 		date,
 			doctorReport 		varchar(255),
@@ -192,7 +192,7 @@ CREATE TABLE PATIENT (
 			CONSTRAINT pk_mhconsultationID PRIMARY KEY (invoiceID,consultationID),
 			CONSTRAINT fk_consultationInvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
 			CONSTRAINT fk_consultationRDoctorid FOREIGN KEY (RdoctorID,employeeID) REFERENCES RESIDENT_DOCTOR(RdoctorID,employeeID),
-			CONSTRAINT fk_consultationOCDoctorid FOREIGN KEY (COdoctorID,employeeID) REFERENCES ONCALL_DOCTOR(OCdoctorID,employeeID)
+			CONSTRAINT fk_consultationOCDoctorid FOREIGN KEY (OCdoctorID,employeeID) REFERENCES ONCALL_DOCTOR(OCdoctorID,employeeID)
 			
 	);
 
@@ -412,7 +412,7 @@ CREATE TABLE PATIENT (
 			surgeryID 			int,
 			employeeID			int,
 			RdoctorID 			int,
-			COdoctorID 			int,
+			OCdoctorID 			int,
 			timeScheduled		datetime,
 			roomTypeID			char,
 			roomID 				int,
@@ -428,7 +428,7 @@ CREATE TABLE PATIENT (
 			CONSTRAINT fk_mh_surgeryinvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
 			CONSTRAINT fk_mh_surgerysurgery FOREIGN KEY (surgeryID) REFERENCES SURGERY(surgeryID),
 			CONSTRAINT fk_surgeryRDoctorid FOREIGN KEY (RdoctorID,employeeID) REFERENCES RESIDENT_DOCTOR(RdoctorID,employeeID),
-			CONSTRAINT fk_surgeryOCDoctorid FOREIGN KEY (COdoctorID,employeeID) REFERENCES ONCALL_DOCTOR(OCdoctorID,employeeID),
+			CONSTRAINT fk_surgeryOCDoctorid FOREIGN KEY (OCdoctorID,employeeID) REFERENCES ONCALL_DOCTOR(OCdoctorID,employeeID),
 
 	);
 

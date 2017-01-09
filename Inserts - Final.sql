@@ -104,7 +104,7 @@
 	(2,'mastercard',0,'2016/05/10','Mr.Sheeran','Y');
 
 -- 10.MHConsultation > -- Senal 
-	INSERT INTO MH_Consultation(invoiceID,employeeID,RdoctorID,COdoctorID,consultationDate,nextCheckUp,doctorReport,paymentStatus) 
+	INSERT INTO MH_Consultation(invoiceID,employeeID,RdoctorID,OCdoctorID,consultationDate,nextCheckUp,doctorReport,paymentStatus) 
 	VALUES
 	(1,2,2,NULL,'2016/07/24','2016/08/19','The patient seems to have a cold',0),
 	(2,1,1,NULL,'2016/02/21','2016/10/19','Left femur is fractured',1),
@@ -325,7 +325,7 @@ INSERT INTO MH_SCAN(invoiceID, scanID, scanDate, scanReport, paymentStatus) VALU
 	('Ophthalmological Surgery', 6000,'Eye surgery, also known as ocular surgery, is surgery performed on the eye or its adnexa,');	
 
 -- 25.MH_Surgery > -- Ikhwan
-	INSERT INTO MH_SURGERY(invoiceID, surgeryID, employeeID, RdoctorID, COdoctorID, timeScheduled, 
+	INSERT INTO MH_SURGERY(invoiceID, surgeryID, employeeID, RdoctorID, OCdoctorID, timeScheduled, 
 	RoomTypeID, roomID, bedID, timeOutOfSurgery, preSurgeryNotes, 
 	postSurgeryNotes, surgeryReport, paymentStatus) VALUES
 	(1,1,1,1,NULL,
