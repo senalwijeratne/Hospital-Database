@@ -411,6 +411,7 @@ CREATE TABLE MH_SURGERY(
         postSurgeryNotes 	varchar(255),
         surgeryReport		varchar(255),
         paymentStatus		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
+        check (timeOutOfSurgery > timeScheduled  ),
 
         CONSTRAINT pk_mh_surgeryID PRIMARY KEY (invoiceID,surgeryID),
         CONSTRAINT fk_mh_surgeryinvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
