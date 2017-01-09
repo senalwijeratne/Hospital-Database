@@ -125,6 +125,7 @@ CREATE TABLE EMPLOYEE (
 
 CREATE TABLE RESIDENT_DOCTOR(
 		RdoctorID 			int IDENTITY(1,1),
+        RDID as 'RD'+right('000'+cast(RdoctorID as varchar(4)), 4) persisted,
 		employeeID			int,
 		specialization 		varchar(200),
 		consultationFee 	money,
@@ -142,6 +143,7 @@ CREATE TABLE RESIDENT_DOCTOR(
 /*oncall doctor table*/
 CREATE TABLE ONCALL_DOCTOR(
 		OCdoctorID int IDENTITY(1,1),
+        OCDID as 'OC'+right('000'+cast(OCdoctorID as varchar(5)), 5) persisted,
 		employeeID	int,
 		specialization varchar(200),
 		consultationFee money,	
