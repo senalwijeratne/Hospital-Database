@@ -67,11 +67,12 @@
 
 
      CREATE VIEW Room_fee AS
-     SELECT BILLS.patientI,MH_ADMISSION.invoiceID,MH_ADMISSION.patientID,ROOMTYPE.roomTypeID,ROOMTYPE.description,ROOMTYPE.roomPrice,ROOM.roomID ,ROOM.bedID,ROOM.status
+     SELECT PATIENTS.patientI,MH_ADMISSION.invoiceID,PATIENT.firstName , PATIENT.lastName,ROOM.roomID,ROOM.bedID,ROOMTYPE.roomTypeID,ROOMTYPE.description,ROOMTYPE.roomPrice ,ROOM.status
      FROM ROOMTYPE 
      JOIN ROOM  ON ROOMTYPE.roomTypeID = ROOM.roomTypeID
      JOIN MH_ADMISSION ON ROOMTYPE.roomTypeID = MH_ADMISSION.roomTypeID
-     JOIN BILLS ON MH_ADMISSION.invoiceID = BILLS.invoiceID
+     JOIN BILL ON MH_ADMISSION.invoiceID = BILL.invoiceID
+     JOIN PATIENT ON BILL.patientID= PATIENT.patientID
 
  /*   select * from Test_fee
 CREATE VIEW Scan_fee AS
