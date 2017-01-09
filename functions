@@ -10,7 +10,8 @@ BEGIN
     
     @Total = SUM(Doctor_fee.consultationFee,Doctor_fee.feePerCall,Drug_fee.drugPrice,Test_fee.testFee,Scan_fee.scanFee,Surgury_fee.surguryFee,Room_fee.roomPrice) AS 'Total'  
     FROM BILLS AS    
-    INNER JOIN Doctor_fee ON BILLS.invoiceID = Doctor_fee.invoiceID
+    INNER JOIN R_doctorConsultfee ON BILLS.invoiceID = Doctor_fee.invoiceID
+    INNER JOIN OC_doctorconsultfee ON BILLS.invoiceID = Doctor_fee.invoiceID
     INNER JOIN Drug_fee ON BILLS.invoiceID = Drug_fee.invoiceID  
     INNER JOIN Test_fee ON BILLS.invoiceID = Test_fee.invoiceID  
     INNER JOIN Scan_fee ON BILLS.invoiceID = Scan_fee.invoiceID
