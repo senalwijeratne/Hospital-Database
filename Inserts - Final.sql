@@ -346,7 +346,7 @@ INSERT INTO MH_SCAN(invoiceID, scanID, scanDate, scanReport, paymentStatus) VALU
 	'Surgery progressed without any complications.',
 	'Reduced mammary glands',
 	'Y'),
-	(3,'S',1,1,NULL,
+	(3,4,1,1,NULL,
 	'20170104 10:00:00 AM','S',1,1,'20170104 11:00:00 AM', 
 	'Cavities have been expunged of any foreign material before surgery',
 	'Surgery progressed without any complications.',
