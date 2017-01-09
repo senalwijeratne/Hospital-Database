@@ -57,13 +57,13 @@ CREATE TABLE AVAILABLE_FACILITIES(
 /*Patient Table */
 CREATE TABLE PATIENT (
         patientID 		int IDENTITY(1,1),
-        PID as 'PT'+right('000'+cast(patientID as varchar(4)), 4) persisted,
+        PID 			as 'PT'+right('000'+cast(patientID as varchar(4)), 4) persisted,
         NIC				varchar(10) UNIQUE,
         passportNumber	varchar(10) DEFAULT NULL,
         firstName 		varchar(50),
         middleName 		varchar(50),
         lastName 		varchar(50),
-        age AS CONVERT(INT, ROUND(DATEDIFF(D, DOB, GETDATE()) / 365.25, 0)),
+        age 			AS CONVERT(INT, ROUND(DATEDIFF(D, DOB, GETDATE()) / 365.25, 0)),
         gender 			varchar(1) CHECK (gender IN ('m','f','M','F')), --
         addressline1 	varchar(40),
         addressline2 	varchar(40),
@@ -190,6 +190,8 @@ CREATE TABLE BILL (
         nextCheckUp 		date,
         doctorReport 		varchar(255),
         paymentStatus 		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
+
+
         CONSTRAINT pk_mhconsultationID PRIMARY KEY (invoiceID,consultationID),
         CONSTRAINT fk_consultationInvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
         CONSTRAINT fk_consultationRDoctorid FOREIGN KEY (RdoctorID,employeeID) REFERENCES RESIDENT_DOCTOR(RdoctorID,employeeID),
@@ -260,7 +262,7 @@ CREATE TABLE DRUGS(
 
 
 /*mh prescription */
-CREATE TABLE MH_PRESCRIPTION(
+CREATE TABLE MH_PRESCRIPTION(	
         consultationID int,
         invoiceID int,
         prescriptionID int,
@@ -276,23 +278,7 @@ CREATE TABLE MH_PRESCRIPTION(
 
 
 );
-
--- /*mh consultaion prescription drug*/
--- CREATE TABLE MH_CONSULTAION_PRESCRIPTION(
--- 			prescriptionID int,
--- 			consultationID int,
--- 			CONSTRAINT pk_symptomIDconsultaionID PRIMARY KEY (consultationID,prescriptionID),
--- 			CONSTRAINT fk_mhconsultationprescriptionprescriptionID FOREIGN KEY (prescriptionID) REFERENCES MH_PRESCRIPTION(prescriptionID),
--- 			CONSTRAINT fk_mhconsultationprescriptionprescrioncinsultationID FOREIGN KEY (consultationID) REFERENCES MH_CONSULTATION(consultationID)
-
--- );
-
--- /*mh prescription drug*/
--- CREATE TABLE MH_PRESCRIPTION_DRUG(
--- 			drugID 		int,
--- 			prescriptionID int,
--- 			CONSTRAINT pk_prescriptiondrug PRIMARY KEY (drugID,prescriptionID)
--- );
+	
 
 CREATE TABLE ROOMTYPE(
         roomTypeID varchar(1) CHECK (roomTypeID IN ('G','P','C','S','E')),
@@ -328,6 +314,7 @@ CREATE TABLE MH_ADMISSION (
         paymentStatus 		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
         treatmentAdvice 	varchar(255),
         initialCondition 	varchar(255),
+        check ( dischargeDate > admissionDate ),
 
         CONSTRAINT pk_admissionID PRIMARY KEY (admissionID),
         CONSTRAINT fk_admissionInvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
@@ -419,11 +406,17 @@ CREATE TABLE MH_SURGERY(
         roomID 				int,
         bedID				int,  -- QUESTION : Do we really need bedNo in this table as a foreign key? ( i dont think so but im putting in just to be safe )
         timeOutOfSurgery 	datetime,
-        timeInSurgery		time, -- IMPORTANT : Need to include calculated column to populate total time taken in surgery ( use AS keyword )
+        timeInSurgery		as cast( --- http://stackoverflow.com/questions/13866850/sql-server-calculate-elapsed-time-between-two-datetime-stamps-in-hhmmss-form
+									        (cast(cast(timeOutOfSurgery as float) - cast(timeScheduled as float) as int) * 24) /* hours over 24 */
+									        + datepart(hh, timeOutOfSurgery - timeScheduled) /* hours */
+									        as varchar(10))
+									    + ':' + right('0' + cast(datepart(mi, timeOutOfSurgery - timeScheduled) as varchar(2)), 2) /* minutes */
+									    + ':' + right('0' + cast(datepart(ss, timeOutOfSurgery - timeScheduled) as varchar(2)), 2), /* seconds */
         preSurgeryNotes 	varchar(255),
         postSurgeryNotes 	varchar(255),
         surgeryReport		varchar(255),
         paymentStatus		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
+        check (timeOutOfSurgery > timeScheduled),
 
         CONSTRAINT pk_mh_surgeryID PRIMARY KEY (invoiceID,surgeryID),
         CONSTRAINT fk_mh_surgeryinvoiceID FOREIGN KEY (invoiceID) REFERENCES BILL(invoiceID),
