@@ -57,6 +57,7 @@ CREATE TABLE AVAILABLE_FACILITIES(
 /*Patient Table */
 CREATE TABLE PATIENT (
         patientID 		int IDENTITY(1,1),
+        PID as 'PT'+right('000'+cast(patientID as varchar(4)), 4) persisted,
         NIC				varchar(10) UNIQUE,
         passportNumber	varchar(10) DEFAULT NULL,
         firstName 		varchar(50),
@@ -129,8 +130,8 @@ CREATE TABLE RESIDENT_DOCTOR(
                  -- FROM employeeType a, employee b, Resident_Doctor c WHERE 
                  -- c.employeeID = b.employeeID AND b.employeeTypeID = a.employeeTypeID
                  -- GROUP BY a.prefix;
-     --    		  )+right('000'+cast(RdoctorID as varchar(5)), 5) persisted,
-        RDID as 'RD'+right('000'+cast(RdoctorID as varchar(5)), 5) persisted,
+     --    		  )+right('000'+cast(RdoctorID as varchar(4)), 4) persisted,
+        RDID as 'RD'+right('000'+cast(RdoctorID as varchar(4)), 4) persisted,
         employeeID			int,
         specialization 		varchar(200),
         consultationFee 	money,
@@ -148,7 +149,7 @@ CREATE TABLE RESIDENT_DOCTOR(
 /*oncall doctor table*/
 CREATE TABLE ONCALL_DOCTOR(
         OCdoctorID int IDENTITY(1,1),
-        OCDID as 'OC'+right('000'+cast(OCdoctorID as varchar(5)), 5) persisted,
+        OCDID as 'OC'+right('000'+cast(OCdoctorID as varchar(4)), 4) persisted,
         employeeID	int,
         specialization varchar(200),
         consultationFee money,	
