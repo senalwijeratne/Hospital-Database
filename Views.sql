@@ -28,7 +28,7 @@
     
 
    CREATE VIEW Surgury_fee AS
-   SELECT  MH_SURGERY.invoiceI,SURGERY.surgeryName,SURGERY.surgeryFee,SURGERY.surgeryDescription,MH_SURGERY.surgeryID ,MH_SURGERY.patientID,MH_SURGERY.employeeID,MH_SURGERY.RdoctorID,MH_SURGERY.COdoctorID ,MH_SURGERY.timeScheduled,MH_SURGERY.RoomTypeID,MH_SURGERY.roomID ,MH_SURGERY.bedID,MH_SURGERY.timeOutOfSurgery,MH_SURGERY.timeInSurgery,MH_SURGERY.preSurgeryNotes ,MH_SURGERY.postSurgeryNotes,MH_SURGERY.surgeryReport,MH_SURGERY.paymentStatus
+   SELECT  MH_SURGERY.invoiceID,SURGERY.surgeryName,SURGERY.surgeryFee,SURGERY.surgeryDescription,MH_SURGERY.surgeryID ,MH_SURGERY.patientID,MH_SURGERY.employeeID,MH_SURGERY.RdoctorID,MH_SURGERY.COdoctorID ,MH_SURGERY.timeScheduled,MH_SURGERY.RoomTypeID,MH_SURGERY.roomID ,MH_SURGERY.bedID,MH_SURGERY.timeOutOfSurgery,MH_SURGERY.timeInSurgery,MH_SURGERY.preSurgeryNotes ,MH_SURGERY.postSurgeryNotes,MH_SURGERY.surgeryReport,MH_SURGERY.paymentStatus
    FROM MH_SURGERY 
    INNER JOIN SURGERY  ON MH_SURGERY.surgeryID = SURGERY.surgeryID
 
