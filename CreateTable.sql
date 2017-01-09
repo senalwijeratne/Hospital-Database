@@ -125,7 +125,11 @@ CREATE TABLE EMPLOYEE (
 
 CREATE TABLE RESIDENT_DOCTOR(
 		RdoctorID 			int IDENTITY(1,1),
-        RDID as 'RD'+right('000'+cast(RdoctorID as varchar(5)), 5) persisted,
+        RDID as (SELECT a.prefix  ------ DOESNT WORK YET -----------===============<<<<<<<<<<<<<
+				 FROM employeeType a, employee b, Resident_Doctor c WHERE 
+				 c.employeeID = b.employeeID AND b.employeeTypeID = a.employeeTypeID
+				 GROUP BY a.prefix;
+        		  )+right('000'+cast(RdoctorID as varchar(5)), 5) persisted,
 		employeeID			int,
 		specialization 		varchar(200),
 		consultationFee 	money,
@@ -236,8 +240,7 @@ CREATE TABLE MHCONSULTATION_SYMPTOMS(
 		consultationID int,
 		symptomID int,
 		CONSTRAINT pk_symptomIDconsultaionID PRIMARY KEY (symptomID,consultationID),
-		CONSTRAINT fk_mhcondultationsymptomsymptomID FOREIGN KEY (symptomID) REFERENCES SYMPTOMS(symptomID),
-		CONSTRAINT fk_mhcunsultationsymptomsconsultation FOREIGN KEY (consultationID,invoiceID) REFERENCES MH_CONSULTATION(invoiceID,consultationID),
+		CONSTRAINT fk_mhconsultationsymptomsymptomID FOREIGN KEY (symptomID) REFERENCES SYMPTOMS(symptomID),
 		CONSTRAINT fk_consultationMHsymptoms FOREIGN KEY (consultationID,invoiceID) REFERENCES MH_CONSULTATION(invoiceID,consultationID)
 
 );
