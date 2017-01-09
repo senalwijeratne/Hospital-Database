@@ -22,33 +22,31 @@ headache and stress'),
  (10,10,9,8,5,5, '2016/01/24', '2016/03/20',1,'Maintain a quiet restful environment', 'Severe
 headache');
 
-INSERT INTO DRUGS(drugID, drugName, drugCompany, drugPrice, drugPurpose, legalClassification)
+INSERT INTO DRUGS( drugName, drugCompany, drugPrice, drugPurpose, legalClassification)
+VALUES 
+('Acetaminophen','Abbot Laboratories',20.00,'Relieving severe headache', 'Class B'),
+('Adapalene','Grifols',15.00,'Reduces stomach bloating', 'Class C'),
+('Gablofen','Julphar',26.00,'Treats acne blemishes', 'Class B'),
+('Palerfirmin','Abbvie',12.00,'Relieves muscle pain', 'Class C'),
+('Lamotrigine','Diabetology Ltd.',13.50,'Increases insulin levels', 'Class C'),
+('Kantrex','Hovione',23.00,'Anti-Depressant','Class C'),
+('Yohimbine','Noxxon',45.00,'Enhances hair growth','Class B'),
+('Ibuprofen','Reckitt Benckiser',9.00,'Relieves muscle pain','Class B'),
+('Panretin','Sunovione',20.00,'Boosts blood glucose levels','Class C'),
+('Cabergoline','Renovo',35.00,'Promotes better skin','Class B');
 
-VALUES (1,'Acetaminophen','Abbot Laboratories',20.00,'Relieving severe headache', 'Class B'),
-(2,'Adapalene','Grifols',15.00,'Reduces stomach bloating', 'Class C'),
-(3,'Gablofen','Julphar',26.00,'Treats acne blemishes', 'Class B'),
-(4,'Palerfirmin','Abbvie',12.00,'Relieves muscle pain', 'Class C'),
-(5,'Lamotrigine','Diabetology Ltd.',13.50,'Increases insulin levels', 'Class C'),
-(6,'Kantrex','Hovione',23.00,'Anti-Depressant','Class C'),
-(7,'Yohimbine','Noxxon',45.00,'Enhances hair growth','Class B'),
-(8,'Ibuprofen','Reckitt Benckiser',9.00,'Relieves muscle pain','Class B'),
-(9,'Panretin','Sunovione',20.00,'Boosts blood glucose levels','Class C'),
-(10,'Cabergoline','Renovo',35.00,'Promotes better skin','Class B');
-
-INSERT INTO MH_PRESCRIPTION(consultationID, invoiceID, prescriptionID, drugID, startDate,
-
-prescribedDuration, prescribedDosage, paymentStatus)
-
-VALUES (3,2,1,4,'2016/02/09','3 months', 'Twice per day', 1),
- (7,4,2,7, '2016/02/15','2 months', 'Thrice per day', 0),
- (9,3,3,5, '2016/01/03','5 months', 'Twice per day', 1),
- (8,9,4,3, '2016/05/25','2 months', 'Once per day', 1),
- (5,6,5,6, '2016/04/13','2 months', 'Twice per day', 1),
- (2,8,6,2, '2016/01/20','4 months', 'Twice per day', 0),
- (6,1,7,9, '2016/06/25','5 months', 'Once per day', 1),
- (4,7,8,10, '2016/11/23','3 months', 'Thrice per day', 0),
- (1,5,9,1, '2016/07/15','4 months', 'Twice per day', 1),
- (10,10,10,8, '2016/10/14','2 months', 'Twice per day', 1);
+INSERT INTO MH_PRESCRIPTION( invoiceID, consultationID, prescriptionID, drugID, startDate,
+prescribedDuration, prescribedDosage, paymentStatus) VALUES 
+(1,1,1,4,'2016/02/09','3 months', 'Twice per day', 1),
+(2,2,2,7, '2016/02/15','2 months', 'Thrice per day', 0),
+(3,7,3,5, '2016/01/03','5 months', 'Twice per day', 1),
+(4,8,4,3, '2016/05/25','2 months', 'Once per day', 1),
+(5,8,5,6, '2016/04/13','2 months', 'Twice per day', 1),
+(6,8,6,2, '2016/01/20','4 months', 'Twice per day', 0),
+(7,8,7,9, '2016/06/25','5 months', 'Once per day', 1),
+(8,7,8,10, '2016/11/23','3 months', 'Thrice per day', 0),
+(9,6,9,1, '2016/07/15','4 months', 'Twice per day', 1),
+(10,1,10,8, '2016/10/14','2 months', 'Twice per day', 1);
 
 
 

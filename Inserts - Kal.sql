@@ -59,7 +59,7 @@ INSERT INTO SCAN(scanName, scanFee) VALUES
 ('Voiding Cystourethrogram ', 7000);	
 
 
-INSERT INTO MH_SCAN(invoiceID, patientID, testID, testReport, paymentStatus) VALUES 
+INSERT INTO MH_SCAN(invoiceID, patientID, scanID, scanDate scanReport, paymentStatus) VALUES 
 (1,2, 1,'Patient found to have broken several fingers while trying to play baseball',1),
 (2,1, 1,'Patient neck dislocated',1),
 (7,1, 4,'MRI Scan found cabbage instead of brain',1),

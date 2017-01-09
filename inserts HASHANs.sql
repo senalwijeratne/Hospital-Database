@@ -52,7 +52,7 @@ INSERT INTO PATIENT(NIC,firstName,middleName,lastName,gender,addressline1,addres
 
 
 -- //test//
-INSERT INTO TEST(testID,testName,testFee) VALUES
+INSERT INTO TEST(testName,testFee) VALUES
 ('Cholesterol ',500),
 ('Complete blood count ',300 ),
 ('Fasting blood sugar ',600 ),
