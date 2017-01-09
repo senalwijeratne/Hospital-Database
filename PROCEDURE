@@ -13,6 +13,7 @@ AS BEGIN
 INSERT INTO MH_Consultation([invoiceID],[employeeID],[RdoctorID],[COdoctorID],[patientID],[consultationDate],[nextCheckUp],[doctorReport],[paymentStatus]) 
 VALUES (@invoiceID,@employeeID,@RdoctorID,@COdoctorID,@patientID ,@consultationDate,@nextCheckUp ,@doctorReport,@paymentStatus)
 
+END
 
 
 CREATE PROCEDURE Insert_prescription (
@@ -35,4 +36,4 @@ END
 
 
 
-END
+
