@@ -1,4 +1,4 @@
------------------------------------------------------------
+-----------------------------add the dates------------------------------
     
 CREATE VIEW R_doctorConsultfee AS
 SELECT a.invoiceID, b.consultationID, c.patientID, e.RdoctorID, e.consultationFee, a.paymentStatus
@@ -10,7 +10,7 @@ WHERE a.invoiceID = b.invoiceID AND
 
  Group by a.invoiceID, b.consultationID, c.patientID, e.RdoctorID, e.consultationFee, a.paymentStatus
      
------------------------------------------------------------
+----------------------------add the dates-------------------------------
 
 CREATE VIEW OC_doctorconsultfee AS
 SELECT a.invoiceID, b.consultationID, c.patientID, e.OCdoctorID, e.consultationFee, e.feeperCall, a.paymentStatus
