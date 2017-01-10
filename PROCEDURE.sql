@@ -1,55 +1,31 @@
-    
-     
     CREATE PROCEDURE HospitalIncomeCalculate(@FIRSTDATE  date,@SECONDDATE date)
     AS BEGIN
-	declare @ResidentDoctorSummeryFull money;
-	declare @OnCallDoctorIncomeSummeryFull money;
-	declare @drugIncomeSummeryFull money;
-	declare @TestIncomeSummeryFull money;
-	declare @ScanIncomeSummeryFull money;
-	declare @surgeryFeeSummeryFull money;
-	declare @roomFeeSummeryFull money;
-	
-	 SET @ResidentDoctorSummeryFull = ResidentDoctorIncomeSummery(@FIRSTDATE,@SECONDDATE)
-	 SET @OnCallDoctorIncomeSummeryFull = OnCallDoctorIncomeSummery(@FIRSTDATE,@SECONDDATE)
-	 SET @drugIncomeSummeryFull = drugIncomeSummery(@FIRSTDATE,@SECONDDATE)
-	 SET @TestIncomeSummeryFull = TestIncomeSummery(@FIRSTDATE,@SECONDDATE)
-	 SET @ScanIncomeSummeryFull = ScanIncomeSummery(@FIRSTDATE,@SECONDDATE)
-	 SET @surgeryFeeSummeryFull = surgeryFeeSummery(@FIRSTDATE,@SECONDDATE)
-	 SET @roomFeeSummeryFull = roomFeeSummery(@FIRSTDATE,@SECONDDATE)
 
-		SELECT @ResidentDoctorSummeryFull AS ResidentDoctor,@OnCallDoctorIncomeSummeryFull AS OnCallDoctor
-		
-		FROM BILLS 
+    -- declare @firstdate date; declare @seconddate date;
+    declare @ResidentDoctorSummeryFull money;
+    declare @OnCallDoctorIncomeSummeryFull money;
+    declare @drugIncomeSummeryFull money;
+    declare @TestIncomeSummeryFull money;
+    declare @ScanIncomeSummeryFull money;
+    declare @surgeryFeeSummeryFull money;
+    declare @roomFeeSummeryFull money;
+    
+     SET @ResidentDoctorSummeryFull = dbo.ResidentDoctorIncomeSummery(@FIRSTDATE,@SECONDDATE);
+     SET @OnCallDoctorIncomeSummeryFull = dbo.OnCallDoctorIncomeSummery(@FIRSTDATE,@SECONDDATE);
+     SET @drugIncomeSummeryFull = dbo.drugIncomeSummery(@FIRSTDATE,@SECONDDATE);
+     SET @TestIncomeSummeryFull = dbo.TestIncomeSummery(@FIRSTDATE,@SECONDDATE);
+     SET @ScanIncomeSummeryFull = dbo.ScanIncomeSummery(@FIRSTDATE,@SECONDDATE);
+     SET @surgeryFeeSummeryFull = dbo.surgeryFeeSummery(@FIRSTDATE,@SECONDDATE);
+     SET @roomFeeSummeryFull = dbo.roomFeeSummery(@FIRSTDATE,@SECONDDATE);
 
-		WHERE
- 		Group by 
-	
-
-
-
-
+        SELECT @ResidentDoctorSummeryFull AS ResidentDoctor,@OnCallDoctorIncomeSummeryFull AS OnCallDoctor,
+                @drugIncomeSummeryFull AS PrescriptionIncomes,
+                @TestIncomeSummeryFull AS TestIncomes,
+                @ScanIncomeSummeryFull AS ScanIncomes,
+                @surgeryFeeSummeryFull AS SurgeryFees,
+                @roomFeeSummeryFull AS RoomFees;
 
     END
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     CREATE PROCEDURE Insert_consultation(
         @invoiceID  int,
