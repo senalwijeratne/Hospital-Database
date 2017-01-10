@@ -21,3 +21,74 @@ BEGIN
     RETURN @Total
 END 
 
+
+--GETTING VALUE FROM THE R_doctorConsultfee--
+
+SELECT consultationFee FROM R_doctorConsultfee 
+where 
+
+
+--GETTING VALUE FROM THE OC_doctorconsultfee--
+
+SELECT consultationFee,feeperCall FROM OC_doctorconsultfee 
+where 
+
+
+--GETTING VALUE FROM THE Drug_fee--
+
+SELECT SUM(drugPrice) FROM Drug_fee 
+where startDate Between /*user input*/ and /*user input + 30 days */
+AND paymentStatus = 'Y' AND admittedTransaction = 'N'
+
+--GETTING VALUE FROM THE Test_fee--
+
+SELECT  SUM(testFee) FROM Test_fee 
+where testDate Between /*user input*/ and /*user input + 30 days */
+AND paymentStatus = 'Y' AND admittedTransaction = 'N'
+
+
+--GETTING VALUE FROM THE Scan_fee--
+
+SELECT  SUM(scanFee) FROM Scan_fee 
+where scanDate Between /*user input*/ and /*user input + 30 days */
+AND paymentStatus = 'Y' AND admittedTransaction = 'N'
+
+
+--GETTING VALUE FROM THE surgeryFee--
+
+SELECT  SUM(surgeryFee) FROM Surgery_fee 
+where /*date*/ Between /*user input*/ and /*user input + 30 days */
+AND paymentStatus = 'Y' AND admittedTransaction = 'N'
+
+
+SELECT  SUM(roomPrice) FROM Room_fee 
+where /*date*/ Between /*user input*/ and /*user input + 30 days */
+AND paymentStatus = 'Y' AND admittedTransaction = 'N'
+
+--------------------------functions-------------------------------------
+CREATE FUNCTION drugIncomeSummery
+( @date1 date, @date2 date )
+RETURNS money
+AS
+BEGIN
+    declare @sumOfDrugPrice money;
+     @sumOfDrugPrice =  SELECT SUM(drugPrice) FROM Drug_fee 
+                        where startDate Between @date1 and @date2
+                        AND paymentStatus = 'Y' AND admittedTransaction = 'N'
+    RETURNS @sumOfDrugPrice
+END
+
+CREATE FUNCTION drugIncomeSummery
+( @date1 date, @date2 date )
+RETURNS money
+AS
+BEGIN
+    declare @sumOfDrugPrice money;
+     @sumOfDrugPrice =  SELECT  SUM(testFee) FROM Test_fee 
+                        where testDate Between @date1 and @date2
+                        AND paymentStatus = 'Y' AND admittedTransaction = 'N'
+
+    RETURNS @sumOfDrugPrice
+END
+
+
