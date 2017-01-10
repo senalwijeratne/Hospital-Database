@@ -2,7 +2,7 @@
 
 CREATE TRIGGER whenPatientAdmittedTrigger 
 ON mh_admission
-AFTER INSERT 
+AFTER INSERT,UPDATE 
 AS
 BEGIN
 	declare @admissionDate date;
@@ -26,7 +26,7 @@ BEGIN
  
 CREATE TRIGGER whenPatientDischargedTrigger
 ON mh_admission
-AFTER INSERT 
+AFTER INSERT,UPDATE 
 AS
 BEGIN
 	declare @dischargeDate date;
