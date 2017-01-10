@@ -142,4 +142,83 @@ BEGIN
     RETURN @sumOfRoomFee
 END
 
+----------------------------------------------------------------------------
 
+CREATE FUNCTION SurgeryDetailsWithinThePeriods
+(@fDate DATETIME,@lDate DATETIME)
+RETURNS TABLE
+AS
+
+    RETURN
+    (SELECT * FROM MH_SURGERY 
+    WHERE timeScheduled 
+    BETWEEN @fDate AND @lDate)
+	
+
+SELECT  * FROM dbo.SurgeryDetailsWithinThePeriods('20170101 10:00:00 AM','20170101 11:00:00 AM');
+    
+--------------------------------------------------------------------------
+
+CREATE FUNCTION MH_ScanDetailsWithinThePeriods
+(@fDate DATE,@lDate DATE)
+RETURNS TABLE
+AS
+
+
+    RETURN
+    (SELECT * FROM MH_Scan 
+    WHERE scanDate 
+    BETWEEN  @fDate AND @lDate )
+
+SELECT * FROM dbo.MH_ScanDetailsWithinThePeriods('20160101','20170301');
+---------------------------------------------------------------------------     
+   
+CREATE FUNCTION MH_PrescriptionDetailsWithinThePeriods
+(@fDate DATE,@lDate DATE)
+RETURNS TABLE
+AS
+    RETURN
+    (SELECT * FROM mh_Prescription 
+    WHERE  startDate
+    BETWEEN  @fDate AND @lDate) 
+
+SELECT * FROM dbo.MH_PrescriptionDetailsWithinThePeriods('20160101','20170301');
+     
+     
+-------------------------------------------------------------------------------
+
+CREATE FUNCTION MH_consultationDetailsWithinThePeriods
+(@fDate DATE,@lDate DATE)
+RETURNS TABLE
+AS
+    RETURN
+    (SELECT * FROM MH_consultation 
+    WHERE  consultationDate
+    BETWEEN  @fDate AND @lDate )
+
+SELECT * FROM dbo.MH_consultationDetailsWithinThePeriods('20160101','20170301');
+-------------------------------------------------------------------------------------
+
+CREATE FUNCTION MH_TestDetailsWithinThePeriods
+(@fDate DATE,@lDate DATE)
+RETURNS TABLE
+AS
+    RETURN
+    (SELECT * FROM MH_test 
+    WHERE  testDate
+    BETWEEN  @fDate AND @lDate) 
+
+SELECT * FROM dbo.MH_TestDetailsWithinThePeriods('20160101','20170301');
+
+-----------------------------------------------------------------------
+CREATE FUNCTION MH_AdmissionDetailsWithinThePeriods
+(@fDate DATE,@lDate DATE)
+RETURNS TABLE
+AS
+    RETURN
+    (SELECT * FROM MH_ADMISSION 
+    WHERE  admissionDate
+    BETWEEN  @fDate AND @lDate )
+
+SELECT * FROM dbo.MH_AdmissionDetailsWithinThePeriods('20160101','20170301');
+     
