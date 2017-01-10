@@ -245,14 +245,6 @@
     INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (5,'G',2,1, '2016/02/22', '2016/04/10','Y',' Drink Water as much as possible', 'Burning
     sensation when urinating');
     GO
-/*
-    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (3,'G',2,2, '2016/05/15', '2016/05/27','Y','Consume food containing fiber', 'Loss of
-    appetite and bloating of the stomach');
-    GO
-    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES ( 9,'G',2,3, '2016/02/03', '2016/05/20','N', 'please stop drinking',' Inflammation of
-    the liver');
-    GO
-*/
     INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (7,'P',1,1, '2016/06/11', '2016/06/30','Y','Be consistent in taking meals on time',' Bloating
     of the stomach and severe abdomen pain');
     GO
@@ -308,17 +300,17 @@
 	('Voiding Cystourethrogram ', 7000);
 
 -- 23.MHScan > -- Ikhwan
-INSERT INTO MH_SCAN(invoiceID, scanID, scanDate, scanReport,admittedTransaction, paymentStatus) VALUES 
-(3,1,'2016/02/21','Patient found to have broken several fingers while trying to play baseball','N','Y'),
-(2,1,'2016/03/20','Patient neck dislocated','N','Y'),
-(4,4,'2016/04/21','MRI Scan found cabbage instead of brain','N','Y'),
-(5,5,'2016/05/15','Baby Appears to be healthy. Father might be disappointed with the race of the child','N','Y'),
-(2,6,'2016/06/11','Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.','N','Y'),
-(6,2,'2016/08/11','Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ','Y','N'),
-(5,1, '2016/09/05','Baby appears to have retractable wolverine claws inside forearms.','N','Y'),
-(4,9,'2016/10/20','Lungs are busted. Need replacement filters as soon as possible','N','Y'),
-(2,11,'2016/12/09','No significant remarks.','N','Y'),
-(10,10, '2016/01/21','Voidlings present. Need to be dispersed as soon as possible.','N','Y');
+    INSERT INTO MH_SCAN(invoiceID, scanID, scanDate, scanReport,admittedTransaction, paymentStatus) VALUES 
+    (3,1,'2016/02/21','Patient found to have broken several fingers while trying to play baseball','N','Y'),
+    (2,1,'2016/03/20','Patient neck dislocated','N','Y'),
+    (4,4,'2016/04/21','MRI Scan found cabbage instead of brain','N','Y'),
+    (5,5,'2016/05/15','Baby Appears to be healthy. Father might be disappointed with the race of the child','N','Y'),
+    (2,6,'2016/06/11','Anomaly found in the left ventricle of heart. It seems to be beating your name, Sandy.','N','Y'),
+    (6,2,'2016/08/11','Patient discovered two potatoes inside the machine. We are not really sure what this scan does. Please advise. ','Y','N'),
+    (5,1, '2016/09/05','Baby appears to have retractable wolverine claws inside forearms.','N','Y'),
+    (4,9,'2016/10/20','Lungs are busted. Need replacement filters as soon as possible','N','Y'),
+    (2,11,'2016/12/09','No significant remarks.','N','Y'),
+    (10,10, '2016/01/21','Voidlings present. Need to be dispersed as soon as possible.','N','Y');
 
 -- 24.Surgery > -- Ikhwan
 	INSERT INTO SURGERY(surgeryName, surgeryFee, surgeryDescription) VALUES 
