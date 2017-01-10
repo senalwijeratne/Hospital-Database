@@ -233,27 +233,37 @@
 	('S','1','1','Y');
 
 -- 19.MH_Admissions > -- Rimzan 
-	INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID,
-	admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition)
-	VALUES ( 5, 'G', 1, 1,'2016/05/03', '2016/05/20','Y','Manage work stress', 'Severe Headache and
-	nausea'),
-	 (6,'G',1,2, '2016/04/15', '2016/05/05','N', 'Quit smoking' ,'Shortness of breath and
-	chest pain'),
-	 (2,'G',1,3, '2016/07/09', '2016/07/21','N', 'Take medicine as prescribed', 'Medium
-	phlegm and fever'),
-	 (5,'G',2,1, '2016/02/22', '2016/04/10','Y',' Drink Water as much as possible', 'Burning
-	sensation when urinating'),
-	 (3,'G',2,2, '2016/05/15', '2016/05/27','Y','Consume food containing fiber', 'Loss of
-	appetite and bloating of the stomach'),
-	 ( 9,'G',2,3, '2016/02/03', '2016/05/20','N', 'please stop drinking',' Inflammation of
-	the liver'),
-	 (7,'P',1,1, '2016/06/11', '2016/06/30','Y','Be consistent in taking meals on time',' Bloating
-	of the stomach and severe abdomen pain'),
-	 (1,'P',2,1, '2016/03/09', '2016/04/03','N', 'Reschedule sleeping hours', 'Severe
-	headache and stress'),
-	 (4,'P',3,1, '2016/08/21', '2016/09/12','N',' Exercise daily', 'Breathing disorder'),
-	 (10,'P',4,1, '2016/01/24', '2016/03/20','Y','Maintain a quiet restful environment', 'Severe
-	headache');
+    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES ( 5, 'G', 1, 1,'2016/05/03', '2016/05/20','Y','Manage work stress', 'Severe Headache and
+    nausea');
+    GO
+    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (6,'G',1,2, '2016/04/15', '2016/05/05','N', 'Quit smoking' ,'Shortness of breath and
+    chest pain');
+    GO
+    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (2,'G',1,3, '2016/07/09', '2016/07/21','N', 'Take medicine as prescribed', 'Medium
+    phlegm and fever');
+    GO
+    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (5,'G',2,1, '2016/02/22', '2016/04/10','Y',' Drink Water as much as possible', 'Burning
+    sensation when urinating');
+    GO
+/*
+    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (3,'G',2,2, '2016/05/15', '2016/05/27','Y','Consume food containing fiber', 'Loss of
+    appetite and bloating of the stomach');
+    GO
+    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES ( 9,'G',2,3, '2016/02/03', '2016/05/20','N', 'please stop drinking',' Inflammation of
+    the liver');
+    GO
+*/
+    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (7,'P',1,1, '2016/06/11', '2016/06/30','Y','Be consistent in taking meals on time',' Bloating
+    of the stomach and severe abdomen pain');
+    GO
+    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (1,'P',2,1, '2016/03/09', '2016/04/03','N', 'Reschedule sleeping hours', 'Severe
+    headache and stress');
+    GO
+    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (4,'P',3,1, '2016/08/21', '2016/09/12','N',' Exercise daily', 'Breathing disorder');
+    GO
+    INSERT INTO MH_ADMISSION ( invoiceID,roomTypeID, roomID, bedID, admissionDate, dischargeDate, paymentStatus, treatmentAdvice, initialCondition) VALUES (10,'P',4,1, '2016/01/24', '2016/03/20','Y','Maintain a quiet restful environment', 'Severe
+    headache');
+    GO
 
 -- 20.Test > -- Hashan 
 	INSERT INTO TEST(testName,testFee) VALUES
