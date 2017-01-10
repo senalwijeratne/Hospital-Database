@@ -66,7 +66,7 @@ Group by PATIENT.patientID,PATIENT.firstName , PATIENT.lastName,MH_SCAN.invoiceI
 
 create view room_fees as
 select a.patientID, b.invoiceid, a.firstname, a.lastname, c.roomtypeid, c.roomid, c.bedid, d.roomPrice, 
-c.admittedTransaction, c.admissionDate, c.dischargeDate, DATEDIFF(day,c.admissionDate,c.dischargeDate) AS DiffDate, d.roomPrice*DATEDIFF(day,c.admissionDate,c.dischargeDate)
+c.admittedTransaction, c.admissionDate, c.dischargeDate, DATEDIFF(day,c.admissionDate,c.dischargeDate) AS DiffDate, d.roomPrice*DATEDIFF(day,c.admissionDate,c.dischargeDate)as totalRoomFee
 
 from patient a, bill b, mh_admission c, ROOMTYPE d
 where a.patientID = b.patientID AND
