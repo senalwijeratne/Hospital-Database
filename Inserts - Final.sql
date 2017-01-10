@@ -273,7 +273,7 @@
 
 
 -- 21.MHTest > -- Ikhwan
-	INSERT INTO MH_TEST(invoiceID, testID, testDate, testReport, admittedTransaction, paymentStatus) VALUES /*needs to be rewritten*/
+	INSERT INTO MH_TEST(invoiceID, testID, testDate, testReport, admittedTransaction, paymentStatus) VALUES
 	(3, 1,'2016/01/21','Patient found to have broken several fingers while trying to play baseball','N','Y'),
 	(2, 2,'2016/02/20','Patient neck dislocated','N','Y'),
 	(4, 2,'2016/03/21','MRI Scan found cabbage instead of brain','N','Y'),
