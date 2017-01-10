@@ -75,7 +75,7 @@ BEGIN
     SET @sumOfDrugPrice =  (SELECT SUM(drugPrice) FROM Drug_fee 
                         where startDate Between @date1 and @date2
                         AND paymentStatus = 'Y' AND admittedTransaction = 'N')
-    RETURNS @sumOfDrugPrice
+    RETURN @sumOfDrugPrice
 END
 
 CREATE FUNCTION TestIncomeSummery
@@ -88,7 +88,7 @@ BEGIN
                         where testDate Between @date1 and @date2
                         AND paymentStatus = 'Y' AND admittedTransaction = 'N')
 
-    RETURNS @sumOfTestFee
+    RETURN @sumOfTestFee
 END
 
 
@@ -99,11 +99,11 @@ RETURNS money
 AS
 BEGIN
     declare @sumOfScanFee money;
-    SET @sumOfScanFee =  SELECT  SUM(scanFee) FROM Scan_fee 
+    SET @sumOfScanFee =  (SELECT  SUM(scanFee) FROM Scan_fee 
                         where scanDate Between @date1 and @date2
                         AND paymentStatus = 'Y' AND admittedTransaction = 'N')
 
-    RETURNS @sumOfScanFee
+    RETURN @sumOfScanFee
 END
 
 
@@ -118,7 +118,7 @@ BEGIN
                           where timeScheduled Between @date1  and @date1 
                           AND paymentStatus = 'Y' AND admittedTransaction = 'N')
 
-    RETURNS @sumOfsurgeryFee
+    RETURN @sumOfsurgeryFee
 END
 
 
@@ -128,11 +128,11 @@ RETURNS money
 AS
 BEGIN
     declare @sumOfRoomFee money;
-    SET @sumOfRoomFee =  (SELECT  SUM(totalRoomFee) FROM Room_fee 
-                            where admissionDate Between @date and @date2
+    SET @sumOfRoomFee =  (SELECT  SUM(totalRoomFee) FROM Room_fees 
+                            where admissionDate Between @date1 and @date2
                             AND paymentStatus = 'Y' AND admittedTransaction = 'N')
 
-    RETURNS @sumOfRoomFee
+    RETURN @sumOfRoomFee
 END
 
 
