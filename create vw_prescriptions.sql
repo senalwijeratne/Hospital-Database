@@ -1,5 +1,5 @@
 create VIEW vw_prescriptions AS
-SELECT a.patientID ,a.firstName ,a.lastName ,d.consultationID,d.consultationDate ,d.RdoctorID,d.OCdoctorID  , e.drugID,e.drugName , c.prescribedDosage
+SELECT a.patientID ,a.firstName ,a.lastName ,d.consultationID,d.consultationDate ,d.RdoctorID,d.OCdoctorID  , e.drugID,e.drugName , c.StartDate,c.prescribedDosage
 FROM patient a , bill b , MH_prescription c , MH_consultation d , Drugs e
 Where a.patientID = b.patientID AND 
 b.invoiceID = c.invoiceID AND
