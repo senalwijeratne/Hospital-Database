@@ -1,47 +1,47 @@
-    CREATE PROCEDURE HospitalIncomeCalculate(@FIRSTDATE  date,@SECONDDATE date)
-    AS BEGIN
+CREATE PROCEDURE HospitalIncomeCalculate(@FIRSTDATE  date,@SECONDDATE date)
+AS BEGIN
 
-    -- declare @firstdate date; declare @seconddate date;
-    declare @ResidentDoctorSummeryFull money;
-    declare @OnCallDoctorIncomeSummeryFull money;
-    declare @drugIncomeSummeryFull money;
-    declare @TestIncomeSummeryFull money;
-    declare @ScanIncomeSummeryFull money;
-    declare @surgeryFeeSummeryFull money;
-    declare @roomFeeSummeryFull money;
+-- declare @firstdate date; declare @seconddate date;
+declare @ResidentDoctorSummeryFull money;
+declare @OnCallDoctorIncomeSummeryFull money;
+declare @drugIncomeSummeryFull money;
+declare @TestIncomeSummeryFull money;
+declare @ScanIncomeSummeryFull money;
+declare @surgeryFeeSummeryFull money;
+declare @roomFeeSummeryFull money;
+
+ SET @ResidentDoctorSummeryFull = dbo.ResidentDoctorIncomeSummery(@FIRSTDATE,@SECONDDATE);
+ SET @OnCallDoctorIncomeSummeryFull = dbo.OnCallDoctorIncomeSummery(@FIRSTDATE,@SECONDDATE);
+ SET @drugIncomeSummeryFull = dbo.drugIncomeSummery(@FIRSTDATE,@SECONDDATE);
+ SET @TestIncomeSummeryFull = dbo.TestIncomeSummery(@FIRSTDATE,@SECONDDATE);
+ SET @ScanIncomeSummeryFull = dbo.ScanIncomeSummery(@FIRSTDATE,@SECONDDATE);
+ SET @surgeryFeeSummeryFull = dbo.surgeryFeeSummery(@FIRSTDATE,@SECONDDATE);
+ SET @roomFeeSummeryFull = dbo.roomFeeSummery(@FIRSTDATE,@SECONDDATE);
+
+    SELECT @ResidentDoctorSummeryFull AS ResidentDoctor,@OnCallDoctorIncomeSummeryFull AS OnCallDoctor,
+            @drugIncomeSummeryFull AS PrescriptionIncomes,
+            @TestIncomeSummeryFull AS TestIncomes,
+            @ScanIncomeSummeryFull AS ScanIncomes,
+            @surgeryFeeSummeryFull AS SurgeryFees,
+            @roomFeeSummeryFull AS RoomFees;
+
+END
     
-     SET @ResidentDoctorSummeryFull = dbo.ResidentDoctorIncomeSummery(@FIRSTDATE,@SECONDDATE);
-     SET @OnCallDoctorIncomeSummeryFull = dbo.OnCallDoctorIncomeSummery(@FIRSTDATE,@SECONDDATE);
-     SET @drugIncomeSummeryFull = dbo.drugIncomeSummery(@FIRSTDATE,@SECONDDATE);
-     SET @TestIncomeSummeryFull = dbo.TestIncomeSummery(@FIRSTDATE,@SECONDDATE);
-     SET @ScanIncomeSummeryFull = dbo.ScanIncomeSummery(@FIRSTDATE,@SECONDDATE);
-     SET @surgeryFeeSummeryFull = dbo.surgeryFeeSummery(@FIRSTDATE,@SECONDDATE);
-     SET @roomFeeSummeryFull = dbo.roomFeeSummery(@FIRSTDATE,@SECONDDATE);
+CREATE PROCEDURE Insert_consultation(
+    @invoiceID  int,
+    @employeeID int,
+    @RdoctorID int,
+    @OCdoctorID int,    
+    @consultationDate date, 
+    @nextCheckUp    date,
+    @doctorReport varchar,
+    @paymentStatus int )
+AS BEGIN
 
-        SELECT @ResidentDoctorSummeryFull AS ResidentDoctor,@OnCallDoctorIncomeSummeryFull AS OnCallDoctor,
-                @drugIncomeSummeryFull AS PrescriptionIncomes,
-                @TestIncomeSummeryFull AS TestIncomes,
-                @ScanIncomeSummeryFull AS ScanIncomes,
-                @surgeryFeeSummeryFull AS SurgeryFees,
-                @roomFeeSummeryFull AS RoomFees;
+INSERT INTO MH_Consultation([invoiceID],[employeeID],[RdoctorID],[OCdoctorID],[consultationDate],[nextCheckUp],[doctorReport],[paymentStatus]) 
+VALUES (@invoiceID,@employeeID,@RdoctorID,@OCdoctorID,@consultationDate,@nextCheckUp ,@doctorReport,@paymentStatus)
 
-    END
-    
-    CREATE PROCEDURE Insert_consultation(
-        @invoiceID  int,
-        @employeeID int,
-        @RdoctorID int,
-        @OCdoctorID int,    
-        @consultationDate date, 
-        @nextCheckUp    date,
-        @doctorReport varchar,
-        @paymentStatus int )
-    AS BEGIN
-
-    INSERT INTO MH_Consultation([invoiceID],[employeeID],[RdoctorID],[OCdoctorID],[consultationDate],[nextCheckUp],[doctorReport],[paymentStatus]) 
-    VALUES (@invoiceID,@employeeID,@RdoctorID,@OCdoctorID,@consultationDate,@nextCheckUp ,@doctorReport,@paymentStatus)
-
-    END
+END
 
 
 CREATE PROCEDURE Insert_prescription (
