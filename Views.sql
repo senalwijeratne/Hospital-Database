@@ -99,50 +99,5 @@ CREATE VIEW Scan_fee AS
       INNER JOIN MH_ADMISSION ON ROOMTYPE.roomTypeID = MH_ADMISSION.roomTypeID */
       
       
-     CREATE VIEW patient_in_surgery AS
-SELECT PATIENT.patientID,PATIENT.firstName,PATIENT.lastName,MH_ADMISSION.admissionDate,ROOM.roomID,SURGERY.surgeryName
-FROM PATIENT
-INNER JOIN MH_ADMISSION
-ON PATIENT.patientID = MH_ADMISSION.patientID
-INNER JOIN MH_SURGERY
-ON PATIENT.patientID = MH_SURGERY.patientID
-INNER JOIN SURGERY
-ON MH_SURGERY.surgeryID = SURGERY.surgeryID
-INNER JOIN ROOM
-ON MH_SURGERY.roomID = ROOM.roomID
-INNER JOIN ROOMTYPE
-ON ROOM.roomTypeID = ROOMTYPE.roomTypeID
-WHERE roomTypeID = ‘S’
-
-
-CREATE VIEW Check_prescription AS
- SELECT PATIENT.patientID, PATIENT.firstName,PATIENT.lastName, MH_CONSULTATION.consultationID,MH_CONSULTATION.consultationDate, MH_CONSULTATION.RdoctorID MH_CONSULTATION.COdoctorID,SYMPTOMS.symptomName,ILLNESS.illnessName,DRUGS.drugID,MH_PRESCRIPTION.prescribedDosage
-FROM PATIENT
-INNER JOIN MH_CONSULTATION
-ON PATIENT.patientID = MH_CONSULTATION.patientID
-INNER JOIN MHCONSULTATION_SYMPTOMS
-ON MH_CONSULTATION.consultationID = MHCONSULTATION_SYMPTOMS.consultationID
-INNER JOIN MHCONSULTATION_ILLNESS
-ON MH_CONSULTATION.consultationID = MHCONSULTATION_ILLNESS.consultationID 
-INNER JOIN MH_PRESCRIPTION
-ON MH_CONSULTATION.consultationID = MH_PRESCRIPTION.consultationID
-
-
-
-
-
--------------------- RIMZANS SHIT BELOW THIS LINE ---------------------
-
-CREATE VIEW vw_Presc AS
-
---SELECT a.patientID, b.invoiceID, c.prescriptionID, d.consultationID
-
-SELECT a.patientID, a.firstName,a.lastName, d.consultationID,d.consultationDate, d.RdoctorID, d.COdoctorID, e.drugID, e.drugName, c.prescribedDosage
-FROM patient a, bill b, MH_Prescription c, MH_Consultation d, Drugs e
-
-WHERE b.invoiceID = c.invoiceID AND 
-    b.invoiceID = d.invoiceID AND
-    b.patientID = a.patientID AND
-    e.drugID = c.drugID;
-
+     
 
