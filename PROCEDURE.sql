@@ -1,7 +1,6 @@
 CREATE PROCEDURE HospitalIncomeCalculate(@FIRSTDATE  date,@SECONDDATE date)
 AS BEGIN
 
--- declare @firstdate date; declare @seconddate date;
 declare @ResidentDoctorSummeryFull money;
 declare @OnCallDoctorIncomeSummeryFull money;
 declare @drugIncomeSummeryFull money;
