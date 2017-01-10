@@ -72,23 +72,67 @@ RETURNS money
 AS
 BEGIN
     declare @sumOfDrugPrice money;
-     @sumOfDrugPrice =  SELECT SUM(drugPrice) FROM Drug_fee 
+    SET @sumOfDrugPrice =  (SELECT SUM(drugPrice) FROM Drug_fee 
                         where startDate Between @date1 and @date2
-                        AND paymentStatus = 'Y' AND admittedTransaction = 'N'
+                        AND paymentStatus = 'Y' AND admittedTransaction = 'N')
     RETURNS @sumOfDrugPrice
 END
 
-CREATE FUNCTION drugIncomeSummery
+CREATE FUNCTION TestIncomeSummery
 ( @date1 date, @date2 date )
 RETURNS money
 AS
 BEGIN
-    declare @sumOfDrugPrice money;
-     @sumOfDrugPrice =  SELECT  SUM(testFee) FROM Test_fee 
+    declare @sumOfTestFee money;
+    SET @sumOfTestFee =  (SELECT  SUM(testFee) FROM Test_fee 
                         where testDate Between @date1 and @date2
-                        AND paymentStatus = 'Y' AND admittedTransaction = 'N'
+                        AND paymentStatus = 'Y' AND admittedTransaction = 'N')
 
-    RETURNS @sumOfDrugPrice
+    RETURNS @sumOfTestFee
+END
+
+
+
+CREATE FUNCTION ScanIncomeSummery
+( @date1 date, @date2 date )
+RETURNS money
+AS
+BEGIN
+    declare @sumOfScanFee money;
+    SET @sumOfScanFee =  SELECT  SUM(scanFee) FROM Scan_fee 
+                        where scanDate Between @date1 and @date2
+                        AND paymentStatus = 'Y' AND admittedTransaction = 'N')
+
+    RETURNS @sumOfScanFee
+END
+
+
+
+CREATE FUNCTION surgeryFeeSummery
+( @date1 date, @date2 date )
+RETURNS money
+AS
+BEGIN
+    declare @sumOfsurgeryFee money;
+    SET @sumOfsurgeryFee =  (SELECT  SUM(surgeryFee) FROM Surgery_fee 
+                          where timeScheduled Between @date1  and @date1 
+                          AND paymentStatus = 'Y' AND admittedTransaction = 'N')
+
+    RETURNS @sumOfsurgeryFee
+END
+
+
+CREATE FUNCTION roomFeeSummery
+( @date1 date, @date2 date )
+RETURNS money
+AS
+BEGIN
+    declare @sumOfRoomFee money;
+    SET @sumOfRoomFee =  (SELECT  SUM(roomPrice) FROM Room_fee 
+                            where /*date*/ Between @date and @date2
+                            AND paymentStatus = 'Y' AND admittedTransaction = 'N')
+
+    RETURNS @sumOfRoomFee
 END
 
 
