@@ -128,8 +128,8 @@ RETURNS money
 AS
 BEGIN
     declare @sumOfRoomFee money;
-    SET @sumOfRoomFee =  (SELECT  SUM(roomPrice) FROM Room_fee 
-                            where /*date*/ Between @date and @date2
+    SET @sumOfRoomFee =  (SELECT  SUM(totalRoomFee) FROM Room_fee 
+                            where admissionDate Between @date and @date2
                             AND paymentStatus = 'Y' AND admittedTransaction = 'N')
 
     RETURNS @sumOfRoomFee
