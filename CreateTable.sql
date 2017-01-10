@@ -2,11 +2,11 @@
 
 -- The following code executes the Create Table Statements for Hospital DBMS Developed by : 
 
--- Plymouth Reference ID :  Name :
--- Plymouth Reference ID : < 10569193 > Name : Heenkenda M Wijeratne
+-- Plymouth Reference ID : < 10569056 > Name : Imiya M Dayanatha
+-- Plymouth Reference ID : < 10568980 > Name : Athukoralalage H Karunarathna
 -- Plymouth Reference ID : < 10569221 > Name : Mohamed Ikhwan Ibrahim
--- Plymouth Reference ID :  Name :
--- Plymouth Reference ID :  Name :
+-- Plymouth Reference ID : < 10569196 > Name : Mohamed R Sadikeen
+-- Plymouth Reference ID : < 10569193 > Name : Heenkenda M Wijeratne
 
 
 
@@ -113,11 +113,6 @@ CREATE TABLE EMPLOYEE (
 
 CREATE TABLE RESIDENT_DOCTOR(
         RdoctorID 			int IDENTITY(1,1),
-     --    RDID as (SELECT a.prefix  ------ DOESNT WORK YET -----------===============<<<<<<<<<<<<<
-                 -- FROM employeeType a, employee b, Resident_Doctor c WHERE 
-                 -- c.employeeID = b.employeeID AND b.employeeTypeID = a.employeeTypeID
-                 -- GROUP BY a.prefix;
-     --    		  )+right('000'+cast(RdoctorID as varchar(4)), 4) persisted,
         RDID as 'RD'+right('000'+cast(RdoctorID as varchar(4)), 4) persisted,
         employeeID			int,
         specialization 		varchar(200),
