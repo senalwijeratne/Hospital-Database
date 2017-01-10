@@ -1,14 +1,14 @@
 -----------------------------add the dates------------------------------
     
 CREATE VIEW R_doctorConsultfee AS
-SELECT a.invoiceID, b.consultationID, c.patientID, e.RdoctorID, b.consultationDate,  e.consultationFee, a.paymentStatus
+SELECT a.invoiceID, b.consultationID, c.patientID, e.RdoctorID, b.consultationDate,  e.consultationFee, a.paymentStatus,b.admittedTransaction
 FROM bill a, MH_consultation b, patient c,  resident_doctor e
 
 WHERE a.invoiceID = b.invoiceID AND
  e.RdoctorID = b.RdoctorID AND
  c.patientID = a.patientID
 
- Group by a.invoiceID, b.consultationID, c.patientID, e.RdoctorID,b.consultationDate, e.consultationFee, a.paymentStatus
+ Group by a.invoiceID, b.consultationID, c.patientID, e.RdoctorID,b.consultationDate, e.consultationFee, a.paymentStatus,b.admittedTransaction
      
 ----------------------------add the dates-------------------------------
 
