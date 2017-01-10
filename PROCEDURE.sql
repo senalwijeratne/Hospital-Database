@@ -49,13 +49,12 @@ END
 CREATE PROCEDURE MH_SCAN_INPUT(
     @invoiceID	int,
     @scanID int,
-    @scanDate date,,
+    @scanDate date,
     @scanReport varchar ,	
-    @paymentStatus int,
-    )
+    @paymentStatus int)
 AS BEGIN
 
-INSERT INTO MH_Consultation([invoiceID],[scanID],[scanDate],[scanReport],[paymentStatus]) 
+INSERT INTO MH_SCAN([invoiceID],[scanID],[scanDate],[scanReport],[paymentStatus]) 
 VALUES (@invoiceID,@scanID,@scanDate,@scanReport,@paymentStatus)
 
 END
