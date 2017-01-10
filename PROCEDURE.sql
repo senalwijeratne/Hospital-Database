@@ -37,11 +37,10 @@ CREATE PROCEDURE MH_TEST_INPUT(
     @testID int,
     @testDate date,,
     @testReport varchar ,	
-    @paymentStatus int,
-    )
+    @paymentStatus int)
 AS BEGIN
 
-INSERT INTO MH_Consultation([invoiceID],[testID],[testDate],[testReport],[paymentStatus]) 
+INSERT INTO MH_TEST([invoiceID],[testID],[testDate],[testReport],[paymentStatus]) 
 VALUES (@invoiceID,@testID,@testDate,@testReport,@paymentStatus)
 
 END
