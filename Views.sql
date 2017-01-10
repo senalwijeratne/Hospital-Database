@@ -24,7 +24,7 @@ Group by a.invoiceID, b.consultationID, c.patientID, e.OCdoctorID,b.consultation
 -----------------------------------------------------------
 
 CREATE VIEW Drug_fee AS
-SELECT MH_PRESCRIPTION.prescriptionID ,PATIENT.patientID,PATIENT.firstName,PATIENT.lastName,DRUGS.drugName ,DRUGS.drugCompany,DRUGS.drugPrice,DRUGS.drugPurpose,DRUGS.legalClassification,MH_PRESCRIPTION.consultationID ,MH_PRESCRIPTION.invoiceID,MH_PRESCRIPTION.drugID,MH_PRESCRIPTION.startDate,MH_PRESCRIPTION.prescribedDuration,MH_PRESCRIPTION.prescribedDosage,MH_PRESCRIPTION.paymentStatus
+SELECT MH_PRESCRIPTION.prescriptionID ,PATIENT.patientID,PATIENT.firstName,PATIENT.lastName,DRUGS.drugName ,DRUGS.drugCompany,DRUGS.drugPrice,DRUGS.drugPurpose,DRUGS.legalClassification,MH_PRESCRIPTION.consultationID ,MH_PRESCRIPTION.invoiceID,MH_PRESCRIPTION.drugID,MH_PRESCRIPTION.startDate,MH_PRESCRIPTION.prescribedDuration,MH_PRESCRIPTION.prescribedDosage,MH_PRESCRIPTION.paymentStatus,MH_PRESCRIPTION.admittedTransaction,MH_PRESCRIPTION.admittedTransaction
 FROM MH_PRESCRIPTION
 JOIN DRUGS ON MH_PRESCRIPTION.drugID = DRUGS.drugID
 JOIN BILL ON MH_PRESCRIPTION.invoiceID = BILL.invoiceID
