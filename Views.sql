@@ -8,7 +8,7 @@ WHERE a.invoiceID = b.invoiceID AND
  e.RdoctorID = b.RdoctorID AND
  c.patientID = a.patientID
 
- Group by a.invoiceID, b.consultationID, c.patientID, e.RdoctorID, e.consultationFee, a.paymentStatus
+ Group by a.invoiceID, b.consultationID, c.patientID, e.RdoctorID,b.consultationDate, e.consultationFee, a.paymentStatus
      
 ----------------------------add the dates-------------------------------
 
@@ -19,7 +19,7 @@ WHERE a.invoiceID = b.invoiceID AND
  e.OCdoctorID = b.OCdoctorID AND
  c.patientID = a.patientID
 
-Group by a.invoiceID, b.consultationID, c.patientID, e.OCdoctorID, e.consultationFee, e.feeperCall, a.paymentStatus
+Group by a.invoiceID, b.consultationID, c.patientID, e.OCdoctorID,b.consultationDate , e.consultationFee, e.feeperCall, a.paymentStatus
    
 -----------------------------------------------------------
 
