@@ -189,6 +189,7 @@ CREATE TABLE BILL (
         consultationDate 	date,
         nextCheckUp 		date,
         doctorReport 		varchar(255),
+        admittedTransaction	varchar(1) DEFAULT 'N' CHECK (admittedTransaction IN ('Y','N','n','y')),
         paymentStatus 		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
 
 
@@ -270,6 +271,7 @@ CREATE TABLE MH_PRESCRIPTION(
         startDate date,
         prescribedDuration varchar(200),
         prescribedDosage varchar(200),
+        admittedTransaction	varchar(1) DEFAULT 'N' CHECK (admittedTransaction IN ('Y','N','n','y')),
         paymentStatus varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
 
         CONSTRAINT pk_prescriptonID PRIMARY KEY (prescriptionID),
@@ -311,6 +313,7 @@ CREATE TABLE MH_ADMISSION (
         bedID 				int,
         admissionDate		date,
         dischargeDate		date,
+        admittedTransaction	varchar(1) DEFAULT 'N' CHECK (admittedTransaction IN ('Y','N','n','y')),
         paymentStatus 		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
         treatmentAdvice 	varchar(255),
         initialCondition 	varchar(255),
@@ -349,6 +352,7 @@ CREATE TABLE MH_TEST (
         testID int,
         testDate date,
         testReport varchar (255),
+        admittedTransaction	varchar(1) DEFAULT 'N' CHECK (admittedTransaction IN ('Y','N','n','y')),
         paymentStatus varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
         CONSTRAINT pk_md_testID PRIMARY KEY (testID,invoiceID),
         CONSTRAINT fk_MHtestID FOREIGN KEY (testID) REFERENCES TEST(testID),
@@ -374,6 +378,7 @@ CREATE TABLE MH_SCAN(
         scanID 			int,
         scanDate 		date,
         scanReport 		varchar (255),
+        admittedTransaction	varchar(1) DEFAULT 'N' CHECK (admittedTransaction IN ('Y','N','n','y')),
         paymentStatus 	varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
 
         CONSTRAINT pk_mhscanID PRIMARY KEY (invoiceID,scanID),
@@ -415,6 +420,7 @@ CREATE TABLE MH_SURGERY(
         preSurgeryNotes 	varchar(255),
         postSurgeryNotes 	varchar(255),
         surgeryReport		varchar(255),
+        admittedTransaction	varchar(1) DEFAULT 'N' CHECK (admittedTransaction IN ('Y','N','n','y')),
         paymentStatus		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
         check (timeOutOfSurgery > timeScheduled),
 
