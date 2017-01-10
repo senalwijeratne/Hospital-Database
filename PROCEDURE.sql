@@ -1,3 +1,56 @@
+    
+     
+    CREATE PROCEDURE HospitalIncomeCalculate(@FIRSTDATE  date,@SECONDDATE date)
+    AS BEGIN
+	declare @ResidentDoctorSummeryFull money;
+	declare @OnCallDoctorIncomeSummeryFull money;
+	declare @drugIncomeSummeryFull money;
+	declare @TestIncomeSummeryFull money;
+	declare @ScanIncomeSummeryFull money;
+	declare @surgeryFeeSummeryFull money;
+	declare @roomFeeSummeryFull money;
+	
+	 SET @ResidentDoctorSummeryFull = ResidentDoctorIncomeSummery(@FIRSTDATE,@SECONDDATE)
+	 SET @OnCallDoctorIncomeSummeryFull = OnCallDoctorIncomeSummery(@FIRSTDATE,@SECONDDATE)
+	 SET @drugIncomeSummeryFull = drugIncomeSummery(@FIRSTDATE,@SECONDDATE)
+	 SET @TestIncomeSummeryFull = TestIncomeSummery(@FIRSTDATE,@SECONDDATE)
+	 SET @ScanIncomeSummeryFull = ScanIncomeSummery(@FIRSTDATE,@SECONDDATE)
+	 SET @surgeryFeeSummeryFull = surgeryFeeSummery(@FIRSTDATE,@SECONDDATE)
+	 SET @roomFeeSummeryFull = roomFeeSummery(@FIRSTDATE,@SECONDDATE)
+
+		SELECT @ResidentDoctorSummeryFull AS ResidentDoctor,@OnCallDoctorIncomeSummeryFull AS OnCallDoctor
+		
+		FROM BILLS 
+
+		WHERE
+ 		Group by 
+	
+
+
+
+
+
+    END
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     CREATE PROCEDURE Insert_consultation(
         @invoiceID  int,
         @employeeID int,
