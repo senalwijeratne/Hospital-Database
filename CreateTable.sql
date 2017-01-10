@@ -171,6 +171,7 @@ CREATE TABLE BILL (
         total				money,
         paidDate			date,
         paidBy 				varchar(150),
+        admittedTransaction	varchar(1) DEFAULT 'N' CHECK (admittedTransaction IN ('Y','N','n','y')),
         paymentStatus  		varchar(1) DEFAULT 'N' CHECK (paymentStatus IN ('Y','N','n','y')),
 
         CONSTRAINT pk_billing PRIMARY KEY (invoiceID),
