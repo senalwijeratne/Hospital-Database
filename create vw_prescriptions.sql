@@ -5,7 +5,7 @@ Where a.patientID = b.patientID AND
 b.invoiceID = c.invoiceID AND
 b.invoiceID = d.invoiceID AND
 c.drugID = e.drugID
-group by SELECT a.patientID ,a.firstName ,a.lastName ,d.consultationID,d.consultationDate ,d.RdoctorID,d.OCdoctorID  , e.drugID,e.drugName , c.prescribedDosage
+group by a.patientID ,a.firstName ,a.lastName ,d.consultationID,d.consultationDate ,d.RdoctorID,d.OCdoctorID  , e.drugID,e.drugName , c.prescribedDosage
 
 
 create VIEW vw_patientinsurgery AS
