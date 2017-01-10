@@ -1,7 +1,7 @@
 -----------------------------add the dates------------------------------
     
 CREATE VIEW R_doctorConsultfee AS
-SELECT a.invoiceID, b.consultationID, c.patientID, e.RdoctorID, e.consultationFee, a.paymentStatus
+SELECT a.invoiceID, b.consultationID, c.patientID, e.RdoctorID, b.consultationDate,  e.consultationFee, a.paymentStatus
 FROM bill a, MH_consultation b, patient c,  resident_doctor e
 
 WHERE a.invoiceID = b.invoiceID AND
@@ -13,7 +13,7 @@ WHERE a.invoiceID = b.invoiceID AND
 ----------------------------add the dates-------------------------------
 
 CREATE VIEW OC_doctorconsultfee AS
-SELECT a.invoiceID, b.consultationID, c.patientID, e.OCdoctorID, e.consultationFee, e.feeperCall, a.paymentStatus
+SELECT a.invoiceID, b.consultationID, c.patientID, e.OCdoctorID,b.consultationDate  e.consultationFee, e.feeperCall, a.paymentStatus
 FROM bill a, MH_consultation b, patient c,  ONCALL_DOCTOR e
 WHERE a.invoiceID = b.invoiceID AND
  e.OCdoctorID = b.OCdoctorID AND
