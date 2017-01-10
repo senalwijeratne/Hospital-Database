@@ -109,19 +109,6 @@ CREATE TABLE EMPLOYEE (
 );
 
 
--- /*acesslevel Table */
--- CREATE TABLE ACCESS_LEVEL (
---
--- 		CONSTRAINT pk_employeeTypeID PRIMARY KEY (employeeTypeID)
---
--- );
---
--- CREATE TABLE ACCESS_LEVEL_EMPLOYEETYPE (
---
--- 		CONSTRAINT pk_employeeTypeID PRIMARY KEY (employeeTypeID)
---
--- );
-
 /*resident doctor table*/
 
 CREATE TABLE RESIDENT_DOCTOR(
@@ -327,12 +314,6 @@ CREATE TABLE MH_ADMISSION (
 );
 
 
--- CREATE TABLE MH_ADMISSION_ROOM (
--- 		roomID int,
--- 		admissionID int,
--- 		CONSTRAINT pk_addmissionroom PRIMARY KEY (roomID,admissionID)
--- );
-
 /*test table*/
 
 CREATE TABLE TEST (
@@ -362,7 +343,7 @@ CREATE TABLE MH_TEST (
 );
 
 
-/*MEDICAL HISTORY SCAN TABLE*/
+/*SCAN TABLE*/
 
 CREATE TABLE SCAN(
         scanID int IDENTITY(1,1),
@@ -373,6 +354,7 @@ CREATE TABLE SCAN(
 
 );
 
+/*MEDICAL HISTORY SCAN TABLE*/
 CREATE TABLE MH_SCAN(
 
         invoiceID 		int,
@@ -388,7 +370,7 @@ CREATE TABLE MH_SCAN(
 );
 
 
-
+/*SURGERY TABLE*/
 CREATE TABLE SURGERY(
         surgeryID int IDENTITY(1,1),
         surgeryName varchar(50),
@@ -400,7 +382,7 @@ CREATE TABLE SURGERY(
 
 );
 
-
+/*MH_SURGERY TABLE*/
 CREATE TABLE MH_SURGERY(
         invoiceID			int,
         surgeryID 			int,
@@ -410,7 +392,7 @@ CREATE TABLE MH_SURGERY(
         timeScheduled		datetime,
         roomTypeID			char,
         roomID 				int,
-        bedID				int,  -- QUESTION : Do we really need bedNo in this table as a foreign key? ( i dont think so but im putting in just to be safe )
+        bedID				int,
         timeOutOfSurgery 	datetime,
         timeInSurgery		as cast( --- http://stackoverflow.com/questions/13866850/sql-server-calculate-elapsed-time-between-two-datetime-stamps-in-hhmmss-form
 									        (cast(cast(timeOutOfSurgery as float) - cast(timeScheduled as float) as int) * 24) /* hours over 24 */
