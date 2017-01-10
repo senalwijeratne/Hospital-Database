@@ -72,7 +72,7 @@ CREATE TABLE PATIENT (
         contactNo 		varchar(10),
         nextOfKin		varchar(160),
         nextofKinNo		varchar(10),
-        patientStatus	varchar(20) CHECK (patientStatus IN('admitted','discharged','insurgery','scheduledforsurgery','deceased')),
+        patientStatus	varchar(20) DEFAULT 'discharged' CHECK (patientStatus IN('admitted','discharged','insurgery','scheduledforsurgery','deceased')),
         CONSTRAINT pk_patientID PRIMARY KEY (patientID)
 );
 
