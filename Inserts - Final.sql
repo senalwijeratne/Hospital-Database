@@ -98,7 +98,7 @@
 	(3,'cash',0,'2016/02/15','Mr.Wijethunga','Y'),
 	(10,'visa',0,'2016/08/18','Mr.Malvic','Y'),
 	(9,'mastercard',0,NULL,NULL,'N'),
-	(9,'mastercard',0,NULL,NULL,'N'),
+	(9,'mastercard',0,NULL,NULL,'Y'),
 	(3,'visa',0,NULL,NULL,'N'),
 	(8,'visa',0,NULL,NULL,'N'),
 	(2,'mastercard',0,'2016/05/10','Mr.Sheeran','Y');
