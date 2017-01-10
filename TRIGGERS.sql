@@ -1,4 +1,3 @@
--- Both work perfectly with single inserts, fucks up for batch inserts(will try to fix it)
 
 CREATE TRIGGER whenPatientAdmittedTrigger 
 ON mh_admission
