@@ -1,31 +1,10 @@
 
-CREATE FUNCTION Total_bill 
-RETURNS int  
-AS  
-BEGIN
-    DECLARE @Total int, 
-       
- 
-    SELECT 
-    
-    @Total = SUM(Doctor_fee.consultationFee,Doctor_fee.feePerCall,Drug_fee.drugPrice,Test_fee.testFee,Scan_fee.scanFee,Surgury_fee.surguryFee,Room_fee.roomPrice) AS 'Total'  
-    FROM BILLS AS    
-    INNER JOIN R_doctorConsultfee ON BILLS.invoiceID = Doctor_fee.invoiceID
-    INNER JOIN OC_doctorconsultfee ON BILLS.invoiceID = Doctor_fee.invoiceID
-    INNER JOIN Drug_fee ON BILLS.invoiceID = Drug_fee.invoiceID  
-    INNER JOIN Test_fee ON BILLS.invoiceID = Test_fee.invoiceID  
-    INNER JOIN Scan_fee ON BILLS.invoiceID = Scan_fee.invoiceID
-    INNER JOIN Surgury_fee ON BILLS.invoiceID = Surgury_fee.invoiceID  
-    INNER JOIN Room_fee ON BILLS.invoiceID = Room_fee.invoiceID
-    
-    RETURN @Total
-END 
 
 
---GETTING VALUE FROM THE R_doctorConsultfee--
+SELECT SUM(a.consultationFee) FROM RESIDENT_DOCTOR a, MH_consultation b
 
-SELECT consultationFee FROM R_doctorConsultfee 
-where 
+where a.RdoctorID = b.RdoctorID AND consultationDate Between /*dadasda*/ and /* */ 
+AND paymentStatus = 'Y' AND admittedTransaction = 'N'
 
 
 --GETTING VALUE FROM THE OC_doctorconsultfee--
@@ -66,6 +45,34 @@ where /*date*/ Between /*user input*/ and /*user input + 30 days */
 AND paymentStatus = 'Y' AND admittedTransaction = 'N'
 
 --------------------------functions-------------------------------------
+
+CREATE FUNCTION ResidentDoctorIncomeSummery
+( @date1 date, @date2 date )
+RETURNS money
+AS
+BEGIN
+    declare @sumOfResidentDoctorIncome money;
+    SET @sumOfResidentDoctorIncome =  (SELECT SUM(a.consultationFee) FROM RESIDENT_DOCTOR a, MH_consultation b
+                                        where a.RdoctorID = b.RdoctorID AND b.consultationDate Between @date1 and @date2
+                                        AND b.paymentStatus = 'Y' AND b.admittedTransaction = 'N')
+    RETURN @sumOfResidentDoctorIncome
+END
+
+ 
+ 
+CREATE FUNCTION OnCallDoctorIncomeSummery
+( @date1 date, @date2 date )
+RETURNS money
+AS
+BEGIN
+    declare @sumOfOnCallDoctorIncome money;
+    SET @sumOfOnCallDoctorIncome =  (SELECT SUM(a.consultationFee) FROM RESIDENT_DOCTOR a, MH_consultation b
+                                        where a.RdoctorID = b.RdoctorID AND b.consultationDate Between @date1 and @date2
+                                        AND b.paymentStatus = 'Y' AND b.admittedTransaction = 'N')
+    RETURN @sumOfOnCallDoctorIncome
+END
+
+ 
 CREATE FUNCTION drugIncomeSummery
 ( @date1 date, @date2 date )
 RETURNS money
