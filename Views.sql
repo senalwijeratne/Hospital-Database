@@ -13,7 +13,7 @@ WHERE a.invoiceID = b.invoiceID AND
 ----------------------------add the dates-------------------------------
 
 CREATE VIEW OC_doctorconsultfee AS
-SELECT a.invoiceID, b.consultationID, c.patientID, e.OCdoctorID,b.consultationDate  e.consultationFee, e.feeperCall, a.paymentStatus
+SELECT a.invoiceID, b.consultationID, c.patientID, e.OCdoctorID,b.consultationDate , e.consultationFee, e.feeperCall, a.paymentStatus
 FROM bill a, MH_consultation b, patient c,  ONCALL_DOCTOR e
 WHERE a.invoiceID = b.invoiceID AND
  e.OCdoctorID = b.OCdoctorID AND
