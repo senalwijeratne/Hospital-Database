@@ -63,7 +63,7 @@ END
 CREATE PROCEDURE MH_TEST_INPUT(
     @invoiceID	int,
     @testID int,
-    @testDate date,,
+    @testDate date,
     @testReport varchar ,	
     @paymentStatus int)
 AS BEGIN
