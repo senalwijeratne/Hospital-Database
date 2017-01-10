@@ -198,7 +198,7 @@
 	(2,2,2,7, '2016/02/15','2 months', 'Thrice per day','Y', 'N'),
 	(3,7,3,5, '2016/01/03','5 months', 'Twice per day', 'N','Y'),
 	(4,8,4,3, '2016/05/25','2 months', 'Once per day', 'N','Y'),
-	(6,5,5,6, '2016/04/13','2 months', 'Twice per day', 'Y','N'),
+	(5,6,5,6, '2016/04/13','2 months', 'Twice per day', 'Y','N'),
 	(6,8,6,2, '2016/01/20','4 months', 'Twice per day','Y', 'N'),
 	(7,8,7,9, '2016/06/25','5 months', 'Once per day', 'N','Y'),
 	(8,7,8,10, '2016/11/23','3 months', 'Thrice per day','Y', 'N'),
