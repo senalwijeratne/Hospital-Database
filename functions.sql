@@ -1,31 +1,10 @@
 
-CREATE FUNCTION Total_bill 
-RETURNS int  
-AS  
-BEGIN
-    DECLARE @Total int, 
-       
- 
-    SELECT 
-    
-    @Total = SUM(Doctor_fee.consultationFee,Doctor_fee.feePerCall,Drug_fee.drugPrice,Test_fee.testFee,Scan_fee.scanFee,Surgury_fee.surguryFee,Room_fee.roomPrice) AS 'Total'  
-    FROM BILLS AS    
-    INNER JOIN R_doctorConsultfee ON BILLS.invoiceID = Doctor_fee.invoiceID
-    INNER JOIN OC_doctorconsultfee ON BILLS.invoiceID = Doctor_fee.invoiceID
-    INNER JOIN Drug_fee ON BILLS.invoiceID = Drug_fee.invoiceID  
-    INNER JOIN Test_fee ON BILLS.invoiceID = Test_fee.invoiceID  
-    INNER JOIN Scan_fee ON BILLS.invoiceID = Scan_fee.invoiceID
-    INNER JOIN Surgury_fee ON BILLS.invoiceID = Surgury_fee.invoiceID  
-    INNER JOIN Room_fee ON BILLS.invoiceID = Room_fee.invoiceID
-    
-    RETURN @Total
-END 
 
 
---GETTING VALUE FROM THE R_doctorConsultfee--
+SELECT SUM(a.consultationFee) FROM RESIDENT_DOCTOR a, MH_consultation b
 
-SELECT consultationFee FROM R_doctorConsultfee 
-where 
+where a.RdoctorID = b.RdoctorID AND consultationDate Between /*dadasda*/ and /* */ 
+AND paymentStatus = 'Y' AND admittedTransaction = 'N'
 
 
 --GETTING VALUE FROM THE OC_doctorconsultfee--
@@ -66,6 +45,34 @@ where /*date*/ Between /*user input*/ and /*user input + 30 days */
 AND paymentStatus = 'Y' AND admittedTransaction = 'N'
 
 --------------------------functions-------------------------------------
+
+CREATE FUNCTION ResidentDoctorIncomeSummery
+( @date1 date, @date2 date )
+RETURNS money
+AS
+BEGIN
+    declare @sumOfResidentDoctorIncome money;
+    SET @sumOfResidentDoctorIncome =  (SELECT SUM(a.consultationFee) FROM RESIDENT_DOCTOR a, MH_consultation b
+                                        where a.RdoctorID = b.RdoctorID AND b.consultationDate Between @date1 and @date2
+                                        AND b.paymentStatus = 'Y' AND b.admittedTransaction = 'N')
+    RETURN @sumOfResidentDoctorIncome
+END
+
+ 
+ 
+CREATE FUNCTION OnCallDoctorIncomeSummery
+( @date1 date, @date2 date )
+RETURNS money
+AS
+BEGIN
+    declare @sumOfOnCallDoctorIncome money;
+    SET @sumOfOnCallDoctorIncome =  (SELECT SUM(a.consultationFee) FROM RESIDENT_DOCTOR a, MH_consultation b
+                                        where a.RdoctorID = b.RdoctorID AND b.consultationDate Between @date1 and @date2
+                                        AND b.paymentStatus = 'Y' AND b.admittedTransaction = 'N')
+    RETURN @sumOfOnCallDoctorIncome
+END
+
+ 
 CREATE FUNCTION drugIncomeSummery
 ( @date1 date, @date2 date )
 RETURNS money
@@ -75,7 +82,7 @@ BEGIN
     SET @sumOfDrugPrice =  (SELECT SUM(drugPrice) FROM Drug_fee 
                         where startDate Between @date1 and @date2
                         AND paymentStatus = 'Y' AND admittedTransaction = 'N')
-    RETURNS @sumOfDrugPrice
+    RETURN @sumOfDrugPrice
 END
 
 CREATE FUNCTION TestIncomeSummery
@@ -88,7 +95,7 @@ BEGIN
                         where testDate Between @date1 and @date2
                         AND paymentStatus = 'Y' AND admittedTransaction = 'N')
 
-    RETURNS @sumOfTestFee
+    RETURN @sumOfTestFee
 END
 
 
@@ -99,11 +106,11 @@ RETURNS money
 AS
 BEGIN
     declare @sumOfScanFee money;
-    SET @sumOfScanFee =  SELECT  SUM(scanFee) FROM Scan_fee 
+    SET @sumOfScanFee =  (SELECT  SUM(scanFee) FROM Scan_fee 
                         where scanDate Between @date1 and @date2
                         AND paymentStatus = 'Y' AND admittedTransaction = 'N')
 
-    RETURNS @sumOfScanFee
+    RETURN @sumOfScanFee
 END
 
 
@@ -118,7 +125,7 @@ BEGIN
                           where timeScheduled Between @date1  and @date1 
                           AND paymentStatus = 'Y' AND admittedTransaction = 'N')
 
-    RETURNS @sumOfsurgeryFee
+    RETURN @sumOfsurgeryFee
 END
 
 
@@ -128,11 +135,90 @@ RETURNS money
 AS
 BEGIN
     declare @sumOfRoomFee money;
-    SET @sumOfRoomFee =  (SELECT  SUM(totalRoomFee) FROM Room_fee 
-                            where admissionDate Between @date and @date2
+    SET @sumOfRoomFee =  (SELECT  SUM(totalRoomFee) FROM Room_fees 
+                            where admissionDate Between @date1 and @date2
                             AND paymentStatus = 'Y' AND admittedTransaction = 'N')
 
-    RETURNS @sumOfRoomFee
+    RETURN @sumOfRoomFee
 END
 
+----------------------------------------------------------------------------
 
+CREATE FUNCTION SurgeryDetailsWithinThePeriods
+(@fDate DATETIME,@lDate DATETIME)
+RETURNS TABLE
+AS
+
+    RETURN
+    (SELECT * FROM MH_SURGERY 
+    WHERE timeScheduled 
+    BETWEEN @fDate AND @lDate)
+	
+
+SELECT  * FROM dbo.SurgeryDetailsWithinThePeriods('20170101 10:00:00 AM','20170101 11:00:00 AM');
+    
+--------------------------------------------------------------------------
+
+CREATE FUNCTION MH_ScanDetailsWithinThePeriods
+(@fDate DATE,@lDate DATE)
+RETURNS TABLE
+AS
+
+
+    RETURN
+    (SELECT * FROM MH_Scan 
+    WHERE scanDate 
+    BETWEEN  @fDate AND @lDate )
+
+SELECT * FROM dbo.MH_ScanDetailsWithinThePeriods('20160101','20170301');
+---------------------------------------------------------------------------     
+   
+CREATE FUNCTION MH_PrescriptionDetailsWithinThePeriods
+(@fDate DATE,@lDate DATE)
+RETURNS TABLE
+AS
+    RETURN
+    (SELECT * FROM mh_Prescription 
+    WHERE  startDate
+    BETWEEN  @fDate AND @lDate) 
+
+SELECT * FROM dbo.MH_PrescriptionDetailsWithinThePeriods('20160101','20170301');
+     
+     
+-------------------------------------------------------------------------------
+
+CREATE FUNCTION MH_consultationDetailsWithinThePeriods
+(@fDate DATE,@lDate DATE)
+RETURNS TABLE
+AS
+    RETURN
+    (SELECT * FROM MH_consultation 
+    WHERE  consultationDate
+    BETWEEN  @fDate AND @lDate )
+
+SELECT * FROM dbo.MH_consultationDetailsWithinThePeriods('20160101','20170301');
+-------------------------------------------------------------------------------------
+
+CREATE FUNCTION MH_TestDetailsWithinThePeriods
+(@fDate DATE,@lDate DATE)
+RETURNS TABLE
+AS
+    RETURN
+    (SELECT * FROM MH_test 
+    WHERE  testDate
+    BETWEEN  @fDate AND @lDate) 
+
+SELECT * FROM dbo.MH_TestDetailsWithinThePeriods('20160101','20170301');
+
+-----------------------------------------------------------------------
+CREATE FUNCTION MH_AdmissionDetailsWithinThePeriods
+(@fDate DATE,@lDate DATE)
+RETURNS TABLE
+AS
+    RETURN
+    (SELECT * FROM MH_ADMISSION 
+    WHERE  admissionDate
+    BETWEEN  @fDate AND @lDate )
+
+SELECT * FROM dbo.MH_AdmissionDetailsWithinThePeriods('20160101','20170301');
+     
